@@ -1,4 +1,13 @@
 
+import pandas as pd
+ 
+d1 = {'Name': ['Pankaj', 'Lisa'], 'ID': [1, 2]}
+ 
+df = pd.DataFrame.from_dict(d1)
+ 
+print(df)
+ 
+ 
 
 dicts = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 print (f"dict['Name']:{dicts['Name']}")
@@ -55,4 +64,13 @@ plays(1,2,3,4,5,5)
 import module1 as m1
 m1.play(12,12,12,12,12)
 
- 
+
+# import sc.log4 
+
+import sc.log4 as log4
+log = log4.get_logger()
+log.debug('I am a debug message')
+log.info('I am a info message')
+log.warning('I am a warning message')
+log.error('I am a error message')
+log.critical('I am a critical message')

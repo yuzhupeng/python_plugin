@@ -1,0 +1,568 @@
+<html>
+ <head> 
+  <title>Business WorkFlow</title> 
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../elements/css/style_body.css?r=202112072009" type="text/css" />
+ </head>      
+ <body> 
+  <script language="JavaScript">
+	var click_flg=0;
+	function clickcontroll(){
+		if(click_flg==0){
+			click_flg=1;return true;
+			}
+		return false;
+	}
+</script> 
+  <script language="JavaScript">
+<!--
+//帳票画面表示
+function test(Root,AppryID,CFID,CFTOKEN){
+	subwin=window.open(Root+'index.cfm?fuseaction=report.Frame&ApplyID='+AppryID+'&CFID='+CFID+'&CFTOKEN='+CFTOKEN);
+}
+
+//帳票画面再設定
+function ReportSend(PaperSize,SncOutput,SanctiontCnt){
+	subwin.location.href='../apps/index.cfm?fuseaction=report.Frame&ApplyID=295742&PaperSize='+PaperSize+'&SncOutput='+SncOutput+'&SanctiontCnt='+SanctiontCnt;
+}
+//-->
+</script> 
+  <script language="JavaScript">
+<!--
+//外部データ連携(左側入力項目がある)
+function open_datalink1(Config, EleName){
+	var EleValue;
+	var BusinessModelID = '';
+	var ApplyID = '';
+	var actMode;
+	
+	if(document.appform.BusinessModelID){
+		//申請時
+		BusinessModelID = document.appform.BusinessModelID.value;
+		actMode = 'App';
+	}else{
+		//処理時
+		ApplyID = document.buttonform.ApplyID.value;
+		actMode = 'Act';
+	}
+	
+	var CodeValue = '';
+
+	for (cnt=0; cnt < document.appform.elements.length;  cnt = cnt +1) {
+		if(document.appform.elements[cnt]){
+			if(document.appform.elements[cnt].name == EleName){
+				CodeValue = document.appform.elements[cnt-1].value;
+				break;
+			}
+		}else{
+			break;
+		}
+	}
+
+	if(CodeValue.length>0){
+		window.open('add_datalink/index.cfm?Code='+encodeURI(CodeValue)+'&Config='+Config+'&BUMID='+BusinessModelID+'&ApplyID='+ApplyID+'&actMode='+actMode ,'DataLinkInfo' ,'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+	}else{
+		window.open('add_datalink/index.cfm?Code='+CodeValue+'&Config='+Config+'&BUMID='+BusinessModelID+'&TabHiddenFlg=&ApplyID='+ApplyID+'&actMode='+actMode ,'DataLinkInfo' ,'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+	}
+}
+
+//外部データ連携(左側入力項目がなし)
+function open_datalink2(Config, EleName){
+	var EleValue;
+	var BusinessModelID = '';
+	var ApplyID = '';
+	var actMode;
+	
+	if(document.appform.BusinessModelID){
+		//申請時
+		BusinessModelID = document.appform.BusinessModelID.value;
+		actMode = 'App';
+	}else{
+		//処理時
+		ApplyID = document.buttonform.ApplyID.value;
+		actMode = 'Act';
+	}
+	
+	var CodeValue = "";
+
+	window.open('add_datalink/index.cfm?Code='+CodeValue+'&Config='+Config+'&BUMID='+BusinessModelID+'&TabHiddenFlg=&ApplyID='+ApplyID+'&actMode='+actMode ,'DataLinkInfo' ,'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+}
+
+//関連申請書参照
+function open_applyview(prm){
+	window.open('add_applyview/index.cfm?P='+prm ,'ApplyViewInfo' ,'width=700, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+}
+
+//印刷レイアウトの複数化対応
+//Querystring取得
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+    }
+}
+function open_report(template) {
+	if(!document.buttonform)return false;
+
+	var fuseaction=getQueryVariable('fuseaction');
+	
+	//HistoryNo取得
+	var history_no = '';
+	if(document.buttonform.HistoryNo.value)history_no = document.buttonform.HistoryNo.value;
+	
+	var target_url ='../apps/index.cfm?fuseaction=reportcfdoc.Frame&PrintHistoryNo='+ history_no +'&CFReportFolder='+ template
+	if(fuseaction == 'Archive.ApplyDisp'){
+		//アーカイブの場合
+		target_url ='../../apps/add_reportcfdocarc/index.cfm?fuseaction=reportcfdoc.Frame&PrintHistoryNo='+ history_no +'&CFReportFolder='+ template
+	}
+	window.open('about:blank','_print','resizable=yes,scrollbars=yes,status=yes');
+	document.buttonform.target='_print';document.buttonform.action=target_url;
+	document.buttonform.submit();
+}
+
+//社員情報設定
+function open_contactset(Config){
+	var BusinessModelID = document.appform.BusinessModelID.value;
+	window.open('add_contactset/index.cfm?Config='+Config+'&BUMID='+BusinessModelID,'ContactSet' ,'width=700, height=500, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+}
+
+//エクセル帳票出力
+function open_excel(){
+	
+	if(!document.buttonform){
+		alert('申請時は利用できません。');
+	}
+	var ApplyID = document.buttonform.ApplyID.value;
+
+	window.open('about:blank','_print','resizable=yes,scrollbars=yes,status=yes');
+	document.buttonform.target='_print';document.buttonform.action='add_reportexcel/index.cfm?circuitFuseaction=Print&ApplyID='+ApplyID;
+	document.buttonform.submit();
+}
+
+//エクスポート出力
+function exe_export(){
+	
+	if(!document.buttonform){
+		alert('申請時は利用できません。');
+	}
+	var ApplyID = document.buttonform.ApplyID.value;
+	if(ApplyID==''){
+		alert('申請時は利用できません。');
+	}
+	
+	window.open('about:blank','_export','resizable=yes,scrollbars=yes,status=yes');
+	document.buttonform.target='_export';document.buttonform.action='../apps/index.cfm?fuseaction=export.Add_Action&ApplyID='+ApplyID;
+	//document.buttonform.action='../apps/index.cfm?fuseaction=export.Add_Action&ApplyID='+ApplyID;
+	document.buttonform.submit();
+}
+
+// コメントスレッド対応
+function thread_open(obj){
+	obj.Mode.value='Reload';
+	obj.ThreadMode.value='1';
+	thread_act(obj);
+}
+function thread_close(obj){
+	obj.Mode.value='Reload';
+	obj.ThreadMode.value='0';
+	thread_act(obj);
+}
+function thread_add(obj){
+	obj.Mode.value='ThreadAdd';
+	thread_act(obj);
+}
+function thread_detail(obj,id){
+	obj.Mode.value='Reload';
+	obj.ThreadMode.value='2';
+	obj.ThreadID.value=id;
+	thread_act(obj);
+}
+function thread_replyadd(obj){
+	obj.Mode.value='ThreadReplyAdd';
+	thread_act(obj);
+}
+function thread_act(obj){
+	obj.action=obj.action+'#THREAD_TBL';
+	obj.submit();
+}
+function thread_print(obj){
+	window.open('about:blank','_print','resizable=yes,scrollbars=yes,status=yes');
+	obj.Mode.value='ThreadPrint';
+	obj.target='_print';
+	obj.submit();
+	obj.target='';
+	obj.Mode.value='';
+}
+
+//-->
+</script> 
+  <form action="../apps/index.cfm?fuseaction=inquiryall.Apply&amp;Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&amp;CategoryID=3&amp;BusinessModelAdminID=106&amp;ApplyStatus=%2D100&amp;ApplyerSection=%2D100&amp;SApplyDate=&amp;EApplyDate=&amp;SCompleteDate=&amp;ECompleteDate=&amp;SDocApplyDate=&amp;EDocApplyDate=&amp;SDocCompleteDate=&amp;EDocCompleteDate=&amp;PageCount=100&amp;PageNo=1&amp;SortKey=ApplyDate&amp;Order=DESC&amp;KeepSortKey=ApplyDate&amp;AdminCD=&amp;SAdminNumber=&amp;EAdminNumber=&amp;AdminCDNumber=&amp;Subject1=&amp;Subject2=&amp;Subject3=&amp;Subject4=&amp;Subject5=&amp;FreeWord=" method="POST" class="TBL">
+   <table>
+    <tbody>
+     <tr>
+      <td><input type="SUBMIT" value="取消" class="Button" onclick="this.form.action='../apps/index.cfm?fuseaction=inquiryall.Apply&amp;Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&amp;CategoryID=3&amp;BusinessModelAdminID=106&amp;ApplyStatus=%2D100&amp;ApplyerSection=%2D100&amp;SApplyDate=&amp;EApplyDate=&amp;SCompleteDate=&amp;ECompleteDate=&amp;SDocApplyDate=&amp;EDocApplyDate=&amp;SDocCompleteDate=&amp;EDocCompleteDate=&amp;PageCount=100&amp;PageNo=1&amp;SortKey=ApplyDate&amp;Order=DESC&amp;KeepSortKey=ApplyDate&amp;AdminCD=&amp;SAdminNumber=&amp;EAdminNumber=&amp;AdminCDNumber=&amp;Subject1=&amp;Subject2=&amp;Subject3=&amp;Subject4=&amp;Subject5=&amp;FreeWord=';" /></td>
+     </tr>
+    </tbody>
+   </table>
+  </form>
+  <table width="595" border="1">
+   <tbody>
+    <tr>
+     <th colspan="14"><span class="TH_SIZE">处理状况一览</span></th>
+    </tr>
+    <tr>
+     <td nowrap="" align="center"><span class="HEADING">申请人</span></td>
+     <td>&nbsp;</td>
+     <td nowrap="" align="center"><span class="HEADING">第1处理人</span></td>
+     <td>&nbsp;</td>
+     <td nowrap="" align="center"><span class="HEADING">第2处理人</span></td>
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
+     <td nowrap="" align="center"><span class="HEADING">第3处理人</span></td>
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
+     <td nowrap="" align="center"><span class="HEADING">第4处理人</span></td>
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
+     <td nowrap="" align="center"><span class="HEADING">结束</span></td>
+    </tr>
+    <tr align="center">
+     <td align="center" nowrap="" rowspan="3"><span class="BASIS">KOPD经营管理课班长<br />李 雅婷<br />2021/12/02 10:15:53<br /></span></td>
+     <td width="20" nowrap="" rowspan="3" align="center"><span class="HEADING">-&gt;</span></td>
+     <td nowrap="" colspan="1" rowspan="3"><span class="BASIS"> KOPD经营管理课副课长<br />KOPD叶 淑媚<br />承认<br />2021/12/02 11:08:24</span></td>
+     <td width="20" nowrap="" rowspan="3" align="center"><span class="HEADING">-&gt;</span></td>
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> KOPD管理部部长付<br />KOPD添島 晋<br />承认<br />2021/12/02 12:10:53</span></td>
+     <td width="10" nowrap="" rowspan="3" colspan="1"><span class="HEADING">OR</span></td>
+     <td width="20" nowrap="" rowspan="3" align="center"><span class="HEADING">-&gt;</span></td>
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> SKC<br />何 锦成<br />承认<br />2021/12/02 13:15:06</span></td>
+     <td width="10" nowrap="" rowspan="3" colspan="1"><span class="HEADING">OR</span></td>
+     <td width="20" nowrap="" rowspan="3" align="center"><span class="HEADING">-&gt;</span></td>
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> SKC<br />麦 瑞珊<br />2021/12/02 13:27:26</span></td>
+     <td width="10" nowrap="" rowspan="3" colspan="1"><span class="HEADING">OR</span></td>
+     <td width="20" nowrap="" rowspan="3" align="center"><span class="HEADING">-&gt;</span></td>
+     <td nowrap="" rowspan="3"><span class="BASIS">主管部门:无<br />2021/12/02 13:27:26<br /></span></td>
+    </tr>
+    <tr align="center">
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> KOPD管理部部长<br />KOPD邱 玉明<br />2021/12/02 12:10:53</span></td>
+     <td nowrap="" colspan="1" rowspan="2"><span class="BASIS"> SKC<br />刘 淑君<br />2021/12/02 13:15:06</span></td>
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> SKC<br />SKC吴 正文<br />承认<br />2021/12/02 13:27:26</span></td>
+    </tr>
+    <tr align="center">
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> KOPD管理部副部长<br />KOPD叶 敏铭<br />2021/12/02 12:10:53</span></td>
+     <td nowrap="" colspan="1" rowspan="1"><span class="BASIS"> SKC<br />贺 海军<br />2021/12/02 13:27:26</span></td>
+    </tr>
+   </tbody>
+  </table> 
+  <p> </p>
+  <form name="buttonform" method="post" class="TBL">
+   <input type="HIDDEN" name="ApplyID" value="295742" />
+   <input type="HIDDEN" name="CombineID" value="-100" />
+   <input type="HIDDEN" name="ApplyCombineID" value="-100" />
+   <input type="HIDDEN" name="CombineOrderNo" value="1" />
+   <input type="HIDDEN" name="WddxApcAcd" value="" />
+   <input type="HIDDEN" name="FormType" value="6" />
+   <input type="HIDDEN" name="HistoryNo" value="" />
+   <table border="0">
+    <tbody>
+     <tr>
+      <td><input type="SUBMIT" value="打印" class="Button" onclick="window.open('about:blank','_print','resizable=yes,scrollbars=yes,status=yes'); this.form.target='_print';this.form.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&amp;PrintHistoryNo=';" /></td>
+      <input type="HIDDEN" name="ApplyID" value="295742" />
+      <input type="HIDDEN" name="CombineID" value="-100" />
+      <input type="HIDDEN" name="ApplyCombineID" value="-100" />
+      <input type="HIDDEN" name="CombineOrderNo" value="1" />
+      <input type="HIDDEN" name="WddxApcAcd" value="" />
+      <input type="HIDDEN" name="FormType" value="6" />
+      <input type="HIDDEN" name="HistoryNo" value="" />
+     </tr>
+    </tbody>
+   </table>
+  </form>
+  <table border="0">
+   <tbody>
+    <tr>
+     <td nowrap="">
+      <form name="appform" method="POST" class="TBL" action="../apps/index.cfm?fuseaction=inquiryall.Action&amp;inquiryallType=ApplyDisp&amp;Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&amp;CategoryID=3&amp;BusinessModelAdminID=106&amp;ApplyStatus=%2D100&amp;ApplyerSection=%2D100&amp;SApplyDate=&amp;EApplyDate=&amp;SCompleteDate=&amp;ECompleteDate=&amp;SDocApplyDate=&amp;EDocApplyDate=&amp;SDocCompleteDate=&amp;EDocCompleteDate=&amp;PageCount=100&amp;PageNo=1&amp;SortKey=ApplyDate&amp;Order=DESC&amp;KeepSortKey=ApplyDate&amp;AdminCD=&amp;SAdminNumber=&amp;EAdminNumber=&amp;AdminCDNumber=&amp;Subject1=&amp;Subject2=&amp;Subject3=&amp;Subject4=&amp;Subject5=&amp;FreeWord=" enctype="multipart/form-data">
+       <table width="595" border="1">
+        <tbody>
+         <tr>
+          <th nowrap=""><span class="TH_SIZE">GA03-202112-47085:用车申请表</span></th>
+         </tr>
+         <tr>
+          <td>
+           <table border="0" width="100%">
+            <tbody>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="1" name="ele1041" /><input type="HIDDEN" value="1" name="ele1041" /></span><span class="BASIS"><input type="HIDDEN" value="新申请不需要填写（新規申請の場合は記入不要）" name="ele1042" /><input type="HIDDEN" value="新申请不需要填写（新規申請の場合は記入不要）" name="ele1042" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">申请用车类型&nbsp;&nbsp;&nbsp;</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><textarea style="overflow:hidden" class="LTEXTLABEL" cols="12" tabindex="-1" readonly="Yes" rows="1">新申请</textarea></span></td>
+                  <td valign="top" nowrap=""><span class="HEADING">变更、取消理由</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="50" class="LTEXTLABEL" value="新申请不需要填写（新規申請の場合は記入不要）" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="李雅婷等2人" name="ele191" /><input type="HIDDEN" value="李雅婷等2人" name="ele191" /></span><span class="BASIS"><input type="HIDDEN" value="1268" name="ele187" /><input type="HIDDEN" value="1268" name="ele187" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">实际用车者/人数</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="60" class="LTEXTLABEL" value="李雅婷等2人" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                  <td valign="top" nowrap=""><span class="HEADING">内线</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="16" class="LTEXTLABEL" value="1268" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td nowrap=""><input type="Hidden" name="tbl0_RowCount" value="2" /></td>
+                  <td valign="top" nowrap=""><input type="HIDDEN" value="1" name="tbl0_ele1806_1" /><input type="HIDDEN" value="1" name="tbl0_ele1806_2" /><input type="HIDDEN" value="2021/12/13" name="tbl0_ele190_1" /><input type="HIDDEN" value="2021/12/14" name="tbl0_ele190_2" /><input type="HIDDEN" value="中央豪门1号门公交车站-石龙旧城区大市场-深圳维也纳国际酒店(下水径店)-石龙旧城区大市场-中央豪门1号门公交车站" name="tbl0_ele1033_1" /><input type="HIDDEN" value="中央豪门1号门公交车站-石龙旧城区大市场-深圳维也纳国际酒店(下水径店)-石龙旧城区大市场-中央豪门1号门公交车站" name="tbl0_ele1033_2" /><input type="HIDDEN" value="6:50" name="tbl0_ele193_1" /><input type="HIDDEN" value="6:50" name="tbl0_ele193_2" /><input type="HIDDEN" value="  17:00" name="tbl0_ele1030_1" /><input type="HIDDEN" value="  17:00" name="tbl0_ele1030_2" /><input type="HIDDEN" value="" name="tbl0_ele1045_1" /><input type="HIDDEN" value="" name="tbl0_ele1045_2" /><input type="HIDDEN" value="  :" name="tbl0_ele1048_1" /><input type="HIDDEN" value="  :" name="tbl0_ele1048_2" />
+                   <table border="1">
+                    <tbody>
+                     <tr>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">用车类型</span></th>
+                      <th align="RIGHT" nowrap=""><span class="TH_SIZE">用车日期</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">行程（例：SKC－广州机场-航站楼）</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">出发时间</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">返回时间</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">车次/航班号</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">开车/起飞&middot;到达时间</span></th>
+                     </tr>
+                     <tr>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="12" class="LTEXTLABEL" value="公司车" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="RIGHT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="8" class="RTEXTLABEL" value="2021/12/13" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="30" class="LTEXTLABEL" value="中央豪门1号门公交车站-石龙旧城区大市场-深圳维也纳国际酒店(下水径店)-石龙旧城区大市场-中央豪门1号门公交车站" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="6" class="LTEXTLABEL" value="6:50" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="6" class="LTEXTLABEL" value="  17:00" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="7" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="12" class="LTEXTLABEL" value="  :" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                     </tr>
+                     <tr>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="12" class="LTEXTLABEL" value="公司车" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="RIGHT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="8" class="RTEXTLABEL" value="2021/12/14" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="30" class="LTEXTLABEL" value="中央豪门1号门公交车站-石龙旧城区大市场-深圳维也纳国际酒店(下水径店)-石龙旧城区大市场-中央豪门1号门公交车站" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="6" class="LTEXTLABEL" value="6:50" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="6" class="LTEXTLABEL" value="  17:00" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="7" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="12" class="LTEXTLABEL" value="  :" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" align="LEFT" nowrap=""><span class="HEADING"><span name="ele1805">出发时间即从出发地开始出行的时间，返回时间即从目的地开始返程的时间。</span></span>&nbsp;</td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="" name="ele1807" /><input type="HIDDEN" value="" name="ele1807" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">※如申请香港（HK）直通车，请填写选择的公司</span>&nbsp;</td>
+                  <td valign="top" nowrap=""><span class="BASIS"><img src="../elements/images/checkOff.gif" height="13" width="20" align="texttop" />永信直通车（单程1550元）<img src="../elements/images/checkOff.gif" height="13" width="20" align="texttop" />自营直通车（单程1100元）</span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="参加贸易合规与关务管理（优先安排公司车）" name="ele198" /><input type="HIDDEN" value="参加贸易合规与关务管理（优先安排公司车）" name="ele198" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">用车理由&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="80" class="LTEXTLABEL" value="参加贸易合规与关务管理（优先安排公司车）" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="广东省深圳市龙岗区吉华路266号海心汇福园D座" name="ele1044" /><input type="HIDDEN" value="广东省深圳市龙岗区吉华路266号海心汇福园D座" name="ele1044" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">行程详细地址</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="80" class="LTEXTLABEL" value="广东省深圳市龙岗区吉华路266号海心汇福园D座" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap=""><span class="BASIS"><input type="HIDDEN" value="13794982270" name="ele1100" /><input type="HIDDEN" value="13794982270" name="ele1100" /></span><span class="BASIS"><input type="HIDDEN" value="KOPD经营管理课" name="ele1098" /><input type="HIDDEN" value="KOPD经营管理课" name="ele1098" /></span><span class="BASIS"><input type="HIDDEN" value="11300" name="ele199" /><input type="HIDDEN" value="11300" name="ele199" /></span>
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" nowrap=""><span class="HEADING">联系人手机&nbsp;&nbsp;</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="" class="LTEXTLABEL" value="13794982270" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                  <td valign="top" nowrap=""><span class="HEADING">经费负担部门</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="" class="LTEXTLABEL" value="KOPD经营管理课" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                  <td valign="top" nowrap=""><span class="HEADING">※经费负担编码</span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="TEXT" size="" class="LTEXTLABEL" value="11300" maxlength="" tabindex="-1" readonly="Yes" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" align="LEFT" nowrap=""><span class="HEADING"><span name="ele200">※自行负担的情况下，经费负担编号请输入“00000”</span></span>&nbsp;</td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" align="LEFT" nowrap=""><span class="HEADING"><span name="ele202">***&nbsp;审批部门&nbsp;***</span></span>&nbsp;</td>
+                  <td valign="top" align="LEFT" nowrap=""><span class="BASIS"><input type="BUTTON" onclick="window.open('about:blank','_print');
+document.buttonform.target='_print';
+document.buttonform.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&amp;PrintHistoryNo=';
+document.buttonform.submit();" value="打印" class="BUTTON_F_FORM" name="BTN_ele1040" /><input type="HIDDEN" value="window.open('about:blank','_print');
+document.buttonform.target='_print';
+document.buttonform.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&amp;PrintHistoryNo=';
+document.buttonform.submit();" name="ele1040" /></span></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td nowrap=""><input type="Hidden" name="tbl1_RowCount" value="1" /></td>
+                  <td valign="top" nowrap=""><input type="HIDDEN" value="" name="tbl1_ele203_1" /><input type="HIDDEN" value="" name="tbl1_ele204_1" /><input type="HIDDEN" value="" name="tbl1_ele206_1" /><input type="HIDDEN" value="" name="tbl1_ele207_1" /><input type="HIDDEN" value="" name="tbl1_ele208_1" /><input type="HIDDEN" value="" name="tbl1_ele209_1" />
+                   <table border="1">
+                    <tbody>
+                     <tr>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">司机</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">车牌号</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">运行管理员</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">出厂时间</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">回厂时间</span></th>
+                      <th align="LEFT" nowrap=""><span class="TH_SIZE">共用时间</span></th>
+                     </tr>
+                     <tr>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="10" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="10" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                      <td align="LEFT" valign="TOP" nowrap=""><span class="HEADING"><input type="TEXT" size="10" class="LTEXTLABEL" value="" maxlength="" tabindex="-1" readonly="Yes" /></span>&nbsp;</td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" align="LEFT" nowrap=""><span class="HEADING"><span name="ele1867">【深夜/早上出发需加收】<br />永信：22：00~23：59：加收100元（含发票）&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00:00~04:59：加收200元（含发票）<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05:00~06:59：加收100元（含发票）<br />自营：23：30~06：30：加收100元（不含发票，如需开发票加收10%）<br /><br />【深夜/早朝出発する場合、追加料金が発生する】<br />永信会社：22：00~07：00&nbsp;&nbsp;：&nbsp;&nbsp;100元の残業費用が追加徴収（領収書込み）<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00：00~04：59&nbsp;&nbsp;：&nbsp;&nbsp;200元の残業費用が追加徴収。（領収書込み）<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05：00~06：59&nbsp;&nbsp;：&nbsp;&nbsp;100元の残業費用が追加徴収。（領収書込み）<br />自運営者：23：30~06：30&nbsp;&nbsp;：&nbsp;&nbsp;100元が追加発生。（領収書発行の場合、10%の手数料が必要）</span></span>&nbsp;</td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table>
+                <tbody>
+                 <tr>
+                  <td valign="top" align="LEFT" nowrap=""><span class="HEADING"><span name="ele1099">※多次往返请按「追加」填写信息，但只限当天的往返。如果会延迟到第二天，请另外申请。<br />（往復で申請する場合「追加」ボタンを押してください。ただし、当日の往復に限ります。<br />&nbsp;&nbsp;日をまたぐ場合は、別途申請書を起票してください。）</span></span>&nbsp;</td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+             <tr>
+              <td>
+               <hr /></td>
+             </tr>
+             <tr>
+              <td nowrap="">
+               <table style="width:100%;">
+                <tbody>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">文档申请日</span>&nbsp;</td>
+                  <td colspan="2" nowrap="">
+                   <div class="FORMLABEL">
+                    <span class="BASIS">2021/12/02</span>
+                   </div></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">希望回复日</span>&nbsp;</td>
+                  <td colspan="2" nowrap=""><span class="BASIS">无</span></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">添加资料名</span></td>
+                  <td colspan="2" nowrap=""><span class="BASIS">无</span></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">打印原稿</span>&nbsp;</td>
+                  <td colspan="2" nowrap=""><span class="BASIS">无</span></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">申请人</span>&nbsp;</td>
+                  <td colspan="2" nowrap=""><span class="BASIS">李 雅婷<span class="HEADING"></span></span></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                 <tr>
+                  <td nowrap=""><span class="HEADING">申请日</span>&nbsp;</td>
+                  <td colspan="2" nowrap=""><span class="BASIS">2021/12/02<span class="HEADING"></span></span></td>
+                  <td width="100%">&nbsp;</td>
+                 </tr>
+                </tbody>
+               </table></td>
+             </tr>
+            </tbody>
+           </table></td>
+         </tr>
+        </tbody>
+       </table>
+       <br />
+       <table width="595" border="0"></table>
+       <input type="HIDDEN" value="295742" name="TargetID" />
+       <input type="HIDDEN" value="1" name="TableIdx" />
+       <input type="HIDDEN" value="" name="RowNum" />
+       <input type="HIDDEN" value="-100" name="CombineID" />
+       <input type="HIDDEN" value="-100" name="ApplyCombineID" />
+       <input type="HIDDEN" value="1" name="CombineOrderNo" />
+       <input type="HIDDEN" value="" name="WddxApcAcd" />
+      </form></td>
+    </tr>
+   </tbody>
+  </table>   
+ </body>
+</html>

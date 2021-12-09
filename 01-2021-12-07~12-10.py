@@ -1,0 +1,383 @@
+# a = int(input('a = '))
+# b = int(input('b = '))
+# print('%d + %d = %d' % (a, b, a + b))
+# print('%d - %d = %d' % (a, b, a - b))
+# print('%d * %d = %d' % (a, b, a * b))
+# print('%d / %d = %f' % (a, b, a / b))
+# print('%d // %d = %d' % (a, b, a // b))
+# print('%d %% %d = %d' % (a, b, a % b))
+# print('%d ** %d = %d' % (a, b, a ** b))
+ 
+ 
+ 
+a = 10
+b = 3
+a += b        # 相当于：a = a + b
+a *= a + 2    # 相当于：a = a * (a + 2)
+print(a) 
+
+
+def foo():
+    str="function"
+    print(str);
+if __name__=="__main__":
+    print("main")
+    foo()
+    
+    
+a = 100
+b = 12.345
+c = 'hello, world'
+d = True
+# 整数转成浮点数
+print(float(a))    # 100.0
+# 浮点型转成字符串 (输出字符串时不会看到引号哟)
+print(str(b))      # 12.345
+# 字符串转成布尔型 (有内容的字符串都会变成True)
+print(bool(c))     # True
+# 布尔型转成整数 (True会转成1，False会转成0)
+print(int(d))      # 1
+# 将整数变成对应的字符 (97刚好对应字符表中的字母a)
+print(chr(97))     # a
+# 将字符转成整数 (Python中字符和字符串表示法相同)
+print(ord('a'))    # 97
+
+
+print(321 + 123)     # 加法运算
+print(321 - 123)     # 减法运算
+print(321 * 123)     # 乘法运算
+print(321 / 123)     # 除法运算
+print(321 % 123)     # 求模运算
+print(321 // 123)    # 整除运算
+print(321 ** 123)    # 求幂运算
+
+a = 10
+b = 3
+a += b        # 相当于：a = a + b
+a *= a + 2    # 相当于：a = a * (a + 2)
+print(a)      # 算一下这里会输出什么
+
+
+flag0 = 1 == 1
+flag1 = 3 > 2
+flag2 = 2 < 1
+flag3 = flag1 and flag2
+flag4 = flag1 or flag2
+flag5 = not (1 != 2)
+print('flag0 =', flag0)    # flag0 = True
+print('flag1 =', flag1)    # flag1 = True
+print('flag2 =', flag2)    # flag2 = False
+print('flag3 =', flag3)    # flag3 = False
+print('flag4 =', flag4)    # flag4 = True
+print('flag5 =', flag5)    # flag5 = False
+
+
+#x = float(input('x = ',default=3))
+x=1
+if x > 1:
+    y = 3 * x - 5
+elif x >= -1:
+    y = x + 2
+else:
+    y = 5 * x + 3
+print(f'f({x}) = {y}')
+
+
+"""
+判断输入的边长能否构成三角形，如果能则计算出三角形的周长和面积
+
+Version: 0.1
+Author: 骆昊
+"""
+# a = float(input('a = ',default=3))
+# b = float(input('b = ',default=4))
+# c = float(input('c = ',default=5))
+a =3
+b =4
+c = 5
+if a + b > c and a + c > b and b + c > a:
+    peri = a + b + c
+    print(f'周长: {peri}')
+    half = peri / 2
+    area = (half * (half - a) * (half - b) * (half - c)) ** 0.5
+    print(f'面积: {area}')
+else:
+    print('不能构成三角形')
+    
+    
+#循环
+num=100
+for item in range(1,100):
+   num += item
+   print(num)   
+        
+    
+    
+ 
+total = 0
+for x in range(1, 101):
+    total += x
+print(total)
+
+
+# while
+# import random 
+
+# # 产生一个1-100范围的随机数
+# answer = random.randint(1, 100)
+# counter = 0
+# while True:
+#     counter += 1
+#     print(f'目标数字：{answer}')
+#     number = int(input('请输入: '))
+#     if number < answer:
+#         print('大一点')
+#     elif number > answer:
+#         print('小一点')
+#     else:
+#         print('恭喜你猜对了!')
+#         break
+# # 当退出while循环的时候显示用户一共猜了多少次
+# print(f'你总共猜了{counter}次')
+
+
+# var = 5                   
+# while var > 0:              
+#    var = var -1
+#    if var == 3:
+#       continue
+#    print('当前变量值 :', var)
+# print("Good bye!")
+
+# print('qiu 20')
+# a, b = 0, 1
+# for _ in range(20):
+#     a, b = b, a + b
+#     print(a)
+
+comedian = {'name': 'Eric Idle', 'age': 74}
+print(f"The comedian is {comedian['name']}, aged {comedian['age']}.")
+
+
+#数据类型
+#[]列表 {}集合 ()元组  字典{'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+
+#列表是由一系元素按特定顺序构成的数据序列，
+# 这样就意味着定义一个列表类型的变量，
+# 可以保存多个数据，而且允许有重复的数据,可变
+
+items1 = [35, 12, 99, 68, 55, 87]
+items2 = [45, 8, 29]
+
+# 列表的拼接
+items3 = items1 + items2
+print(items3)    # [35, 12, 99, 68, 55, 87, 45, 8, 29]
+
+# 列表的重复
+items4 = ['hello'] * 3
+print(items4)    # ['hello', 'hello', 'hello']
+
+# 列表的成员运算
+print(100 in items3)        # False
+print('hello' in items4)    # True
+
+# 获取列表的长度(元素个数)
+size = len(items3)
+print(size)                 # 9
+
+# 列表的索引
+print(items3[0], items3[-size])        # 35 35
+items3[-1] = 100
+print(items3[size - 1], items3[-1])    # 100 100
+
+# 列表的切片
+print(items3[:5])          # [35, 12, 99, 68, 55]
+print(items3[4:])          # [55, 87, 45, 8, 100]
+print(items3[-5:-7:-1])    # [55, 68]
+print(items3[::-2])        # [100, 45, 55, 99, 35]
+
+# 列表的比较运算
+items5 = [1, 2, 3, 4]
+items6 = list(range(1, 5))
+# 两个列表比较相等性比的是对应索引位置上的元素是否相等
+print(items5 == items6)    # True
+items7 = [3, 2, 1]
+# 两个列表比较大小比的是对应索引位置上的元素的大小
+print(items5 <= items7)    # True
+
+
+
+
+
+
+#元组也是多个元素按照一定的顺序构成的序列
+# 。元组和列表的不同之处在于，元组是不可变类型，
+# 这就意味着元组类型的变量一旦定义，
+# 其中的元素不能再添加或删除，而且元素的值也不能进行修改
+# 定义一个三元组
+t1 = (30, 10, 55)
+# 定义一个四元组
+t2 = ('骆昊', 40, True, '四川成都')
+
+# 查看变量的类型
+print(type(t1), type(t2))    # <class 'tuple'> <class 'tuple'>
+# 查看元组中元素的数量
+print(len(t1), len(t2))      # 3 4
+
+# 通过索引运算获取元组中的元素
+print(t1[0], t1[-3])         # 30 30
+print(t2[3], t2[-1])         # 四川成都 四川成都
+
+# 循环遍历元组中的元素
+for member in t2:
+    print(member)
+
+# 成员运算
+print(100 in t1)    # False
+print(40 in t2)     # True
+
+# 拼接
+t3 = t1 + t2
+print(t3)           # (30, 10, 55, '骆昊', 40, True, '四川成都')
+
+# 切片
+print(t3[::3])      # (30, '骆昊', '四川成都')
+
+# 比较运算
+print(t1 == t3)    # False
+print(t1 >= t3)    # False
+print(t1 < (30, 11, 55))    # True
+
+
+#字符串
+s1 = '\'hello, world!\''
+print(s1)
+s2 = '\\hello, world!\\'
+print(s2)
+
+
+
+ 
+
+#字典
+
+aaa=dict(aw='1')
+bbb={'key':1}
+dict = {'Alice': '2341', 'Beth': '9102', 'Cecil': '3258'}
+print(aaa)
+print(bbb)
+print(dict)
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+ 
+print ("dict['Name']: "), dict['Name']
+print ("dict['Age']: "), dict['Age']
+
+#字符串
+s1 = 'hello, world'
+print('wo' in s1)    # True
+s2 = 'goodbye'
+print(s2 in s1)      # False
+
+s = 'abc123456'
+N = len(s)
+
+# 获取第一个字符
+print(s[0], s[-N])    # a a
+
+# 获取最后一个字符
+print(s[N-1], s[-1])  # 6 6
+
+# 获取索引为2或-7的字符
+print(s[2], s[-7])    # c c
+
+# 获取索引为5和-4的字符
+print(s[5], s[-4])    # 3 3
+
+def fac(num):
+    """求阶乘"""
+    result = 1
+    for n in range(1, num + 1):
+        result *= n
+    # 返回num的阶乘（因变量）
+    return result
+
+
+m = int(input('m = '))
+n = int(input('n = '))
+# 当需要计算阶乘的时候不用再写重复的代码而是直接调用函数fac
+# 调用函数的语法是在函数名后面跟上圆括号并传入参数
+print(fac(m) // fac(n) // fac(m - n))
+
+#函数以及模块
+
+def fabs(num):
+    asq = 1
+    for item in range(1,num+1):
+        asq *= item
+        return asq
+
+
+from random import randint
+
+
+# 默认值 定义摇色子的函数，n表示色子的个数，默认值为2
+def roll_dice(n=2):
+    """摇色子返回总的点数"""
+    total = 0
+    for _ in range(n):
+        total += randint(1, 6)
+    return total
+
+
+# 如果没有指定参数，那么n使用默认值2，表示摇两颗色子
+print(roll_dice())
+# 传入参数3，变量n被赋值为3，表示摇三颗色子获得点数
+print(roll_dice(3))
+
+
+
+
+#可变参数
+def add(*args):
+    total = 0
+    # 可变参数可以放在for循环中取出每个参数的值
+    for val in args:
+        if type(val) in (int, float):
+            total += val
+    return total
+
+
+# 在调用add函数时可以传入0个或任意多个参数
+print(add())
+print(add(1))
+print(add(1, 2))
+print(add(1, 2, 3))
+print(add(1, 3, 5, 7, 9))
+
+
+
+
+def kebian(agrs):
+    total=0
+    for item in agrs:
+        if(type(item) in(int,float)):
+           total+=item 
+        
+    print(total)
+
+
+
+
+import module1
+module1.play(1,2,3,4)
+
+from module2 import plays
+plays(1,2,3,4,5,5)
+
+import module1 as m1
+m1.play(12,12,12,12,12)
+
+
+from module2 import plays as f2
+f2(1,2,3,4,5,6,6)

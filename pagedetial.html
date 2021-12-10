@@ -1,0 +1,1116 @@
+<HTML>
+	<HEAD>
+		<TITLE>
+			Business WorkFlow
+		</TITLE>
+	</HEAD>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+	<link REL="stylesheet" HREF="../elements/css/style_body.css?r=20211210142818"
+	TYPE="text/css">
+	<BODY>
+		<SCRIPT LANGUAGE="JavaScript">
+			var click_flg = 0;
+			function clickcontroll() {
+				if (click_flg == 0) {
+					click_flg = 1;
+					return true;
+				}
+				return false;
+			}
+		</SCRIPT>
+		<SCRIPT LANGUAGE="JavaScript">
+			< !--
+			//帳票画面表示
+			function test(Root, AppryID, CFID, CFTOKEN) {
+				subwin = window.open(Root + 'index.cfm?fuseaction=report.Frame&ApplyID=' + AppryID + '&CFID=' + CFID + '&CFTOKEN=' + CFTOKEN);
+			}
+
+			//帳票画面再設定
+			function ReportSend(PaperSize, SncOutput, SanctiontCnt) {
+				subwin.location.href = '../apps/index.cfm?fuseaction=report.Frame&ApplyID=296728&PaperSize=' + PaperSize + '&SncOutput=' + SncOutput + '&SanctiontCnt=' + SanctiontCnt;
+			}
+			//-->
+			
+		</SCRIPT>
+		<SCRIPT LANGUAGE="JavaScript">
+			< !--
+			//外部データ連携(左側入力項目がある)
+			function open_datalink1(Config, EleName) {
+				var EleValue;
+				var BusinessModelID = '';
+				var ApplyID = '';
+				var actMode;
+
+				if (document.appform.BusinessModelID) {
+					//申請時
+					BusinessModelID = document.appform.BusinessModelID.value;
+					actMode = 'App';
+				} else {
+					//処理時
+					ApplyID = document.buttonform.ApplyID.value;
+					actMode = 'Act';
+				}
+
+				var CodeValue = '';
+
+				for (cnt = 0; cnt < document.appform.elements.length; cnt = cnt + 1) {
+					if (document.appform.elements[cnt]) {
+						if (document.appform.elements[cnt].name == EleName) {
+							CodeValue = document.appform.elements[cnt - 1].value;
+							break;
+						}
+					} else {
+						break;
+					}
+				}
+
+				if (CodeValue.length > 0) {
+					window.open('add_datalink/index.cfm?Code=' + encodeURI(CodeValue) + '&Config=' + Config + '&BUMID=' + BusinessModelID + '&ApplyID=' + ApplyID + '&actMode=' + actMode, 'DataLinkInfo', 'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+				} else {
+					window.open('add_datalink/index.cfm?Code=' + CodeValue + '&Config=' + Config + '&BUMID=' + BusinessModelID + '&TabHiddenFlg=&ApplyID=' + ApplyID + '&actMode=' + actMode, 'DataLinkInfo', 'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+				}
+			}
+
+			//外部データ連携(左側入力項目がなし)
+			function open_datalink2(Config, EleName) {
+				var EleValue;
+				var BusinessModelID = '';
+				var ApplyID = '';
+				var actMode;
+
+				if (document.appform.BusinessModelID) {
+					//申請時
+					BusinessModelID = document.appform.BusinessModelID.value;
+					actMode = 'App';
+				} else {
+					//処理時
+					ApplyID = document.buttonform.ApplyID.value;
+					actMode = 'Act';
+				}
+
+				var CodeValue = "";
+
+				window.open('add_datalink/index.cfm?Code=' + CodeValue + '&Config=' + Config + '&BUMID=' + BusinessModelID + '&TabHiddenFlg=&ApplyID=' + ApplyID + '&actMode=' + actMode, 'DataLinkInfo', 'width=600, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+			}
+
+			//関連申請書参照
+			function open_applyview(prm) {
+				window.open('add_applyview/index.cfm?P=' + prm, 'ApplyViewInfo', 'width=700, height=600, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+			}
+
+			//印刷レイアウトの複数化対応
+			//Querystring取得
+			function getQueryVariable(variable) {
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i = 0; i < vars.length; i++) {
+					var pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return pair[1];
+					}
+				}
+			}
+			function open_report(template) {
+				if (!document.buttonform) return false;
+
+				var fuseaction = getQueryVariable('fuseaction');
+
+				//HistoryNo取得
+				var history_no = '';
+				if (document.buttonform.HistoryNo.value) history_no = document.buttonform.HistoryNo.value;
+
+				var target_url = '../apps/index.cfm?fuseaction=reportcfdoc.Frame&PrintHistoryNo=' + history_no + '&CFReportFolder=' + template
+				if (fuseaction == 'Archive.ApplyDisp') {
+					//アーカイブの場合
+					target_url = '../../apps/add_reportcfdocarc/index.cfm?fuseaction=reportcfdoc.Frame&PrintHistoryNo=' + history_no + '&CFReportFolder=' + template
+				}
+				window.open('about:blank', '_print', 'resizable=yes,scrollbars=yes,status=yes');
+				document.buttonform.target = '_print';
+				document.buttonform.action = target_url;
+				document.buttonform.submit();
+			}
+
+			//社員情報設定
+			function open_contactset(Config) {
+				var BusinessModelID = document.appform.BusinessModelID.value;
+				window.open('add_contactset/index.cfm?Config=' + Config + '&BUMID=' + BusinessModelID, 'ContactSet', 'width=700, height=500, menubar=no, toolbar=no, location=no, status=yes, resizable=yes, scrollbars=yes');
+			}
+
+			//エクセル帳票出力
+			function open_excel() {
+
+				if (!document.buttonform) {
+					alert('申請時は利用できません。');
+				}
+				var ApplyID = document.buttonform.ApplyID.value;
+
+				window.open('about:blank', '_print', 'resizable=yes,scrollbars=yes,status=yes');
+				document.buttonform.target = '_print';
+				document.buttonform.action = 'add_reportexcel/index.cfm?circuitFuseaction=Print&ApplyID=' + ApplyID;
+				document.buttonform.submit();
+			}
+
+			//エクスポート出力
+			function exe_export() {
+
+				if (!document.buttonform) {
+					alert('申請時は利用できません。');
+				}
+				var ApplyID = document.buttonform.ApplyID.value;
+				if (ApplyID == '') {
+					alert('申請時は利用できません。');
+				}
+
+				window.open('about:blank', '_export', 'resizable=yes,scrollbars=yes,status=yes');
+				document.buttonform.target = '_export';
+				document.buttonform.action = '../apps/index.cfm?fuseaction=export.Add_Action&ApplyID=' + ApplyID;
+				//document.buttonform.action='../apps/index.cfm?fuseaction=export.Add_Action&ApplyID='+ApplyID;
+				document.buttonform.submit();
+			}
+
+			// コメントスレッド対応
+			function thread_open(obj) {
+				obj.Mode.value = 'Reload';
+				obj.ThreadMode.value = '1';
+				thread_act(obj);
+			}
+			function thread_close(obj) {
+				obj.Mode.value = 'Reload';
+				obj.ThreadMode.value = '0';
+				thread_act(obj);
+			}
+			function thread_add(obj) {
+				obj.Mode.value = 'ThreadAdd';
+				thread_act(obj);
+			}
+			function thread_detail(obj, id) {
+				obj.Mode.value = 'Reload';
+				obj.ThreadMode.value = '2';
+				obj.ThreadID.value = id;
+				thread_act(obj);
+			}
+			function thread_replyadd(obj) {
+				obj.Mode.value = 'ThreadReplyAdd';
+				thread_act(obj);
+			}
+			function thread_act(obj) {
+				obj.action = obj.action + '#THREAD_TBL';
+				obj.submit();
+			}
+			function thread_print(obj) {
+				window.open('about:blank', '_print', 'resizable=yes,scrollbars=yes,status=yes');
+				obj.Mode.value = 'ThreadPrint';
+				obj.target = '_print';
+				obj.submit();
+				obj.target = '';
+				obj.Mode.value = '';
+			}
+
+			//-->
+			
+		</SCRIPT>
+		<FORM ACTION="../apps/index.cfm?fuseaction=inquiryall.Apply&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&CategoryID=3&BusinessModelAdminID=106&ApplyStatus=%2D100&ApplyerSection=%2D100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo=1&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord="
+		METHOD="POST" CLASS="TBL">
+			<TABLE>
+				<TR>
+					<TD>
+						<INPUT TYPE="SUBMIT" VALUE="取消" CLASS="Button" ONCLICK="this.form.action='../apps/index.cfm?fuseaction=inquiryall.Apply&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&CategoryID=3&BusinessModelAdminID=106&ApplyStatus=%2D100&ApplyerSection=%2D100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo=1&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=';">
+					</TD>
+				</TR>
+			</TABLE>
+		</FORM>
+		<TABLE WIDTH="595" BORDER="1">
+			<TR>
+				<TH COLSPAN="15">
+					<SPAN CLASS="TH_SIZE">
+						处理状况一览
+					</SPAN>
+				</TH>
+			</TR>
+			<TR>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						申请人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						第1处理人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						第2处理人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						第3处理人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						第4处理人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						第5处理人
+					</SPAN>
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD>
+					&nbsp;
+				</TD>
+				<TD NOWRAP ALIGN=center>
+					<SPAN CLASS="HEADING">
+						结束
+					</SPAN>
+				</TD>
+			</TR>
+			<TR ALIGN="center">
+				<TD ALIGN=center NOWRAP ROWSPAN="3">
+					<SPAN CLASS="BASIS">
+						DSP 商品开发系长
+						<BR>
+						郑 楚浩
+						<BR>
+						2021/12/10 10:20:22
+						<BR>
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP COLSPAN="1" ROWSPAN="3">
+					<SPAN CLASS="BASIS">
+						DSP 商品开发课长
+						<BR>
+						梁 绍金
+						<BR>
+						承认
+						<BR>
+						2021/12/10 10:27:16
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP BGCOLOR="#FF8E8E" COLSPAN="1" ROWSPAN="3">
+					<SPAN CLASS="BASIS">
+						SKC DSP 设计开发部副部长
+						<BR>
+						山崎 泰宏
+						<BR>
+						阅读
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP COLSPAN="1" ROWSPAN="3">
+					<SPAN CLASS="BASIS">
+						SKC DSP 设计开发部部长
+						<BR>
+						柴野 実
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP COLSPAN="1" ROWSPAN="1">
+					<SPAN CLASS="BASIS">
+						SKC
+						<BR>
+						何 锦成
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+				<TD WIDTH="10" NOWRAP ROWSPAN="3" COLSPAN="1">
+					<SPAN CLASS="HEADING">
+						OR
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP COLSPAN="1" ROWSPAN="1">
+					<SPAN CLASS="BASIS">
+						SKC
+						<BR>
+						麦 瑞珊
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+				<TD WIDTH="10" NOWRAP ROWSPAN="3" COLSPAN="1">
+					<SPAN CLASS="HEADING">
+						OR
+					</SPAN>
+				</TD>
+				<TD WIDTH="20" NOWRAP ROWSPAN="3" ALIGN="center">
+					<SPAN CLASS="HEADING">
+						->
+					</SPAN>
+				</TD>
+				<TD NOWRAP ROWSPAN="3">
+					<SPAN CLASS="BASIS">
+						主管部门:无
+						<BR>
+						<BR>
+					</SPAN>
+				</TD>
+			</TR>
+			<TR ALIGN="center">
+				<TD NOWRAP COLSPAN="1" ROWSPAN="2">
+					<SPAN CLASS="BASIS">
+						SKC
+						<BR>
+						刘 淑君
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+				<TD NOWRAP COLSPAN="1" ROWSPAN="1">
+					<SPAN CLASS="BASIS">
+						SKC
+						<BR>
+						SKC吴 正文
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+			</TR>
+			<TR ALIGN="center">
+				<TD NOWRAP COLSPAN="1" ROWSPAN="1">
+					<SPAN CLASS="BASIS">
+						SKC
+						<BR>
+						贺 海军
+						<BR>
+						未到着
+					</SPAN>
+				</TD>
+			</TR>
+		</TABLE>
+		<P>
+			<FORM NAME="buttonform" METHOD="post" CLASS="TBL">
+				<TABLE BORDER="0">
+					<TR>
+						<TD>
+							<INPUT TYPE="SUBMIT" VALUE="打印" CLASS="Button" ONCLICK="window.open('about:blank','_print','resizable=yes,scrollbars=yes,status=yes'); this.form.target='_print';this.form.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&PrintHistoryNo=';">
+						</TD>
+						<INPUT TYPE="HIDDEN" NAME="ApplyID" VALUE="296728">
+						<INPUT TYPE="HIDDEN" NAME="CombineID" VALUE="-100">
+						<INPUT TYPE="HIDDEN" NAME="ApplyCombineID" VALUE="-100">
+						<INPUT TYPE="HIDDEN" NAME="CombineOrderNo" VALUE="1">
+						<INPUT TYPE="HIDDEN" NAME="WddxApcAcd" VALUE="">
+						<INPUT TYPE="HIDDEN" NAME="FormType" VALUE="3">
+						<INPUT TYPE="HIDDEN" NAME="HistoryNo" VALUE="">
+					</TR>
+				</TABLE>
+			</FORM>
+			<TABLE BORDER="0">
+				<TR>
+					<TD NOWRAP>
+						<FORM NAME="appform" METHOD="POST" CLASS="TBL" ACTION="../apps/index.cfm?fuseaction=inquiryall.Action&inquiryallType=ApplyDisp&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord&CategoryID=3&BusinessModelAdminID=106&ApplyStatus=%2D100&ApplyerSection=%2D100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo=1&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord="
+						ENCTYPE="multipart/form-data">
+							<TABLE WIDTH="595" BORDER="1">
+								<TR>
+									<TH NOWRAP>
+										<SPAN CLASS="TH_SIZE">
+											GA03-202112-47178:用车申请表
+										</SPAN>
+									</TH>
+								</TR>
+								<TR>
+									<TD>
+										<TABLE BORDER="0" WIDTH="100%">
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	申请用车类型&nbsp;&nbsp;&nbsp;
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="1" NAME="ele1041">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<TEXTAREA STYLE="overflow:hidden" CLASS="LTEXTLABEL" COLS="12" tabindex="-1"
+																	READONLY="Yes" ROWS="1">
+																		新申请
+																	</TEXTAREA>
+																</SPAN>
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	变更、取消理由
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="新申请不需要填写（新規申請の場合は記入不要）" NAME="ele1042">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="50" CLASS="LTEXTLABEL" VALUE="新申请不需要填写（新規申請の場合は記入不要）"
+																	MAXLENGTH="" tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	实际用车者/人数
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="郑楚浩/5人" NAME="ele191">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="60" CLASS="LTEXTLABEL" VALUE="郑楚浩/5人" MAXLENGTH=""
+																	tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	内线
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="1492" NAME="ele187">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="16" CLASS="LTEXTLABEL" VALUE="1492" MAXLENGTH=""
+																	tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD NOWRAP>
+																<INPUT TYPE="Hidden" NAME="tbl0_RowCount" VALUE="1">
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<INPUT TYPE="HIDDEN" VALUE="1" NAME="tbl0_ele1806_1">
+																<INPUT TYPE="HIDDEN" VALUE="2021/12/17" NAME="tbl0_ele190_1">
+																<INPUT TYPE="HIDDEN" VALUE="深圳宝安国际机场T3-SKC" NAME="tbl0_ele1033_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl0_ele193_1">
+																<INPUT TYPE="HIDDEN" VALUE=" 18 :30" NAME="tbl0_ele1030_1">
+																<INPUT TYPE="HIDDEN" VALUE="ZH9804" NAME="tbl0_ele1045_1">
+																<INPUT TYPE="HIDDEN" VALUE="14  :40" NAME="tbl0_ele1048_1">
+																<TABLE BORDER=1>
+																	<TR>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				用车类型
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=RIGHT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				用车日期
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				行程（例：SKC－广州机场-航站楼）
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				出发时间
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				返回时间
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				车次/航班号
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				开车/起飞·到达时间
+																			</SPAN>
+																		</TH>
+																	</TR>
+																	<TR>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="12" CLASS="LTEXTLABEL" VALUE="公司车" tabindex="-1"
+																				READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=RIGHT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="8" CLASS="RTEXTLABEL" VALUE="2021/12/17" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="30" CLASS="LTEXTLABEL" VALUE="深圳宝安国际机场T3-SKC"
+																				MAXLENGTH="" tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="6" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH="" tabindex="-1"
+																				READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="6" CLASS="LTEXTLABEL" VALUE=" 18 :30" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="7" CLASS="LTEXTLABEL" VALUE="ZH9804" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="12" CLASS="LTEXTLABEL" VALUE="14  :40" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																	</TR>
+																</TABLE>
+														</TR>
+													</TABLE>
+													</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	<SPAN NAME="ele1805">
+																		出发时间即从出发地开始出行的时间，返回时间即从目的地开始返程的时间。
+																	</SPAN>
+																</SPAN>
+																&nbsp;
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	※如申请香港（HK）直通车，请填写选择的公司
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="ele1807">
+															</SPAN>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<IMG SRC=../elements/images/checkOff.gif HEIGHT="13" WIDTH="20" ALIGN="texttop">
+																	永信直通车（单程1550元）
+																	<IMG SRC=../elements/images/checkOff.gif HEIGHT="13" WIDTH="20" ALIGN="texttop">
+																	自营直通车（单程1100元）
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	用车理由&nbsp;&nbsp;&nbsp;&nbsp;
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="接机后，到东莞松山湖医院（第三人民医院）做核酸检测" NAME="ele198">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="80" CLASS="LTEXTLABEL" VALUE="接机后，到东莞松山湖医院（第三人民医院）做核酸检测"
+																	MAXLENGTH="" tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	行程详细地址
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="深圳宝安国际机场、东莞松山湖医院（第三人民医院）" NAME="ele1044">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="80" CLASS="LTEXTLABEL" VALUE="深圳宝安国际机场、东莞松山湖医院（第三人民医院）"
+																	MAXLENGTH="" tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	联系人手机&nbsp;&nbsp;
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="18128669190" NAME="ele1100">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="18128669190" MAXLENGTH=""
+																	tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	经费负担部门
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="DSP 商品开发" NAME="ele1098">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="DSP 商品开发" MAXLENGTH=""
+																	tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	※经费负担编码
+																</SPAN>
+																&nbsp;
+															</TD>
+															<SPAN CLASS="BASIS">
+																<INPUT TYPE="HIDDEN" VALUE="64200" NAME="ele199">
+															</SPAN>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="64200" MAXLENGTH=""
+																	tabindex="-1" READONLY="Yes">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	<SPAN NAME="ele200">
+																		※自行负担的情况下，经费负担编号请输入“00000”
+																	</SPAN>
+																</SPAN>
+																&nbsp;
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	<SPAN NAME="ele202">
+																		***&nbsp;审批部门&nbsp;***
+																	</SPAN>
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	<INPUT TYPE="BUTTON" ONCLICK="window.open('about:blank','_print');
+																	document.buttonform.target='_print';
+																	document.buttonform.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&amp;PrintHistoryNo=';
+																	document.buttonform.submit();" VALUE="打印" CLASS="BUTTON_F_FORM" NAME="BTN_ele1040">
+																	<INPUT TYPE="HIDDEN" VALUE="window.open('about:blank','_print');
+																	document.buttonform.target='_print';
+																	document.buttonform.action='../apps/index.cfm?fuseaction=reportcfdoc.Frame&amp;PrintHistoryNo=';
+																	document.buttonform.submit();" NAME="ele1040">
+																</SPAN>
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD NOWRAP>
+																<INPUT TYPE="Hidden" NAME="tbl1_RowCount" VALUE="1">
+															</TD>
+															<TD VALIGN="top" NOWRAP>
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele203_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele204_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele206_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele207_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele208_1">
+																<INPUT TYPE="HIDDEN" VALUE="" NAME="tbl1_ele209_1">
+																<TABLE BORDER=1>
+																	<TR>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				司机
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				车牌号
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				运行管理员
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				出厂时间
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				回厂时间
+																			</SPAN>
+																		</TH>
+																		<TH ALIGN=LEFT NOWRAP>
+																			<SPAN CLASS="TH_SIZE">
+																				共用时间
+																			</SPAN>
+																		</TH>
+																	</TR>
+																	<TR>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH="" tabindex="-1"
+																				READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH="" tabindex="-1"
+																				READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH="" tabindex="-1"
+																				READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="10" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="10" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																		<TD ALIGN=LEFT VALIGN=TOP NOWRAP>
+																			<SPAN CLASS="HEADING">
+																				<INPUT TYPE="TEXT" SIZE="10" CLASS="LTEXTLABEL" VALUE="" MAXLENGTH=""
+																				tabindex="-1" READONLY="Yes">
+																			</SPAN>
+																			&nbsp;
+																		</TD>
+																	</TR>
+																</TABLE>
+														</TR>
+													</TABLE>
+													</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	<SPAN NAME="ele1867">
+																		【深夜/早上出发需加收】
+																		<BR>
+																		永信：22：00~23：59：加收100元（含发票）&nbsp;&nbsp;
+																		<BR>
+																		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00:00~04:59：加收200元（含发票）
+																		<BR>
+																		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05:00~06:59：加收100元（含发票）
+																		<BR>
+																		自营：23：30~06：30：加收100元（不含发票，如需开发票加收10%）
+																		<BR>
+																		<BR>
+																		【深夜/早朝出発する場合、追加料金が発生する】
+																		<BR>
+																		永信会社：22：00~07：00&nbsp;&nbsp;：&nbsp;&nbsp;100元の残業費用が追加徴収（領収書込み）
+																		<BR>
+																		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00：00~04：59&nbsp;&nbsp;：&nbsp;&nbsp;200元の残業費用が追加徴収。（領収書込み）
+																		<BR>
+																		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05：00~06：59&nbsp;&nbsp;：&nbsp;&nbsp;100元の残業費用が追加徴収。（領収書込み）
+																		<BR>
+																		自運営者：23：30~06：30&nbsp;&nbsp;：&nbsp;&nbsp;100元が追加発生。（領収書発行の場合、10%の手数料が必要）
+																	</SPAN>
+																</SPAN>
+																&nbsp;
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE>
+														<TR>
+															<TD VALIGN="top" ALIGN="LEFT" NOWRAP>
+																<SPAN CLASS="HEADING">
+																	<SPAN NAME="ele1099">
+																		※多次往返请按「追加」填写信息，但只限当天的往返。如果会延迟到第二天，请另外申请。
+																		<BR>
+																		（往復で申請する場合「追加」ボタンを押してください。ただし、当日の往復に限ります。
+																		<BR>
+																		&nbsp;&nbsp;日をまたぐ場合は、別途申請書を起票してください。）
+																	</SPAN>
+																</SPAN>
+																&nbsp;
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+											<TR>
+												<TD>
+													<HR>
+												</TD>
+											</TR>
+											<TR>
+												<TD NOWRAP>
+													<TABLE STYLE="width:100%;">
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	文档申请日
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<DIV CLASS="FORMLABEL">
+																	<SPAN CLASS="BASIS">
+																		2021/12/10
+																	</SPAN>
+																</DIV>
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	希望回复日
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	无
+																</SPAN>
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	添加资料名
+																</SPAN>
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	无
+																</SPAN>
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	打印原稿
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	无
+																</SPAN>
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	申请人
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	郑 楚浩
+																	<SPAN CLASS="HEADING">
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+														<TR>
+															<TD NOWRAP>
+																<SPAN CLASS="HEADING">
+																	申请日
+																</SPAN>
+																&nbsp;
+															</TD>
+															<TD COLSPAN="2" NOWRAP>
+																<SPAN CLASS="BASIS">
+																	2021/12/10
+																	<SPAN CLASS="HEADING">
+															</TD>
+															<TD WIDTH="100%">
+																&nbsp;
+															</TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+										</TABLE>
+										</TD>
+								</TR>
+							</TABLE>
+							<BR>
+							<TABLE WIDTH="595" BORDER="0">
+							</TABLE>
+							<INPUT TYPE="HIDDEN" VALUE="296728" NAME="TargetID">
+							<INPUT TYPE="HIDDEN" VALUE="1" NAME="TableIdx">
+							<INPUT TYPE="HIDDEN" VALUE="" NAME="RowNum">
+							<INPUT TYPE="HIDDEN" VALUE="-100" NAME="CombineID">
+							<INPUT TYPE="HIDDEN" VALUE="-100" NAME="ApplyCombineID">
+							<INPUT TYPE="HIDDEN" VALUE="1" NAME="CombineOrderNo">
+							<INPUT TYPE="HIDDEN" VALUE="" NAME="WddxApcAcd">
+							<INPUT TYPE="HIDDEN" VALUE="2021/12/10 11:27:16" NAME="LastModified">
+						</FORM>
+						</TD>
+				</TR>
+			</TABLE>
+	</body>
+
+</html>

@@ -1,3 +1,126 @@
+ 
+asq=[]
+
+for item in range(1,6): 
+    asq.append(item)
+ 
+ 
+print(asq)
+ 
+def fac(num):
+    if num in (0, 1):
+        return 1
+    return num * fac(num - 1)
+
+print(fac(10))
+
+
+numbers1 = [35, 12, 8, 99, 60, 52]
+numbers2 = list(map(lambda x: x ** 5, filter(lambda x: x % 2 == 0, numbers1)))
+print(numbers2) 
+
+print('1')
+
+def sum(x,y):
+      return x+y
+ 
+
+ 
+
+p = lambda x,y:x+y
+print(p(4,6))
+ 
+
+ 
+
+a=lambda x:x*x
+print(a(3))       # 注意：这里直接a(3)可以执行，但没有输出的，前面的print不能少 
+ 
+ 
+
+a = lambda x,y,z:(x+8)*y-z
+print(a(5,6,8))
+
+
+
+
+
+def f(x):
+    return x*x
+
+ 
+aas=[1, 2, 3, 4, 5, 6, 7, 8, 9]
+r=map(f, aas)
+print(list(r)) 
+
+ 
+ 
+
+def is_even(num):
+    return num % 2 == 0
+
+
+def square(num):
+    return num ** 2
+
+
+numbers1 = [35, 12, 8, 99, 60, 52]
+numbers2 = list(map(square, filter(is_even, numbers1)))
+print(numbers2)    # [144, 64, 3600, 2704]
+
+
+
+
+def test_kwargs(first, *args, **kwargs):
+       print('Required argument: ', first)
+       print(type(kwargs))
+       for v in args:
+          print ('Optional argument (args): ', v)
+       for k, v in kwargs.items():
+          print ('Optional argument %s (kwargs): %s' % (k, v))
+
+test_kwargs(1, 2, 3, 4, k1=5, k2=6)
+ 
+
+
+
+
+
+
+
+def calc(*args,**a2s):
+    result = 0
+    for arg in args:
+        if type(arg) in (int, float):
+            result += arg
+    for value in a2s.values():
+            if type(value) in (int, float):
+              result += value
+    return result
+
+
+print(calc(a=1, b=2, c=3))
+
+
+def calc(*args,**kwargs):
+    result = 0
+    for arg in args:
+        if type(arg) in (int, float):
+            result += arg
+    for value in kwargs.values():
+        if type(value) in (int, float):
+            result += value
+    return result
+
+
+print(calc())                  # 0
+print(calc(1, 2, 3))           # 6
+print(calc(a=1, b=2, c=3))     # 6
+print(calc(1, 2, c=3, d=4))    # 10
+
+
+
+
 import re
 string = 'abe(ac)ad)'
 p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配

@@ -417,3 +417,78 @@ def get_suffix(filename, ignore_dot=True):
     if pos <= 0:
         return ''
     return filename[pos + 1:] if ignore_dot else filename[pos:]
+
+
+def is_triangle(a, b, c):
+    print(f'a = {a}, b = {b}, c = {c}')
+    return a + b > c and b + c > a and a + c > b
+
+
+# 调用函数传入参数不指定参数名按位置对号入座
+print(is_triangle(1, 2, 3))
+# 调用函数通过“参数名=参数值”的形式按顺序传入参数
+print(is_triangle(a=1, b=2, c=3))
+# 调用函数通过“参数名=参数值”的形式不按顺序传入参数
+print(is_triangle(c=3, a=1, b=2))
+
+#参数*******
+def test_kwargs(first, *args, **kwargs):
+       print('Required argument: ', first)
+       print(type(kwargs))
+       for v in args:
+          print ('Optional argument (args): ', v)
+       for k, v in kwargs.items():
+          print ('Optional argument %s (kwargs): %s' % (k, v))
+
+test_kwargs(1, 2, 3, 4, k1=5, k2=6)
+#  Required argument:  1
+# <class 'dict'>
+# Optional argument (args):  2
+# Optional argument (args):  3
+# Optional argument (args):  4
+# Optional argument k2 (kwargs): 6
+# Optional argument k1 (kwargs): 5
+
+
+# 将函数作为参数和调用函数是有显著的区别的
+# ，调用函数需要在函数名后面跟上圆括号，
+# 而把函数作为参数时只需要函数名即可
+
+
+
+#高阶函数 map
+# map()是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，
+# 并通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。
+ 
+
+
+def f(x):
+    return x*x
+aas=[1, 2, 3, 4, 5, 6, 7, 8, 9]
+r=map(f, aas)
+print(list(r)) 
+
+
+numbers1 = [35, 12, 8, 99, 60, 52]
+numbers2 = list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, numbers1)))
+print(numbers2)  
+ 
+def sum(x,y):
+      return x+y
+ 
+
+ 
+
+p = lambda x,y:x+y
+print(p(4,6))
+ 
+
+ 
+
+a=lambda x:x*x
+print(a(3))       # 注意：这里直接a(3)可以执行，但没有输出的，前面的print不能少 
+ 
+ 
+
+a = lambda x,y,z:(x+8)*y-z
+print(a(5,6,8))

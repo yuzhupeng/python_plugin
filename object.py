@@ -7,6 +7,8 @@ import re
 from bs4 import BeautifulSoup
 import sc.log4 
 from lxml import etree
+import json
+import pymssql 
 
 log = sc.log4.get_logger()
 
@@ -76,15 +78,6 @@ def login():
     # print(RES.cookies) 
     return RES.cookies
 
-
-
-
-
-
-
-
-
-
 def getpagecontent(pageno,cookie):
     url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
     payload = 'CategoryID=3&BusinessModelAdminID=106&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
@@ -105,7 +98,7 @@ def getpagecontent(pageno,cookie):
     # cookie=login()
     # cookie='CFID=4232877; CFTOKEN=81953532'
     response = requests.request("POST", url, headers=headers, data=payload)
-    file = open('html.txt', 'a', encoding='utf-8')   
+    # file = open('html.txt', 'a', encoding='utf-8')   
     data = response.text
  
     soup = BeautifulSoup(data, 'lxml')
@@ -119,47 +112,51 @@ def getpagecontent(pageno,cookie):
     for tr in tr_arr:
         #//查询所有td
         tds = tr.find_all('td');  
-        if len(tds)!=11:
+        if len(tds)!=11 or tds[0].text.strip()=='目录'or tds[0].text.strip()=='管理序号':
             continue
-        file.write('\n')
-        file.write('--------------------')
-        file.write('\n')
-        # print(tds[1].text)
         temp = []
-        for td in tds:
-            if td.text.strip()=='目录' or td.text.strip()=='管理序号':
+        
+        if tds[0].text.strip()=='目录' or tds[0].text.strip()=='管理序号':
                 break
-            # print(td)
-            # print(td.text)
-            # print(td.find_all('a'))
-            if len(td.text.strip())>0:
-                file.write(td.text.strip())
-                temp.append(td.text.strip())
-            else:
-                continue
-            astr=td.find_all('a')
-            if len(astr)>0:
-            #    print(astr[0])
-                file.write('\n')
+        if  len(tds[1].text.strip())>0:
+             temp.append(tds[1].text.strip())
+        else:
+             continue
+        astr=tds[1].find_all('a')
+         
+        if len(astr)>0:
                 p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
                 p2 = re.compile(r'[(](.*)[)]', re.S)  #贪婪匹配
                 applyid=re.findall(p1, astr[0].attrs['href'])
                 applyidno = applyid[0].replace('[','').replace(']','')
                 temp.append(applyidno)
-                file.write(applyidno)          
-                #file.write(td.find_all('a'))
-                file.write('\n')
-        # file.write(tds)
-            # print(tds);
-                inv_info.append(temp)
-        
-    file.close()
+                
+        temp.append(tds[5].text.strip())
+        inv_info.append(temp)
+         
+       
+       
+       
+        # for td in tds:
+        #     if td.text.strip()=='目录' or td.text.strip()=='管理序号':
+        #         break
+            
+        #     if len(td.text.strip())>0:
+        #         temp.append(td.text.strip())
+        #     else:
+        #         continue
+        #     astr=td.find_all('a')
+        #     if len(astr)>0:
+        #         p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
+        #         p2 = re.compile(r'[(](.*)[)]', re.S)  #贪婪匹配
+        #         applyid=re.findall(p1, astr[0].attrs['href'])
+        #         applyidno = applyid[0].replace('[','').replace(']','')
+        #         temp.append(applyidno)
+     
+        #         inv_info.append(temp)
+ 
     return inv_info
      
- 
- 
-import pymssql 
-
 #根据编号查询是否存在
 def fecth_applyno(applyno):
     server = "."    # 连接服务器地址
@@ -180,20 +177,33 @@ def fecth_applyno(applyno):
        
 #插入cas用车申请单
 def applydata_Update_Insert(inv_info):
+    applyformlist=[]
     for info in inv_info:
         if len(info)>1:
           print (info[1])
           print (info[2])
-          flags= fecth_applyno(info[1])
-          if flags==True:
+          flags= fecth_applyno(info[0])
+          if flags==True or info[2]=='取消' or info[2]=='退回':
              print("执行更新")#执行更新
           else:
-            get_apply_data(1,info[2],COO)
-            print("执行插入")
+            detial=get_apply_data(1,info[1],COO,info[0])
+            time.sleep(2)
+            if len(detial)>0:
+               print(f'获取【{info[1]}】的数据完成！')
+               applyformlist.append(detial)
+               file = open('html.txt', 'a', encoding='utf-8') 
+               js = json.dumps(detial,ensure_ascii=False)
+               file.write(js+'\n')
+               file.write('---------------'+'\n')
+               file.close()  #关闭
+            else:
+                print(f'获取【{info[1]}】的数据失败！')
+            
+    return applyformlist
 #'CFID=4232877; CFTOKEN=81953532'
 
 #BWF系统获取用车申请明细信息
-def get_apply_data(pageno,applyids,cookie):
+def get_apply_data(pageno,applyids,cookie,applyno):
      url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.ApplyDisp&ApplyID={applyid}'.format(applyid=applyids)
      payload = 'CategoryID=3&BusinessModelAdminID=106&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
      headers = {
@@ -226,49 +236,64 @@ def get_apply_data(pageno,applyids,cookie):
             return
      xphtml = etree.HTML(html_text)
      
-     print(html_text)
+     #print(html_text)
      #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[4]/span/input
      #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td/table/tbody/tr/td[2]/span/input
      #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[6]/td/table/tbody/tr/td[2]/span/input
-     
-      
-   
-      
+     #/html/body/table[2]/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/span/textarea
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[4]/span/input
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[6]/td/table/tbody/tr/td[2]/span/input
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[7]/td/table/tbody/tr/td[2]/span/input
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[2]/span/input  联系人手机  
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[6]/span/input 经费代码
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[4]/span/input
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[5]/td[2]/span
+     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[6]/td[2]/span
+     #html/body/table[3]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/span/textarea
      inputs = xphtml.xpath("//table")
      table2=inputs[5]
-     vvv=table2.xpath("/tbody/tr[6]/td/table/tbody/tr/td[1]/span/input")
-      
+     ins=table2.xpath("./tr[1]/td/table/tr") 
+     insv=table2.xpath("./tr[1]/td/table/tr/td[1]")
+     applytpye=table2.xpath("./tr[1]/td/table/tr/td[2]/span/textarea")[0].text#申请用车类型 
+     reason=table2.xpath("./tr[1]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#变更、取消理由
+     usereason=table2.xpath("./tr[6]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#用车理由
+     DetailedAddres=table2.xpath("./tr[7]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#行程详细地址
+     PhonePassenger=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+     ShareCore=table2.xpath("./tr[8]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#经费代码
+     CostDepartment=table2.xpath("./tr[8]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
+     applyperson=table2.xpath("./tr[15]/td/table/tr[5]/td[2]/span")[0].text#申请人
+     applydate=table2.xpath("./tr[15]/td/table/tr[6]/td[2]/span")[0].text#申请日期
+     applyform= {'applyno':applyno,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddress':DetailedAddres,
+      'PhonePassenger':PhonePassenger,'ShareCore':ShareCore,'CostDepartment':CostDepartment,'applyperson':applyperson,'applydate':applydate
+      }
      detial=[]
-     for li in inputs:
-         values = li.xpath("@value")[0]
-         if len(values)>1:
-             detial.append(values)
-     # xphtml = etree.HTML(html_text)
-       
-     
-  
-     print(xphtml)
-     print(detial)
+     detial.append(applyform)
+      #经费负担部门
+     return applyform
+    
 
+COO='CFID=4238286; CFTOKEN=15557770'
+inv_info=[]
+for item in range(1,2): 
+    inv_info+=getpagecontent(item,COO)
 
-COO='CFID=4236026; CFTOKEN=79172508'
-inv_info=getpagecontent(5,COO)
-applydata_Update_Insert(inv_info)
+list=applydata_Update_Insert(inv_info)
 
+for item in list:
+    print(item)
 
 
 
-for info in inv_info:
-    if len(info)>1:
-       print (info[1])
-       print (info[2])
-       for item in info:
-           print(item)
+# for info in inv_info:
+#     if len(info)>1:
+#        print (info[1])
+#        print (info[2])
+#        for item in info:
+#            print(item)
  
  
 
-
-import json
+ 
 
 my_dict = {
     'name': '骆昊',

@@ -476,8 +476,32 @@ print(numbers2)
 def sum(x,y):
       return x+y
  
-
  
+#filter
+# Python内建的filter()函数用于过滤序列。
+
+# 和map()类似，filter()也接收一个函数和一个序列。
+# 和map()不同的是，filter()把传入的函数依次作用于每个元素，
+# 然后根据返回值是True还是False决定保留还是丢弃该元素。
+ 
+def is_odd(n):
+    return n % 2 == 1
+
+list(filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15]))
+# 结果: [1, 5, 9, 15]
+ 
+#reduce
+# 再看reduce的用法。reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，
+# 这个函数必须接收两个参数，
+# reduce把结果继续和序列的下一个元素做累积计算，其效果就是：
+
+
+
+
+#lambda
+qw=lambda sq,we:sq+we
+
+print(qw(1,2))
 
 p = lambda x,y:x+y
 print(p(4,6))
@@ -492,3 +516,20 @@ print(a(3))       # 注意：这里直接a(3)可以执行，但没有输出的�
 
 a = lambda x,y,z:(x+8)*y-z
 print(a(5,6,8))
+
+
+#调用函数需要在函数名后面跟上圆括号，而把函数作为参数时只需要函数名即可。
+import operator
+def calc(*args, **kwargs):
+    result = 0
+    for arg in args:
+        if type(arg) in (int, float):
+            result += arg
+    for value in kwargs.values():
+        if type(value) in (int, float):
+            result += value
+    return result
+
+# print(calc(1, 2, 3, init_value=0, op=operator.add, x=4, y=5))      # 15
+print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 120
+

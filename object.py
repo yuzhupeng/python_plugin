@@ -9,7 +9,8 @@ import sc.log4
 from lxml import etree
 import json
 import pymssql 
-
+from db2 import DB
+    
 log = sc.log4.get_logger()
 
 def getContent(url,header=None,datas = None,cookie=None):
@@ -126,14 +127,14 @@ def getpagecontent(pageno,cookie):
          
         if len(astr)>0:
                 p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
-                p2 = re.compile(r'[(](.*)[)]', re.S)  #贪婪匹配
+                # p2 = re.compile(r'[(](.*)[)]', re.S)  #贪婪匹配
                 applyid=re.findall(p1, astr[0].attrs['href'])
                 applyidno = applyid[0].replace('[','').replace(']','')
                 temp.append(applyidno)
                 
         temp.append(tds[5].text.strip())
         inv_info.append(temp)
-         
+        
        
        
        
@@ -233,6 +234,7 @@ def get_apply_data(pageno,applyids,cookie,applyno):
             html_text = response.content.decode("utf-8")
      except UnicodeDecodeError as e:
             print("解码api响应内容失败")
+            log.error("解码api响应内容失败")
             return
      xphtml = etree.HTML(html_text)
      
@@ -250,29 +252,51 @@ def get_apply_data(pageno,applyids,cookie,applyno):
      #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[5]/td[2]/span
      #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[6]/td[2]/span
      #html/body/table[3]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/span/textarea
-     inputs = xphtml.xpath("//table")
-     table2=inputs[5]
-     ins=table2.xpath("./tr[1]/td/table/tr") 
-     insv=table2.xpath("./tr[1]/td/table/tr/td[1]")
-     applytpye=table2.xpath("./tr[1]/td/table/tr/td[2]/span/textarea")[0].text#申请用车类型 
-     reason=table2.xpath("./tr[1]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#变更、取消理由
-     usereason=table2.xpath("./tr[6]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#用车理由
-     DetailedAddres=table2.xpath("./tr[7]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#行程详细地址
-     PhonePassenger=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
-     ShareCore=table2.xpath("./tr[8]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#经费代码
-     CostDepartment=table2.xpath("./tr[8]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
-     applyperson=table2.xpath("./tr[15]/td/table/tr[5]/td[2]/span")[0].text#申请人
-     applydate=table2.xpath("./tr[15]/td/table/tr[6]/td[2]/span")[0].text#申请日期
-     applyform= {'applyno':applyno,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddress':DetailedAddres,
-      'PhonePassenger':PhonePassenger,'ShareCore':ShareCore,'CostDepartment':CostDepartment,'applyperson':applyperson,'applydate':applydate
-      }
-     detial=[]
-     detial.append(applyform)
-      #经费负担部门
-     return applyform
+     try:
+            inputs = xphtml.xpath("//table")
+            table2=inputs[5]
+            ins=table2.xpath("./tr[1]/td/table/tr") 
+            insv=table2.xpath("./tr[1]/td/table/tr/td[1]")
+            applytpye=table2.xpath("./tr[1]/td/table/tr/td[2]/span/textarea")[0].text#申请用车类型 
+            reason=table2.xpath("./tr[1]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#变更、取消理由
+            usereason=table2.xpath("./tr[6]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#用车理由
+            DetailedAddres=table2.xpath("./tr[7]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#行程详细地址
+            PhonePassenger=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            ShareCore=table2.xpath("./tr[8]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#经费代码
+            CostDepartment=table2.xpath("./tr[8]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
+            applyperson=table2.xpath("./tr[15]/td/table/tr[5]/td[2]/span")[0].text#申请人
+            applydate=table2.xpath("./tr[15]/td/table/tr[6]/td[2]/span")[0].text#申请日期
+            
+            table3=inputs[9]
+            TravelDetial=[]
+            trs=table3.xpath("./tr")
+            for item in trs:       
+                tds=item.xpath("./td")
+                if len(tds)>0:
+                    vasq=tds[1].xpath("./span/input")[0]
+                    usedate= tds[1].xpath("./span/input")[0].get('value', default=None)
+                    travel= tds[2].xpath("./span/input")[0].get('value', default=None)    
+                    OstartTime= tds[3].xpath("./span/input")[0].get('value', default=None)  
+                    ReturnTime= tds[4].xpath("./span/input")[0].get('value', default=None)  
+                    FlightNo= tds[5].xpath("./span/input")[0].get('value', default=None)    
+                    FlightTime= tds[6].xpath("./span/input")[0].get('value', default=None) 
+                    detial={'usedate':usedate,'travel':travel,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
+                    TravelDetial.append(detial)
+            
+            applyform= {'applyno':applyno,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddress':DetailedAddres,
+            'PhonePassenger':PhonePassenger,'ShareCore':ShareCore,'CostDepartment':CostDepartment,'applyperson':applyperson,'applydate':applydate
+            ,'TravelDetial':TravelDetial}
+            detial=[]
+            detial.append(applyform)
+            #经费负担部门
+            return applyform
+     except Exception as e:
+             
+            log.error("解码api响应内容失败")
+            return []
     
 
-COO='CFID=4238286; CFTOKEN=15557770'
+COO='CFID=4243124; CFTOKEN=12412058'
 inv_info=[]
 for item in range(1,2): 
     inv_info+=getpagecontent(item,COO)

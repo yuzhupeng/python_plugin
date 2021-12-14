@@ -1,4 +1,46 @@
  
+
+
+import operator
+def calc(*args, **kwargs):
+    result = 0
+    for arg in args:
+        if type(arg) in (int, float):
+            result += arg
+    for value in kwargs.values():
+        if type(value) in (int, float):
+            result += value
+    return result
+
+# print(calc(1, 2, 3, init_value=0, op=operator.add, x=4, y=5))      # 15
+print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 120
+
+import base64
+import uuid
+ 
+# get a UUID - URL safe, Base64
+
+ 
+def f(x):
+        return x+x
+
+ 
+aas=[1,2,3,3,2,2,2,2,2,2,2,1,2,2]
+r=map(f, aas)
+print(list(r)) 
+
+
+from functools import reduce
+def add_2(x, y):
+    return x+y
+a7 = map(add_2, [1,2,3,3,2,2,2,2,2,2,2,1,2,2])  #得到的是一个值，依次执行add_2(1,2)，对结果和3执行add_2(add_2(1,2),3)，有点类似递归运算
+print(a7) 
+ 
+ 
+ 
+print(uuid.uuid1())
+ 
+
 asq=[]
 
 for item in range(1,6): 

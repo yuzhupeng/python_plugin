@@ -81,9 +81,10 @@ def login():
     # print(RES.cookies) 
     return RES.cookies
 
+#获取列表数据
 def getpagecontent(pageno,cookie):
     url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
-    payload = 'CategoryID=3&BusinessModelAdminID=106&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
+    payload = 'DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=-100&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'.format(_PageNo=pageno)
     headers = {
                     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
                     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -193,7 +194,7 @@ def applydata_Update_Insert(inv_info):
 #BWF系统获取用车申请明细信息
 def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
      url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.ApplyDisp&ApplyID={applyid}'.format(applyid=applyids)
-     payload = 'CategoryID=3&BusinessModelAdminID=106&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
+     payload = 'CategoryID=11&BusinessModelAdminID=3495&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=15&PageNo=={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
      headers = {
                     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
                     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -215,9 +216,6 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
      except BaseException as e:
          log.error(f"request获取明细信息出错，错误单号：{applyno}：Unexpected Error: {e}")
            
-    
-     
-     
      try:
             html_text = response.content.decode("utf-8")
      except UnicodeDecodeError as e:
@@ -226,28 +224,10 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             log.error(f"request获取明细信息出错，错误单号：{applyno}：Unexpected Error: {e}")
             return
      xphtml = etree.HTML(html_text)
-     
-     #print(html_text)
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[4]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td/table/tbody/tr/td[2]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[6]/td/table/tbody/tr/td[2]/span/input
-     #/html/body/table[2]/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/span/textarea
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[4]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[6]/td/table/tbody/tr/td[2]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[7]/td/table/tbody/tr/td[2]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[2]/span/input  联系人手机  
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[6]/span/input 经费代码
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[4]/span/input
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[5]/td[2]/span
-     #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[15]/td/table/tbody/tr[6]/td[2]/span
-     #html/body/table[3]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/span/textarea
-     #html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td/table/tbody/tr/td[2]/span/input
-     #html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td/table/tbody/tr/td[4]/span/input
+      
      try:
             inputs = xphtml.xpath("//table")
             table2=inputs[5]
-            # ins=table2.xpath("./tr[1]/td/table/tr") 
-            # insv=table2.xpath("./tr[1]/td/table/tr/td[1]")
             applytpye=table2.xpath("./tr[1]/td/table/tr/td[2]/span/textarea")[0].text#申请用车类型 
             AcutalUser=table2.xpath("./tr[2]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#实际使用者
             InSideLine=table2.xpath("./tr[2]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#内线
@@ -255,10 +235,11 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             usereason=table2.xpath("./tr[6]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#用车理由
             DetailedAddres=table2.xpath("./tr[7]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#行程详细地址
             PhonePassenger=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
-            ShareCore=table2.xpath("./tr[8]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#经费代码
-            CostDepartment=table2.xpath("./tr[8]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
-            applyperson=table2.xpath("./tr[15]/td/table/tr[5]/td[2]/span")[0].text#申请人
-            applydate=table2.xpath("./tr[15]/td/table/tr[6]/td[2]/span")[0].text#申请日期
+            ShareCores=table2.xpath("./tr[14]/td/table/tr/td[2]/span/input")
+            ShareCore=table2.xpath("./tr[14]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#经费代码
+            CostDepartment=table2.xpath("./tr[13]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
+            applyperson=table2.xpath("./tr[21]/td/table/tr[5]/td[2]/span")[0].text#申请人
+            applydate=table2.xpath("./tr[21]/td/table/tr[6]/td[2]/span")[0].text#申请日期
             createtime= (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             Company='skc'
             table3=inputs[9]
@@ -269,12 +250,18 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
                 if len(tds)>0:
                     vasq=tds[1].xpath("./span/input")[0]
                     usedate= tds[1].xpath("./span/input")[0].get('value', default=None)#用车日期
-                    travel= tds[2].xpath("./span/input")[0].get('value', default=None)#行程    
-                    OstartTime= tds[3].xpath("./span/input")[0].get('value', default=None)#出发日期  
-                    ReturnTime= tds[4].xpath("./span/input")[0].get('value', default=None)#返回日期  
-                    FlightNo= tds[5].xpath("./span/input")[0].get('value', default=None)#航班号    
-                    FlightTime= tds[6].xpath("./span/input")[0].get('value', default=None)#起飞到达日期
-                    detials={'usedate':usedate,'travel':travel,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
+                    travel1= tds[2].xpath("./span/input")[0].get('value', default=None)#出发地                     
+                    travel2= tds[3].xpath("./span/input")[0].get('value', default=None)#目的地1
+                    travel3= tds[4].xpath("./span/input")[0].get('value', default=None)#目的地2
+                    travel4= tds[5].xpath("./span/input")[0].get('value', default=None)#目的地3
+                    travel5= tds[6].xpath("./span/input")[0].get('value', default=None)#目的地4
+                    travel6= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
+                    travel7= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
+                    OstartTime= tds[9].xpath("./span/input")[0].get('value', default=None)#出发日期  
+                    ReturnTime= tds[10].xpath("./span/input")[0].get('value', default=None)#返回日期  
+                    FlightNo= tds[11].xpath("./span/input")[0].get('value', default=None)#航班号    
+                    FlightTime= tds[12].xpath("./span/input")[0].get('value', default=None)#起飞到达日期
+                    detials={'usedate':usedate,'travel1':travel1,'travel2':travel2,'travel3':travel3,'travel4':travel4,'travel5':travel5,'travel6':travel6,'travel7':travel7,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
                     TravelDetial.append(detials)
             
             applyform= {'applyno':applyno,'bwfstatus':bwfstatus,'AcutalUser':AcutalUser,'InSideLine':InSideLine,'Company':Company,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddress':DetailedAddres,

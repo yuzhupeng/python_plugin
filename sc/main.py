@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# @Date    : 2021年12月08日15:38:19
+# @Author  : kyle (you@example.org)
+# @Link    : http://example.org
+# @Version : $Id$
+
 import requests
 import time
 import random

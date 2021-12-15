@@ -1,67 +1,25 @@
-[2021-12-09 14:25:30,832]-[log4.py]-[<module>]-[46]-12s: [INFO]-8s>> hello
-[2021-12-09 14:26:49,470]-[log4.py]-[<module>]-[46]-12s: [INFO]-8s>> hello
-[2021-12-09 14:31:36,736]-[datatype.py]-[<module>]-[66]-12s: [INFO]-8s>> I am a info message
-[2021-12-09 14:31:36,737]-[datatype.py]-[<module>]-[67]-12s: [WARNING]-8s>> I am a warning message
-[2021-12-09 14:31:36,737]-[datatype.py]-[<module>]-[68]-12s: [ERROR]-8s>> I am a error message
-[2021-12-09 14:31:36,737]-[datatype.py]-[<module>]-[69]-12s: [CRITICAL]-8s>> I am a critical message
-[2021-12-09 16:43:05,933]-[datatype.py]-[<module>]-[72]-12s: [INFO]-8s>> I am a info message
-[2021-12-09 16:43:05,934]-[datatype.py]-[<module>]-[73]-12s: [WARNING]-8s>> I am a warning message
-[2021-12-09 16:43:05,935]-[datatype.py]-[<module>]-[74]-12s: [ERROR]-8s>> I am a error message
-[2021-12-09 16:43:05,935]-[datatype.py]-[<module>]-[75]-12s: [CRITICAL]-8s>> I am a critical message
-[2021-12-09 17:16:31,039]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:16:31,040]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,040]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,041]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,041]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,041]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,041]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,041]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:16:31,042]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: getContent() got an unexpected keyword argument 'cookies'
-[2021-12-09 17:19:10,560]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:20:47,791]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:25:31,263]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:25:42,727]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:29:36,913]-[main.py]-[ApplyNoCalc]-[116]-12s: [ERROR]-8s>> 循环页面获取前七日数据加入到List中出现异常：Unexpected Error: 'NoneType' object has no attribute 'find_all'
-[2021-12-09 17:29:48,071]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:30:19,523]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:30:53,889]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:31:11,679]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:32:31,467]-[main.py]-[getContent]-[74]-12s: [INFO]-8s>> request success
-[2021-12-09 17:45:10,843]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:00:35,825]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:07:02,884]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:07:28,446]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:15:31,152]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:16:01,540]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:18:25,941]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:23:29,135]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:23:54,298]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:25:48,806]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:26:18,592]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:26:40,434]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:30:00,474]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:31:18,434]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:33:52,154]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:34:49,543]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:35:15,841]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:39:54,733]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:41:59,127]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:42:57,009]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:43:38,593]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:46:24,102]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:47:01,427]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:47:28,169]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:47:46,949]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:49:44,635]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:51:42,083]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 18:54:27,478]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:07:24,294]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:08:02,556]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:08:24,879]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:08:50,520]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:10:23,114]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:11:06,922]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-09 19:13:01,796]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-10 08:46:41,763]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-10 08:46:47,773]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
-[2021-12-10 08:46:58,859]-[object.py]-[getContent]-[54]-12s: [INFO]-8s>> request success
+[2021-12-15 14:01:16,550]-[object.py]-[<module>]-[290]-12s: [INFO]-8s>> ces
+[2021-12-15 14:01:16,551]-[object.py]-[<module>]-[291]-12s: [INFO]-8s>> hello
+[2021-12-15 15:20:51,710]-[CasSystemScrapy.py]-[<module>]-[273]-12s: [INFO]-8s>> ces
+[2021-12-15 15:20:51,711]-[CasSystemScrapy.py]-[<module>]-[274]-12s: [INFO]-8s>> hello
+[2021-12-15 15:34:47,106]-[CasSystemScrapy.py]-[<module>]-[274]-12s: [INFO]-8s>> ces
+[2021-12-15 15:34:47,107]-[CasSystemScrapy.py]-[<module>]-[275]-12s: [INFO]-8s>> hello
+[2021-12-15 15:41:59,724]-[CasSystemScrapy.py]-[<module>]-[274]-12s: [INFO]-8s>> ces
+[2021-12-15 15:41:59,725]-[CasSystemScrapy.py]-[<module>]-[275]-12s: [INFO]-8s>> hello
+[2021-12-15 15:45:15,665]-[CasSystemScrapy.py]-[get_apply_data]-[269]-12s: [ERROR]-8s>> 瑙ｆ瀽鏄庣粏淇℃伅鍑洪敊锛岄敊璇崟鍙凤細GA-202112-4锛歎nexpected Error: list index out of range
+[2021-12-15 15:57:40,719]-[CasSystemScrapy.py]-[get_apply_data]-[269]-12s: [ERROR]-8s>> 瑙ｆ瀽鏄庣粏淇℃伅鍑洪敊锛岄敊璇崟鍙凤細GA-202112-3锛歎nexpected Error: list index out of range
+[2021-12-15 15:58:10,315]-[CasSystemScrapy.py]-[get_apply_data]-[269]-12s: [ERROR]-8s>> 瑙ｆ瀽鏄庣粏淇℃伅鍑洪敊锛岄敊璇崟鍙凤細GA-202112-2锛歎nexpected Error: list index out of range
+[2021-12-15 16:06:55,268]-[CasSystemScrapy.py]-[<module>]-[275]-12s: [INFO]-8s>> ces
+[2021-12-15 16:06:55,269]-[CasSystemScrapy.py]-[<module>]-[276]-12s: [INFO]-8s>> hello
+[2021-12-15 16:07:34,955]-[CasSystemScrapy.py]-[get_apply_data]-[270]-12s: [ERROR]-8s>> 瑙ｆ瀽鏄庣粏淇℃伅鍑洪敊锛岄敊璇崟鍙凤細GA-202112-4锛歎nexpected Error: list index out of range
+[2021-12-15 16:08:29,817]-[CasSystemScrapy.py]-[<module>]-[276]-12s: [INFO]-8s>> ces
+[2021-12-15 16:08:29,818]-[CasSystemScrapy.py]-[<module>]-[277]-12s: [INFO]-8s>> hello
+[2021-12-15 16:09:52,977]-[CasSystemScrapy.py]-[<module>]-[275]-12s: [INFO]-8s>> ces
+[2021-12-15 16:09:52,978]-[CasSystemScrapy.py]-[<module>]-[276]-12s: [INFO]-8s>> hello
+[2021-12-15 16:39:41,542]-[CasSystemScrapy.py]-[<module>]-[281]-12s: [INFO]-8s>> ces
+[2021-12-15 16:39:41,543]-[CasSystemScrapy.py]-[<module>]-[282]-12s: [INFO]-8s>> hello
+[2021-12-15 16:46:43,592]-[CasSystemScrapy.py]-[<module>]-[281]-12s: [INFO]-8s>> ces
+[2021-12-15 16:46:43,594]-[CasSystemScrapy.py]-[<module>]-[282]-12s: [INFO]-8s>> hello
+[2021-12-15 16:55:26,848]-[CasSystemScrapy.py]-[<module>]-[281]-12s: [INFO]-8s>> ces
+[2021-12-15 16:55:26,849]-[CasSystemScrapy.py]-[<module>]-[282]-12s: [INFO]-8s>> hello
+[2021-12-15 16:59:39,171]-[CasSystemScrapy.py]-[get_apply_data]-[276]-12s: [ERROR]-8s>> 瑙ｆ瀽鏄庣粏淇℃伅鍑洪敊锛岄敊璇崟鍙凤細GA-202111-1锛歎nexpected Error: list index out of range

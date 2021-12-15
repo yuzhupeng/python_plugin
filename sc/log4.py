@@ -23,8 +23,9 @@ def get_logger(module_name=MODULE_NAME, log_level=LOG_LEVEL):
  # time_file_handler.suffix = '%Y-%m-%d.log' # 按 天 
  time_file_handler = logging.handlers.TimedRotatingFileHandler(
  log_dir + os.sep + module_name + '_sec.log',
- when='D',
+ when='MIDNIGHT',
  interval=1,
+ encoding='utf-8',
  backupCount=180
  ) 
  time_file_handler.suffix = '%Y-%m-%d_%H-%M-%S.log' # 按 秒

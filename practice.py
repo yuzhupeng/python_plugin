@@ -1,3 +1,153 @@
+
+
+import uuid
+  
+print(uuid.uuid1())
+print(uuid.uuid1())
+
+
+import time
+print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+
+# 写文件
+
+import csv
+import datetime
+
+csv.register_dialect(
+    "mydialect",
+    delimiter=',',              # 字段分隔符
+    escapechar='\\',            # 转义字符
+    quotechar='"',              # 包裹字符
+    doublequote=False,          # 使转义字符生效
+    lineterminator='\n',        # 行与行之间的分隔符
+    quoting=csv.QUOTE_ALL       # 包裹模式
+)
+data = [
+    [1, "a,bc", 19.353, datetime.datetime(2001, 3, 17)],
+    [2, "ei,f", 13.287, datetime.datetime(2011, 4, 27)],
+    [3, 'q"ij', 15.852, datetime.datetime(2003, 7, 14)],
+    [4, "zh'n", 11.937, datetime.datetime(2012, 1, 9)],
+    [5, "i'op", 12.057, datetime.datetime(2009, 5, 18)],
+]
+with open("test.csv", "w") as file:
+    writer = csv.DictWriter(file, fieldnames=["id", "name", "float", "datetime"], dialect="excel")
+    writer.writeheader()
+    for item in data:
+        writer.writerow(item)
+
+
+
+
+
+
+
+
+#继承和多肽
+class Person:
+    """人类"""
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def eat(self):
+        print(f'{self.name}正在吃饭.')
+    
+    def sleep(self):
+        print(f'{self.name}正在睡觉.')
+
+
+class Student(Person):
+    """学生类"""
+    
+    def __init__(self, name, age):
+        # super(Student, self).__init__(name, age)
+        super().__init__(name, age)
+    
+    def study(self, course_name):
+        print(f'{self.name}正在学习{course_name}.')
+
+
+class Teacher(Person):
+    """老师类"""
+
+    def __init__(self, name, age, title):
+        # super(Teacher, self).__init__(name, age)
+        super().__init__(name, age)
+        self.title = title
+    
+    def teach(self, course_name):
+        print(f'{self.name}{self.title}正在讲授{course_name}.')
+
+
+
+stu1 = Student('白元芳', 21)
+stu2 = Student('狄仁杰', 22)
+teacher = Teacher('武则天', 35, '副教授')
+stu1.eat()
+stu2.sleep()
+teacher.eat()
+teacher.teach('Python程序设计')
+stu1.study('Python程序设计')
+
+
+
+
+
+
+#静态方法
+class Triangle(object):
+    """三角形类"""
+
+    def __init__(self, a, b, c):
+        """初始化方法"""
+        self.a = a
+        self.b = b
+        self.c = c
+
+    @staticmethod
+    def is_valid(a, b, c):
+        """判断三条边长能否构成三角形(静态方法)"""
+        return a + b > c and b + c > a and a + c > b
+
+    # @classmethod
+    # def is_valid(cls, a, b, c):
+    #     """判断三条边长能否构成三角形(类方法)"""
+    #     return a + b > c and b + c > a and a + c > b
+
+    def perimeter(self):
+        """计算周长"""
+        return self.a + self.b + self.c
+
+    def area(self):
+        """计算面积"""
+        p = self.perimeter() / 2
+        return (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+
+
+print(Triangle.is_valid(3,4,5))
+
+
+
+
+
+
+
+
+
+
+
+
+from logging import exception
+import sc.log4 
+log = sc.log4.get_logger()
+
+try:
+    f=open("d:\\abc.txt")
+except BaseException as msg:
+    print(f'cc{msg}')
+    log.error(f"request获取明细信息出错 ：Unexpected Error: {msg}")
  
 
 
@@ -13,11 +163,12 @@ def calc(*args, **kwargs):
     return result
 
 # print(calc(1, 2, 3, init_value=0, op=operator.add, x=4, y=5))      # 15
-print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 120
+print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 16
 
 import base64
 import uuid
- 
+  
+print(uuid.uuid1())
 # get a UUID - URL safe, Base64
 
  

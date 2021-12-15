@@ -455,6 +455,22 @@ test_kwargs(1, 2, 3, 4, k1=5, k2=6)
 # 而把函数作为参数时只需要函数名即可
 
 
+import operator
+def calc(*args, **kwargs):
+    result = 0
+    for arg in args:
+        if type(arg) in (int, float):
+            result += arg
+    for value in kwargs.values():
+        if type(value) in (int, float):
+            result += value
+    return result
+
+# print(calc(1, 2, 3, init_value=0, op=operator.add, x=4, y=5))      # 15
+print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul)) 
+
+
+
 
 #高阶函数 map
 # map()是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，
@@ -531,5 +547,158 @@ def calc(*args, **kwargs):
     return result
 
 # print(calc(1, 2, 3, init_value=0, op=operator.add, x=4, y=5))      # 15
-print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 120
+print(calc(1, 2, x=3, y=4, z=5, init_value=1, op=operator.mul))    # 16
 
+
+#面向对象
+class Student:
+    """学生"""
+
+    def __init__(self, name, age):
+        """初始化方法"""
+        self.name = name
+        self.age = age
+
+    def study(self, course_name):
+        """学习"""
+        print(f'{self.name}正在学习{course_name}.')
+
+    def play(self):
+        """玩耍"""
+        print(f'{self.name}正在玩游戏.')
+
+stu1 = Student('骆昊', 40)
+print(stu1)        # 骆昊: 40
+students = [stu1, Student('李元芳', 36), Student('王大锤', 25)]
+print(students)    # [骆昊: 40, 李元芳: 36, 王大锤: 25]
+
+
+#动态属性
+class Student:
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+stu = Student('王大锤', 20)
+# 为Student对象动态添加sex属性
+stu.sex = '男'
+
+# 私有属性
+# 在实际项目开发中，我们并不经常使用私有属性，
+# 属性装饰器的使用也比较少，
+# 所以上面的知识点大家简单了解一下就可以了。
+class Student:
+    
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    # 属性访问器(getter方法) - 获取__name属性
+    @property
+    def name(self):
+        return self.__name
+    
+    # 属性修改器(setter方法) - 修改__name属性
+    @name.setter
+    def name(self, name):
+        # 如果name参数不为空就赋值给对象的__name属性
+        # 否则将__name属性赋值为'无名氏'，有两种写法
+        # self.__name = name if name else '无名氏'
+        self.__name = name or '无名氏'
+    
+    @property
+    def age(self):
+        return self.__age
+
+
+stu = Student('王大锤', 20)
+print(stu.name, stu.age)    # 王大锤 20
+stu.name = ''
+print(stu.name)    # 无名氏
+# stu.age = 30     # AttributeE
+
+
+
+
+#静态方法
+class Triangle(object):
+    """三角形类"""
+
+    def __init__(self, a, b, c):
+        """初始化方法"""
+        self.a = a
+        self.b = b
+        self.c = c
+
+    @staticmethod
+    def is_valid(a, b, c):
+        """判断三条边长能否构成三角形(静态方法)"""
+        return a + b > c and b + c > a and a + c > b
+
+    # @classmethod
+    # def is_valid(cls, a, b, c):
+    #     """判断三条边长能否构成三角形(类方法)"""
+    #     return a + b > c and b + c > a and a + c > b
+
+    def perimeter(self):
+        """计算周长"""
+        return self.a + self.b + self.c
+
+    def area(self):
+        """计算面积"""
+        p = self.perimeter() / 2
+        return (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+
+
+Triangle.is_valid(3,4,5)
+
+
+
+#继承和多肽
+class Person:
+    """人类"""
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def eat(self):
+        print(f'{self.name}正在吃饭.')
+    
+    def sleep(self):
+        print(f'{self.name}正在睡觉.')
+
+
+class Student(Person):
+    """学生类"""
+    
+    def __init__(self, name, age):
+        # super(Student, self).__init__(name, age)
+        super().__init__(name, age)
+    
+    def study(self, course_name):
+        print(f'{self.name}正在学习{course_name}.')
+
+
+class Teacher(Person):
+    """老师类"""
+
+    def __init__(self, name, age, title):
+        # super(Teacher, self).__init__(name, age)
+        super().__init__(name, age)
+        self.title = title
+    
+    def teach(self, course_name):
+        print(f'{self.name}{self.title}正在讲授{course_name}.')
+
+
+
+stu1 = Student('白元芳', 21)
+stu2 = Student('狄仁杰', 22)
+teacher = Teacher('武则天', 35, '副教授')
+stu1.eat()
+stu2.sleep()
+teacher.teach('Python程序设计')
+stu1.study('Python程序设计')

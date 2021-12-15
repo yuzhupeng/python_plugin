@@ -1,6 +1,10 @@
+from typing import cast
 import pymssql 
-
-
+import sc.log4 
+import json
+import time
+import uuid
+log = sc.log4.get_logger()
 
 class HandCost(object):
     """
@@ -26,7 +30,7 @@ class HandCost(object):
                                    charset=self.charset)
             # 创建游标
             cursor = conn.cursor(cursor=pymssql.cursors.DictCursor)
-        except Exception as e:
+        except BaseException as e:
             print(e)
             return False
         return (conn, cursor)
@@ -87,5 +91,79 @@ class HandCost(object):
     #更新单号
     def update_CasTravel(applynolist):
         print(applynolist)
-
+    
+    def dictToTO(travelobject):
+        insertsqllist=[]
+        try:
+            print("create insertsql")
+            detiallist=travelobject['TravelDetial']
+            if len(detiallist)>0 and len(detiallist)==1:
+                castravel=[]
+                castraveldid=uuid.uuid1()
+                castravel.append(castraveldid)
+                castravel.append(travelobject['applyno']+detiallist['usedate'])
+                castravel.append(travelobject['applyno'])
+                castravel.append('待派车')
+                castravel.append(travelobject['applytpye'])
+                castravel.append(travelobject['bwfstatus'])
+                castravel.append(1)
+                castravel.append(travelobject['AcutalUser'])
+                castravel.append(travelobject['InSideLine'])
+                castravel.append(detiallist['FlightNo'])
+                castravel.append(detiallist['OstartTime'])
+                castravel.append(detiallist['ReturnTime'])
+                castravel.append(detiallist['FlightTime'])
+                castravel.append(travelobject['reason'])
+                castravel.append(detiallist['usedate'])
+                castravel.append('公司车')
+                castravel.append(travelobject['DetailedAddres'])
+                castravel.append(travelobject['Company'])
+                castravel.append(travelobject['CostDepartment'])
+                castravel.append(travelobject['ShareCore'])
+                castravel.append('system')
+                castravel.append((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+                castravel.append((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+                castravel.append('system')
+                castravel.append(1)
+                castravel.append(travelobject['PhonePassenger'])
+                castravel.append(travelobject['applyperson'])
+                castravel.append(travelobject['applydate'])
+                castravel.append('')#合并代码
+                castravel.append('')#审批信息
+                castravel.append('')#司机model关联ID
+                castravel.append('')#车辆model关联id
+                castravel.append(0)#路桥费
+                castravel.append(0)#公里数
+                castravel.append(0)#行程总用时
+                castravel.append(0)#类型：多日期行程的类型
+                castravel.append('')#父id
+                excutesql=f'insert into CasTravel values {castravel}'
+                
+                CasTravelDetial=[]
+      
+                
+                
+                for item in range(0,6):
+                    if len(detiallist['travel'+item])>0:
+                       CasTravelDetials=[]
+                       CasTravelDetials.append(uuid.uuid1())
+                       CasTravelDetials.append(castraveldid)
+                       
+                       excutedetialsql=f'insert into CasTravel values{CasTravelDetials}'
+                       print('')
+                
+                
+                # print(excutesql)
+                      
+      
+      
+      
+      
+        except BaseException as e:
+         log.error(f"将派车单号{travelobject['applyno']}转化为sql出错：Unexpected Error: {e}")
+           
  
+def baidupaiPorcess(travelobject):
+    detiallist=travelobject['TravelDetial']
+   
+    

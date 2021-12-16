@@ -12,7 +12,12 @@ import json
 import pymssql 
 from db2 import DB
 import time
- 
+import xlwt
+import pandas as pd
+from requests.adapters import HTTPAdapter
+requests = requests.Session()
+requests.mount('http://', HTTPAdapter(max_retries=3))
+requests.mount('https://', HTTPAdapter(max_retries=3))
 log = sc.log4.get_logger()
 
 def getContent(url,header=None,datas = None,cookie=None):
@@ -223,7 +228,7 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
      except UnicodeDecodeError as e:
             print("解码api响应内容失败")
 
-            log.error(f"request获取明细信息出错，错误单号：{applyno}：Unexpected Error: {e}")
+            log.error(f"request获取明细信息出错1，错误单号：{applyno}：Unexpected Error: {e}")
             return
      xphtml = etree.HTML(html_text)
      
@@ -290,11 +295,11 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             return []
     
 
-COO='CFID=4243124; CFTOKEN=12412058'
+COO='CFID=4250514; CFTOKEN=19278837'
 log.info('ces')
 log.info('hello')
 inv_info=[]
-for item in range(1,2): 
+for item in range(1,5): 
     inv_info+=getpagecontent(item,COO)
 
 list=applydata_Update_Insert(inv_info)

@@ -1,4 +1,46 @@
 
+import uuid
+  
+print(uuid.uuid1())
+print(uuid.uuid1())
+
+ 
+
+
+
+my_dict = {
+    'name': '112222-1222-1-1-2v',
+    'names': '2012-44-11',
+    'age': 40,
+    'friends': ['王大锤', '白元芳'],
+    'cars': [
+        {'brand': 'BMW', 'max_speed': 240},
+        {'brand': 'Audi', 'max_speed': 280},
+        {'brand': 'Benz', 'max_speed': 280}
+    ]
+}
+print(my_dict['name']+my_dict['names'])
+
+
+
+
+
+import pyslserver
+
+sqlhelper=pyslserver.HandCost('.','sa','1','Skc_Business')
+sqlhelper.aaaa('222222')
+sqlhelper.dictToTO('detial')
+
+
+
+
+
+
+
+
+
+
+
 
 import uuid
   

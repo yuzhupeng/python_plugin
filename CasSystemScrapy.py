@@ -11,7 +11,14 @@ from lxml import etree
 import json
 import pymssql 
 from db2 import DB
+import pyslserver
 import time
+from requests.adapters import HTTPAdapter
+requests = requests.Session()
+requests.mount('http://', HTTPAdapter(max_retries=3))
+requests.mount('https://', HTTPAdapter(max_retries=3))
+
+
  
 log = sc.log4.get_logger()
 
@@ -175,7 +182,10 @@ def applydata_Update_Insert(inv_info):
              print("执行更新")#执行更新
              
           else:
+            sqlhelper=pyslserver.HandCost('.','sa','1','Skc_Business')
+             
             detial=get_apply_data(1,info[1],COO,info[0],info[2])
+            sqlhelper.dictToTO(detial)
             time.sleep(2)
             if len(detial)>0:
                print(f'获取【{info[1]}】的数据完成！')
@@ -229,19 +239,47 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             inputs = xphtml.xpath("//table")
             table2=inputs[5]
             applytpye=table2.xpath("./tr[1]/td/table/tr/td[2]/span/textarea")[0].text#申请用车类型 
-            AcutalUser=table2.xpath("./tr[2]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#实际使用者
-            InSideLine=table2.xpath("./tr[2]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#内线
+            AcutalUser=table2.xpath("./tr[2]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#实际使用者
+            Peoples=table2.xpath("./tr[2]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#实际人数
+            InSideLine=table2.xpath("./tr[2]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#内线
             reason=table2.xpath("./tr[1]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#变更、取消理由
             usereason=table2.xpath("./tr[6]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#用车理由
             DetailedAddres=table2.xpath("./tr[7]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#行程详细地址
-            PhonePassenger=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
-            ShareCores=table2.xpath("./tr[14]/td/table/tr/td[2]/span/input")
+    
+            phone1=table2.xpath("./tr[8]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            passenger1=table2.xpath("./tr[8]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人1 
+            
+            phone2=table2.xpath("./tr[9]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            passenger2=table2.xpath("./tr[9]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人2 
+            
+            phone3=table2.xpath("./tr[10]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            passenger3=table2.xpath("./tr[10]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人3 
+            
+            phone4=table2.xpath("./tr[11]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            passenger4=table2.xpath("./tr[11]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人4 
+            
+            phone5=table2.xpath("./tr[12]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#联系人手机
+            passenger5=table2.xpath("./tr[12]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人5 
+            
+  
             ShareCore=table2.xpath("./tr[14]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#经费代码
             CostDepartment=table2.xpath("./tr[13]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
             applyperson=table2.xpath("./tr[21]/td/table/tr[5]/td[2]/span")[0].text#申请人
             applydate=table2.xpath("./tr[21]/td/table/tr[6]/td[2]/span")[0].text#申请日期
             createtime= (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-            Company='skc'
+            Company=table2.xpath("./tr[13]/td/table/tr/td[2]/span/textarea")[0].text#公司
+            
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[2]/span/input 手机1
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[4]/span/input 乘车人1
+            
+            
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[9]/td/table/tbody/tr/td[2]/span/input
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[9]/td/table/tbody/tr/td[4]/span/input
+            
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[12]/td/table/tbody/tr/td[2]/span/input
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td/table/tbody/tr/td[2]/span/input
+            
+            
             table3=inputs[9]
             TravelDetial=[]
             trs=table3.xpath("./tr")
@@ -250,22 +288,22 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
                 if len(tds)>0:
                     vasq=tds[1].xpath("./span/input")[0]
                     usedate= tds[1].xpath("./span/input")[0].get('value', default=None)#用车日期
-                    travel1= tds[2].xpath("./span/input")[0].get('value', default=None)#出发地                     
-                    travel2= tds[3].xpath("./span/input")[0].get('value', default=None)#目的地1
-                    travel3= tds[4].xpath("./span/input")[0].get('value', default=None)#目的地2
-                    travel4= tds[5].xpath("./span/input")[0].get('value', default=None)#目的地3
-                    travel5= tds[6].xpath("./span/input")[0].get('value', default=None)#目的地4
-                    travel6= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
-                    travel7= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
+                    start= tds[2].xpath("./span/input")[0].get('value', default=None)#出发地                     
+                    travel1= tds[3].xpath("./span/input")[0].get('value', default=None)#目的地1
+                    travel2= tds[4].xpath("./span/input")[0].get('value', default=None)#目的地2
+                    travel3= tds[5].xpath("./span/input")[0].get('value', default=None)#目的地3
+                    travel4= tds[6].xpath("./span/input")[0].get('value', default=None)#目的地4
+                    travel5= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
+                    travel6= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
                     OstartTime= tds[9].xpath("./span/input")[0].get('value', default=None)#出发日期  
                     ReturnTime= tds[10].xpath("./span/input")[0].get('value', default=None)#返回日期  
                     FlightNo= tds[11].xpath("./span/input")[0].get('value', default=None)#航班号    
                     FlightTime= tds[12].xpath("./span/input")[0].get('value', default=None)#起飞到达日期
-                    detials={'usedate':usedate,'travel1':travel1,'travel2':travel2,'travel3':travel3,'travel4':travel4,'travel5':travel5,'travel6':travel6,'travel7':travel7,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
+                    detials={'usedate':usedate,'travel1':travel1,'travel2':travel2,'travel3':travel3,'travel4':travel4,'travel5':travel5,'travel6':travel6,'start':start,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
                     TravelDetial.append(detials)
             
-            applyform= {'applyno':applyno,'bwfstatus':bwfstatus,'AcutalUser':AcutalUser,'InSideLine':InSideLine,'Company':Company,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddress':DetailedAddres,
-            'PhonePassenger':PhonePassenger,'ShareCore':ShareCore,'CostDepartment':CostDepartment,'applyperson':applyperson,'applydate':applydate
+            applyform= {'applyno':applyno,'Peoples':Peoples,'bwfstatus':bwfstatus,'AcutalUser':AcutalUser,'InSideLine':InSideLine,'Company':Company,'applytype':applytpye,'reason':reason,'userason':usereason,'DetailedAddres':DetailedAddres,
+            'passenger1':passenger1,'passenger2':passenger2,'passenger3':passenger3,'passenger4':passenger4,'passenger5':passenger5,'phone1':phone1,'phone2':phone2,'phone3':phone3,'phone4':phone4,'phone5':phone5,'ShareCore':ShareCore,'CostDepartment':CostDepartment,'applyperson':applyperson,'applydate':applydate
             ,'createtime':createtime,'TravelDetial':TravelDetial}
             detial=[]
             detial.append(applyform)
@@ -286,11 +324,14 @@ for item in range(1,2):
 
 list=applydata_Update_Insert(inv_info)
 
+
+ 
+
 for item in list:
     print(item)
 
-
-
+ 
+ 
 # for info in inv_info:
 #     if len(info)>1:
 #        print (info[1])

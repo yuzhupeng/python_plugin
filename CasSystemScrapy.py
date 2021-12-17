@@ -19,10 +19,13 @@ requests.mount('http://', HTTPAdapter(max_retries=3))
 requests.mount('https://', HTTPAdapter(max_retries=3))
 
 
- 
 log = sc.log4.get_logger()
 
+
+ 
+
 def getContent(url,header=None,datas = None,cookie=None):
+    i = 0
     _header=''
     if header==None:     
      _header={
@@ -41,7 +44,7 @@ def getContent(url,header=None,datas = None,cookie=None):
     else:
        _header= header
     
-    
+   
     timeout = random.choice(range(80, 180))
     while True:
         try:
@@ -314,6 +317,9 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             log.error(f"解析明细信息出错，错误单号：{applyno}：Unexpected Error: {e}")
             return []
     
+
+
+
 
 COO='CFID=4243124; CFTOKEN=12412058'
 log.info('ces')

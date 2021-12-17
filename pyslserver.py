@@ -162,7 +162,7 @@ class HandCost(object):
                 excutesql=f'insert into CasTravel values ({castravel})'
                 insertsqllist.append(excutesql)
                 CasTravelDetial=[]
-      
+                
                 
                 
                 for item in range(1,6):
@@ -190,15 +190,15 @@ class HandCost(object):
                        CasTravelDetials.append('')#公里数
                        CasTravelDetials.append('')#cqf
                        CasTravelDetials.append(1)#Enables
-                       CasTravelDetials.append(1)#顺序
+                       CasTravelDetials.append(item)#顺序
                        
                        
                        excutedetialsql=f'insert into CasTravel values({CasTravelDetials})'
                        insertsqllist.append(excutedetialsql)
                        
                 
-               
-                      
+                
+                       
       
       
       
@@ -209,7 +209,8 @@ class HandCost(object):
     def aaaa(self,abs):
         print(abs)
 
-def baidupaiPorcess(travelobject):
-    detiallist=travelobject['TravelDetial']
+#调用百度api 获取 经度 维度 公里数
+def baidupaiPorcess(start,end):
+    print('')
    
     

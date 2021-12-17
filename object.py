@@ -14,10 +14,10 @@ from db2 import DB
 import time
 import xlwt
 import pandas as pd
-from requests.adapters import HTTPAdapter
-requests = requests.Session()
-requests.mount('http://', HTTPAdapter(max_retries=3))
-requests.mount('https://', HTTPAdapter(max_retries=3))
+# from requests.adapters import HTTPAdapter
+# s = requests.Session()
+# s.mount('http://', HTTPAdapter(max_retries=3))
+# s.mount('https://', HTTPAdapter(max_retries=3))
 log = sc.log4.get_logger()
 
 def getContent(url,header=None,datas = None,cookie=None):
@@ -219,7 +219,7 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
         response = requests.request("POST", url, headers=headers, data=payload)
      except BaseException as e:
          log.error(f"request获取明细信息出错，错误单号：{applyno}：Unexpected Error: {e}")
-           
+    
     
      
      
@@ -229,7 +229,8 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             print("解码api响应内容失败")
 
             log.error(f"request获取明细信息出错1，错误单号：{applyno}：Unexpected Error: {e}")
-            return
+            return []
+        
      xphtml = etree.HTML(html_text)
      
      #print(html_text)
@@ -299,7 +300,7 @@ COO='CFID=4250514; CFTOKEN=19278837'
 log.info('ces')
 log.info('hello')
 inv_info=[]
-for item in range(1,5): 
+for item in range(5,30): 
     inv_info+=getpagecontent(item,COO)
 
 list=applydata_Update_Insert(inv_info)

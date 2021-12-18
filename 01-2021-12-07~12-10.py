@@ -8,7 +8,9 @@
 # print('%d %% %d = %d' % (a, b, a % b))
 # print('%d ** %d = %d' % (a, b, a ** b))
  
- 
+a =1
+b = 2
+c= a if a>1 else b #如果a大于1的话，c=a，否则c=b
  
 a = 10
 b = 3

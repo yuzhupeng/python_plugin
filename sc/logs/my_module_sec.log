@@ -1,31 +1,104 @@
-[2021-12-17 16:12:30,683]-[object.py]-[<module>]-[299]-12s: [INFO]-8s>> ces
-[2021-12-17 16:12:30,686]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> hello
-[2021-12-17 16:15:30,226]-[object.py]-[<module>]-[299]-12s: [INFO]-8s>> ces
-[2021-12-17 16:15:30,227]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> hello
-[2021-12-17 16:27:01,022]-[object.py]-[<module>]-[299]-12s: [INFO]-8s>> ces
-[2021-12-17 16:27:01,023]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> hello
-[2021-12-17 16:39:11,230]-[object.py]-[get_apply_data]-[221]-12s: [ERROR]-8s>> request获取明细信息出错，错误单号：GA03-202111-46700：Unexpected Error: ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
-[2021-12-17 16:50:40,817]-[object.py]-[<module>]-[299]-12s: [INFO]-8s>> ces
-[2021-12-17 16:50:40,818]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> hello
-[2021-12-17 16:50:49,376]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001B9AECB44C8>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:50:52,728]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:50:55,733]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001B9AECC3C88>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:50:55,734]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:30,728]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> ces
-[2021-12-17 16:58:30,729]-[object.py]-[<module>]-[301]-12s: [INFO]-8s>> hello
-[2021-12-17 16:58:32,681]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E5892DF48>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:32,682]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:33,505]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E58956F48>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:33,506]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:34,143]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E58956788>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:34,144]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:34,652]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E589610C8>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:34,652]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:35,107]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E5895C148>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:35,108]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:35,478]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027E5896DF88>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:58:35,479]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
-[2021-12-17 16:58:54,280]-[object.py]-[<module>]-[300]-12s: [INFO]-8s>> ces
-[2021-12-17 16:58:54,281]-[object.py]-[<module>]-[301]-12s: [INFO]-8s>> hello
-[2021-12-17 16:59:07,525]-[object.py]-[getpagecontent]-[110]-12s: [ERROR]-8s>> requests加载用车申请列表信息出错！：Unexpected Error: HTTPConnectionPool(host='10.9.140.98', port=80): Max retries exceeded with url: /workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000018F1CE16648>: Failed to establish a new connection: [WinError 10065] 套接字操作尝试一个无法连接的主机。'))
-[2021-12-17 16:59:10,459]-[object.py]-[getpagecontent]-[150]-12s: [ERROR]-8s>> 解析用车申请列表信息出错！：Unexpected Error: local variable 'response' referenced before assignment
+[2021-12-18 09:16:59,899]-[log4.py]-[<module>]-[47]-12s: [INFO]-8s>> hello
+[2021-12-18 09:17:29,151]-[log4.py]-[<module>]-[47]-12s: [INFO]-8s>> hello
+[2021-12-18 10:43:02,318]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:43:02,318]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:43:02,319]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:43:02,319]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:44:24,936]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:44:24,936]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:44:24,937]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:44:24,937]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:53:20,780]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:53:20,780]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:53:20,781]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:53:20,781]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:53:58,070]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:53:58,070]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 10:53:58,071]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 10:53:58,071]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:08:35,047]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:08:35,048]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:09:15,830]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:09:15,831]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:09:37,706]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:09:37,707]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:11:32,624]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:11:32,625]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:12:02,531]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:12:02,532]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:12:15,762]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:12:15,763]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:16:23,130]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:16:23,132]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:19:34,382]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:19:34,383]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:20:07,588]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:20:07,589]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:27:42,786]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:27:42,787]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:28:24,868]-[CasSystemScrapy.py]-[<module>]-[468]-12s: [INFO]-8s>> ces
+[2021-12-18 11:28:24,869]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> hello
+[2021-12-18 11:37:26,446]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:37:26,447]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:37:47,396]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:37:47,397]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:41:43,141]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:41:43,142]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:43:23,096]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:43:23,097]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:44:32,383]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:44:32,384]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:46:39,411]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:46:39,412]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 11:58:33,005]-[CasSystemScrapy.py]-[<module>]-[469]-12s: [INFO]-8s>> ces
+[2021-12-18 11:58:33,006]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> hello
+[2021-12-18 12:00:25,579]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> ces
+[2021-12-18 12:00:25,580]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> hello
+[2021-12-18 13:28:58,933]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> ces
+[2021-12-18 13:28:58,962]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> hello
+[2021-12-18 13:29:51,410]-[CasSystemScrapy.py]-[<module>]-[470]-12s: [INFO]-8s>> ces
+[2021-12-18 13:29:51,411]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> hello
+[2021-12-18 13:32:02,413]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> ces
+[2021-12-18 13:32:02,414]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> hello
+[2021-12-18 13:34:24,833]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> ces
+[2021-12-18 13:34:24,834]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> hello
+[2021-12-18 13:37:08,008]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> ces
+[2021-12-18 13:37:08,009]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> hello
+[2021-12-18 13:40:23,086]-[CasSystemScrapy.py]-[<module>]-[471]-12s: [INFO]-8s>> ces
+[2021-12-18 13:40:23,087]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> hello
+[2021-12-18 13:41:28,595]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:41:28,596]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:42:30,772]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:42:30,773]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:43:55,116]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:43:55,117]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:44:42,347]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:44:42,348]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:45:24,075]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:45:24,076]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:46:14,214]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:46:14,215]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:47:42,492]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:47:42,493]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:48:18,207]-[CasSystemScrapy.py]-[<module>]-[472]-12s: [INFO]-8s>> ces
+[2021-12-18 13:48:18,208]-[CasSystemScrapy.py]-[<module>]-[473]-12s: [INFO]-8s>> hello
+[2021-12-18 13:56:31,912]-[CasSystemScrapy.py]-[<module>]-[475]-12s: [INFO]-8s>> ces
+[2021-12-18 13:56:31,913]-[CasSystemScrapy.py]-[<module>]-[476]-12s: [INFO]-8s>> hello
+[2021-12-18 14:05:39,674]-[CasSystemScrapy.py]-[<module>]-[475]-12s: [INFO]-8s>> ces
+[2021-12-18 14:05:39,675]-[CasSystemScrapy.py]-[<module>]-[476]-12s: [INFO]-8s>> hello
+[2021-12-18 14:07:30,716]-[CasSystemScrapy.py]-[<module>]-[475]-12s: [INFO]-8s>> ces
+[2021-12-18 14:07:30,717]-[CasSystemScrapy.py]-[<module>]-[476]-12s: [INFO]-8s>> hello
+[2021-12-18 14:08:25,724]-[CasSystemScrapy.py]-[<module>]-[477]-12s: [INFO]-8s>> ces
+[2021-12-18 14:08:25,725]-[CasSystemScrapy.py]-[<module>]-[478]-12s: [INFO]-8s>> hello
+[2021-12-18 14:08:52,862]-[CasSystemScrapy.py]-[<module>]-[477]-12s: [INFO]-8s>> ces
+[2021-12-18 14:08:52,863]-[CasSystemScrapy.py]-[<module>]-[478]-12s: [INFO]-8s>> hello
+[2021-12-18 14:13:45,323]-[CasSystemScrapy.py]-[<module>]-[479]-12s: [INFO]-8s>> ces
+[2021-12-18 14:13:45,348]-[CasSystemScrapy.py]-[<module>]-[480]-12s: [INFO]-8s>> hello
+[2021-12-18 14:17:29,736]-[CasSystemScrapy.py]-[<module>]-[479]-12s: [INFO]-8s>> ces
+[2021-12-18 14:17:29,737]-[CasSystemScrapy.py]-[<module>]-[480]-12s: [INFO]-8s>> hello
+[2021-12-18 14:18:26,013]-[CasSystemScrapy.py]-[<module>]-[479]-12s: [INFO]-8s>> ces
+[2021-12-18 14:18:26,014]-[CasSystemScrapy.py]-[<module>]-[480]-12s: [INFO]-8s>> hello
+[2021-12-18 14:19:34,908]-[CasSystemScrapy.py]-[<module>]-[479]-12s: [INFO]-8s>> ces
+[2021-12-18 14:19:34,909]-[CasSystemScrapy.py]-[<module>]-[480]-12s: [INFO]-8s>> hello
+[2021-12-18 14:21:34,704]-[CasSystemScrapy.py]-[<module>]-[479]-12s: [INFO]-8s>> ces
+[2021-12-18 14:21:34,705]-[CasSystemScrapy.py]-[<module>]-[480]-12s: [INFO]-8s>> hello

@@ -1,4 +1,17 @@
+print(repr(1))
 
+
+
+
+applyno='{[199992]'
+applyno=applyno.replace('[','')
+applyno=applyno.replace(']','')
+print(applyno)
+a='SELECT count(*) FROM CasTravel WHERE BwfTravelNo=%s', applyno
+
+applyno='1'
+sql=f'SELECT count(*) FROM CasTravel WHERE BwfTravelNo=\'{applyno}\''
+print(sql)
 
 import os.path
 import sys

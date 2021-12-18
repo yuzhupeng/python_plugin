@@ -11,7 +11,10 @@ from lxml import etree
 import json
 import pymssql 
 from db2 import DB
-import pyslserver
+import sqlpymssql
+import uuid
+import  pymssql
+
 import time
 from requests.adapters import HTTPAdapter
 requests = requests.Session()
@@ -43,7 +46,7 @@ def getContent(url,header=None,datas = None,cookie=None):
     } # request 的请求头
     else:
        _header= header
-    
+   
    
     timeout = random.choice(range(80, 180))
     while True:
@@ -163,6 +166,7 @@ def fecth_applyno(applyno):
     conn = pymssql.connect(server, user, password, "Skc_Business")  #获取连接
     cursor = conn.cursor() # 获取光标
     # 查询数据
+    sql='SELECT count(*) FROM CasTravel WHERE BwfTravelNo=%s', applyno
     cursor.execute('SELECT count(*) FROM CasTravel WHERE BwfTravelNo=%s', applyno)
     # 遍历数据（存放到元组中） 方式1
     row = cursor.fetchone()
@@ -172,23 +176,35 @@ def fecth_applyno(applyno):
     else:
         conn.close()
         return False
-       
+
+def fecth_applynon(applyno,sqlhelper):
+    
+    sql=f'SELECT * FROM CasTravel WHERE BwfTravelNo=\'{applyno}\''
+    # a=DB()
+    # a.query(sql)
+    return sqlhelper.get_data(sql)
+
 #插入cas用车申请单
-def applydata_Update_Insert(inv_info):
+def applydata_Update_Insert(inv_info):      
+    sqlhelper=sqlpymssql.SQLHelp('.','sa','1','Skc_Business')
     applyformlist=[]
     for info in inv_info:
         if len(info)>1:
           print (info[1])
           print (info[2])
-          flags= fecth_applyno(info[0])
+           #a if a>1 else b #如果a大于1的话，c=a，否则c=b
+          COUNTS=fecth_applynon(info[0],sqlhelper)
+          flags=True if len(COUNTS)>0 else False
           if flags==True or info[2]=='取消' or info[2]=='退回':
              print("执行更新")#执行更新
-             
+             updatesql=update_CasTravel(info[0],info[2])
+             sqlhelper.update_data(updatesql)
           else:
-            sqlhelper=pyslserver.HandCost('.','sa','1','Skc_Business')
-             
             detial=get_apply_data(1,info[1],COO,info[0],info[2])
-            sqlhelper.dictToTO(detial)
+            insql=insert_CasTravel(detial)
+            if insql==None:
+               continue
+            sqlhelper.update_datalist(insql)
             time.sleep(2)
             if len(detial)>0:
                print(f'获取【{info[1]}】的数据完成！')
@@ -203,6 +219,135 @@ def applydata_Update_Insert(inv_info):
             
     return applyformlist
 #'CFID=4232877; CFTOKEN=81953532'
+
+
+def update_CasTravel(applyno,status):
+        try:
+            print('开始更新！');
+            TIME=((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+            updatesql=f'Update CasTravel set BwfStatus=\'{status}\',ModifyDate=\'{TIME}\' where BwfTravelNo=\'{applyno}\''
+            return updatesql
+            
+        except BaseException as e:
+           log.error(f"将派车单号{applyno}更新转化为sql出错：Unexpected Error: {e}")
+           return ''
+    #将DTO转化为sql
+
+def insert_CasTravel(travelobject):
+        insertsqllist=[]
+        try:
+            print("create insertsql")
+            detiallist=travelobject['TravelDetial']
+            if len(detiallist)>0 and len(detiallist)==1:
+                castravel=[]
+                uid = str(uuid.uuid4())
+                suid = ''.join(uid.split('-'))
+                castraveldid=(suid)
+                castravel.append(castraveldid)#DID
+                castravel.append((travelobject['applyno'])+'-'+(detiallist[0]['usedate']))#派车单号
+                castravel.append(travelobject['applyno'])# bwf管理序号
+                castravel.append(1)# 1 待派车 状态
+                castravel.append(travelobject['applytype'])#申请状态类型
+                castravel.append(travelobject['bwfstatus'])#bwf状态
+                castravel.append(travelobject['Peoples'])#人数
+                castravel.append(travelobject['AcutalUser'])#实际使用者
+                castravel.append(travelobject['InSideLine'])#内线
+                castravel.append(detiallist[0]['FlightNo'])#车次/航班编号
+                castravel.append(detiallist[0]['OstartTime'])#出发时间
+                castravel.append(detiallist[0]['ReturnTime'])#返回时间
+                castravel.append(detiallist[0]['FlightTime'])# 开车/起飞到达时间
+                castravel.append(travelobject['reason'])#变更取消理由
+                castravel.append(detiallist[0]['usedate'])#用车日期
+                castravel.append('公司车')#用车类型
+                castravel.append(travelobject['userason'])#用车理由
+                castravel.append(travelobject['DetailedAddres'])#行程详细地址
+                castravel.append(travelobject['Company'])#公司
+                castravel.append(travelobject['CostDepartment'])#经费负担部门
+                castravel.append(travelobject['ShareCore'])#经费负担代码
+                castravel.append('system')#CreateID
+                castravel.append((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))#CreateDate
+                castravel.append((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))#ModifyDate
+                castravel.append('system')#ModifyID
+                castravel.append(1)#Enables
+                castravel.append('')#PhonePassenger
+                castravel.append(travelobject['applyperson'])#申请人
+                castravel.append(travelobject['applydate'])#申请日期
+                castravel.append('')#合并代码
+                castravel.append('')#审批信息
+                castravel.append('')#司机model关联ID
+                castravel.append('')#车辆model关联id
+                castravel.append(0)#路桥费
+                castravel.append(0)#公里数
+                castravel.append('')#备注
+                castravel.append(0)#行程总用时
+                castravel.append(0)#类型：多日期行程的类型
+                castravel.append('')#父id
+                
+                castravel.append(travelobject['phone1'])
+                castravel.append(travelobject['passenger1'])
+                castravel.append(travelobject['phone2'])
+                castravel.append(travelobject['passenger2'])
+                castravel.append(travelobject['phone3'])
+                castravel.append(travelobject['passenger3'])
+                castravel.append(travelobject['phone4'])
+                castravel.append(travelobject['passenger4'])
+                castravel.append(travelobject['phone5'])
+                castravel.append(travelobject['passenger5'])
+                
+                castravel.append('')#司机姓名
+                castravel.append('')#车牌
+                
+                
+                excutesql=f'insert into CasTravel values ({castravel})'
+                
+                excutesql=excutesql.replace(']','')
+                excutesql=excutesql.replace('[','')
+                insertsqllist.append(excutesql)
+                
+                
+                
+                
+                for item in range(1,6):
+                         
+                    if len(detiallist[0]['travel'+repr(item)])>0:
+                       start=''
+                       end=''
+                       if item==1:
+                           start=detiallist[0]['start']
+                       else:
+                           start=detiallist[0][('travel'+repr(item-1))]
+                       end=detiallist[0]['travel'+repr(item)]
+                       
+                       CasTravelDetials=[]
+                       CasTravelDetials.append(str(uuid.uuid1()))
+                       CasTravelDetials.append(castraveldid)
+                       CasTravelDetials.append(start)
+                       CasTravelDetials.append(end)
+                       CasTravelDetials.append(start)
+                       CasTravelDetials.append(end)
+                       CasTravelDetials.append('')#CasDestinationDID
+                       CasTravelDetials.append(0)#preUseTime
+                       CasTravelDetials.append('')#经度
+                       CasTravelDetials.append('')#维度
+                       CasTravelDetials.append(0)#公里数
+                       CasTravelDetials.append(0)#cqf
+                       CasTravelDetials.append(1)#Enables
+                       CasTravelDetials.append(item)#顺序
+                       
+                       
+                       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
+                       excutedetialsql=excutedetialsql.replace(']','')
+                       excutedetialsql=excutedetialsql.replace('[','')
+                       insertsqllist.append(excutedetialsql)
+                      
+                return insertsqllist
+                
+        
+        except BaseException as e:
+         log.error(f"将派车单号{travelobject['applyno']}新增转化为sql出错：Unexpected Error: {e}")
+           
+    
+
 
 #BWF系统获取用车申请明细信息
 def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
@@ -318,6 +463,15 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             return []
     
 
+
+
+
+# sqlhelpers=pyslserver.HandCost('.','sa','1','Skc_Business')
+# sq=sqlhelpers.db_conn()
+# conn=sq[0]
+# cusr=sq[1]
+
+# sqlhelpers.db_excute(conn,cusr)
 
 
 

@@ -1,0 +1,52 @@
+2021-12-18 08:59:38,913 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 08:59:38,915 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 08:59:38,915 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 08:59:38,916 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:33,508 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:33,510 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:33,510 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:33,511 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:34,526 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:34,526 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:34,527 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:34,527 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:35,528 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:35,528 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:35,529 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:35,529 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:36,531 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:36,531 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:36,531 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:36,532 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:37,533 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:37,533 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:37,533 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:37,534 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:38,534 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:38,534 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:38,534 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:38,535 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:39,536 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:39,536 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:39,536 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:39,536 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:40,537 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:40,537 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:40,537 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:40,538 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:41,538 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:41,538 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:41,539 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:41,542 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:42,543 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:42,543 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:42,545 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:42,548 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:43,549 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:43,549 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:43,551 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:43,551 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war
+2021-12-18 09:00:44,555 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
+2021-12-18 09:00:44,555 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
+2021-12-18 09:00:44,557 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
+2021-12-18 09:00:44,560 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war

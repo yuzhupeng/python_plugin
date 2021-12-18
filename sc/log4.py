@@ -28,7 +28,7 @@ def get_logger(module_name=MODULE_NAME, log_level=LOG_LEVEL):
  encoding='utf-8',
  backupCount=180
  ) 
- time_file_handler.suffix = '%Y-%m-%d_%H-%M-%S.log' # 按 秒
+ time_file_handler.suffix = '%Y-%m-%d.log' # 按 秒
  formatter = logging.Formatter('[%(asctime)s]-[%(filename)s]-[%(funcName)s]-[%(lineno)d]-12s: [%(levelname)s]-8s>> %(message)s')
  time_file_handler.setFormatter(formatter) 
  logger.addHandler(time_file_handler)

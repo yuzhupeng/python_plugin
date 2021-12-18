@@ -45,6 +45,18 @@ class HandCost(object):
         conn.close()
         cursor.close()
 
+    def db_excute(self,conn,cursor,exsql):
+        try:
+               #创建一个游标对象,python里的sql语句都要通过cursor来执行
+            sql =exsql
+            cursor.execute(sql)   #执行sql语句
+            conn.commit()  #提交
+            cursor.close()   
+            conn.close()  
+        except BaseException as e:
+             log.error(f"执行sql出错！：Unexpected Error: {e}")
+          
+
     def exeQuery(self, cursor, sql):
         """
         查询
@@ -56,6 +68,7 @@ class HandCost(object):
         return cursor
         
         #根据单号查询
+        
    
     def fecth_applyno(applyno):
         server = "."    # 连接服务器地址
@@ -75,7 +88,7 @@ class HandCost(object):
             return False
         
     #新增单号       
-    def insert_CasTravel(travelobject):
+    def insert_CasTravels(travelobject):
         server = "."    # 连接服务器地址
         user = "sa" # 连接帐号
         password = "1"# 连接密码
@@ -90,11 +103,18 @@ class HandCost(object):
     # 你必须调用 commit() 来保持你数据的提交如果你没有将自动提交设置为true
             conn.commit()
     #更新单号
-    def update_CasTravel(applynolist):
-        print(applynolist)
-    
+    def update_CasTravel(self,applyno,status):
+        try:
+            print('开始更新！');
+             
+            updatesql=f'Update CasTravel set BwfStatus={status} where BwfTravelNo={applyno}'
+            return updatesql
+            
+        except BaseException as e:
+           log.error(f"将派车单号{applyno}更新转化为sql出错：Unexpected Error: {e}")
+           return ''
     #将DTO转化为sql
-    def dictToTO(self,travelobject):
+    def insert_CasTravel(self,travelobject):
         insertsqllist=[]
         try:
             print("create insertsql")
@@ -198,16 +218,11 @@ class HandCost(object):
                        
                 
                 
-                       
-      
-      
-      
-      
+
         except BaseException as e:
-         log.error(f"将派车单号{travelobject['applyno']}转化为sql出错：Unexpected Error: {e}")
+         log.error(f"将派车单号{travelobject['applyno']}新增转化为sql出错：Unexpected Error: {e}")
            
-    def aaaa(self,abs):
-        print(abs)
+    
 
 #调用百度api 获取 经度 维度 公里数
 def baidupaiPorcess(start,end):

@@ -17,7 +17,9 @@ class DB:
         
     def query(self, sql):
         self.cur.execute(sql)
-        return self.cur.fetchall()
+        resList=self.cur.fetchall()
+        self.conn.close()
+        return resList 
     
     def exec(self, sql):
         try:

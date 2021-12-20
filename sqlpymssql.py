@@ -20,6 +20,7 @@ class SQLHelp(object):
                'password':password,
                'database':database,
             }
+  
     def update_data(self,Sql ,arge=''):
         """类方法
             sql:字符串sql单条更新语句
@@ -143,6 +144,41 @@ class SQLHelp(object):
         except BaseException as ex:
             print("------------>操作error:",ex)
             return -1
+
+    def transaction_sqlist(self, sql):
+        '''
+        数据库复杂sql操作，提供事务
+        sql:sql操作语句类(SqlClass)列表
+        return:影响行数
+        error：-1
+        使用方式
+            sqlhelp=SQLHelp("localhost","sa","123",'GuiYang_UniversityTown_New')
+            lists = list()
+            lists.append(sqlhelps.SqlClass('delete from T_Model where code=%s','5201612032090000000165'))
+            n = sqlhelps.transaction_sql(lists)
+        '''
+        try:
+            if not isinstance(sql,list):
+                raise Exception("参数type类型错误,异常")
+            else:
+                n = 0#默认0，失败
+            with pymssql.connect(**self.__conn_path) as conn:
+                with conn.cursor() as cursor:
+                    for x in sql:
+                        if isinstance(x,list):
+                            for item in x:
+                                cursor.execute(item)
+                        else:
+                            cursor.execute(x)
+                        n+=cursor.rowcount
+                    if n:
+                        conn.commit()
+            return n
+        except BaseException as ex:
+            print("------------>操作error:",ex)
+            return -1
+
+
 
 
 if __name__ == '__main__':

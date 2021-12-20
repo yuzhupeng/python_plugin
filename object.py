@@ -296,11 +296,11 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             return []
     
 
-COO='CFID=4250514; CFTOKEN=19278837'
+COO='CFID=4259552; CFTOKEN=18576452'
 log.info('ces')
 log.info('hello')
 inv_info=[]
-for item in range(5,30): 
+for item in range(12,17): 
     inv_info+=getpagecontent(item,COO)
 
 list=applydata_Update_Insert(inv_info)

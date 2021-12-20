@@ -333,8 +333,6 @@ print(uuid.uuid1())
  
 def f(x):
         return x+x
-
- 
 aas=[1,2,3,3,2,2,2,2,2,2,2,1,2,2]
 r=map(f, aas)
 print(list(r)) 

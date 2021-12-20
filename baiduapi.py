@@ -16,6 +16,7 @@ def getPosition(ak, dw):
         return json_data['status']
     return lat,lng
 
+#暂时未使用
 def calDistance(ak,place1,place2):
     '''
     输入两个地点名，输出直线距离(千米)
@@ -31,7 +32,6 @@ def calDistance(ak,place1,place2):
     distances =2*asin(sqrt(a))*6371*1000 # 地球平均半径，6371km
     distance= round(distances/1000,3)
     return distance
-
 #返回详细地址
 def getplace_update(ak, dw):
     add_url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
@@ -50,9 +50,34 @@ def getplace_update(ak, dw):
     return place
 
 
+#根据地址返回经纬度 
+def getPositions(ak, dw):
+    #url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
+    urls='https://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
+    res = requests.get(urls)
+    json_data = json.loads(res.text)
+    if json_data['status'] == 0:
+        lat = json_data['result']['location']['lat']  # 纬度
+        lng = json_data['result']['location']['lng']  # 经度
+    else:
+        print("Error output!")
+        print(json_data)
+        return json_data['status']
+    return lat,lng
+
+#根据简称获取详细信息
+def getFullAddressbyabbreviation(address):
+    print('')
+
+
 
 if __name__ == '__main__':
     ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
+    ad='社贝村'
+    getPositions(ak,ad)
+    
+    
+    
     place1=input("输入起点:")
     place11=getplace_update(ak,place1)
     print(place11)

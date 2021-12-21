@@ -60,7 +60,7 @@ def getplace_update(ak, dw):
 def getPositions(dw):
     test = config.ReadConfig()
     ak=test.get_other('ak')
-    #url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
+   
     urls='https://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
     res = requests.get(urls)
     json_data = json.loads(res.text)
@@ -73,39 +73,81 @@ def getPositions(dw):
         return json_data['status']
     return lat,lng
 
+#根据经纬度获取详细地址信息
+#lat 维度  lng 经度
+def getAddressbyPostions(lat,lng):
+    try:
+        test = config.ReadConfig()
+        ak=test.get_other('ak')
+        urls=f'https://api.map.baidu.com/reverse_geocoding/v3/?ak={ak}&output=json&coordtype=wgs84ll&location={lat},{lng} '
+        res = requests.get(urls)
+        json_data = json.loads(res.text)
+        return json_data
+    except BaseException as e:
+        log.error(f"根据经度纬度查询地点信息出错！：Unexpected Error: {e}")
+
 #根据简称获取详细信息
 def getFullAddressbyabbreviation(address):
-    sqlhelper=sqlpymssql.SQLHelp('.','sa','1','Skc_Business')
-    addresssql=f'select top 1* from CasDestination where  VagueLocation like \'%{address}%\''
-    return sqlhelper.get_data(addresssql)
-     
+    try:
+         sqlhelper=sqlpymssql.SQLHelp('.','sa','1','Skc_Business')
+         addresssql=f'select top 1* from CasDestination where  VagueLocation like \'%{address}%\''
+         return sqlhelper.get_data(addresssql)
+    except BaseException as e:
+           log.error(f"查询常用地点信息出错！：Unexpected Error: {e}")
+    
 
+#获取 地点详细信息
 def getplace_byabbreviation(address):
      
     try:
-        actualaddress= getFullAddressbyabbreviation('1')
-        if len(actualaddress)>1:
-            detial=actualaddress[0][3]
+        actualaddress= getFullAddressbyabbreviation(address)
+        if len(actualaddress)==1:
+            detial=actualaddress[0][2]
             return getPositions(detial)
         else:
             return getPositions(address)
     except BaseException as e:
-           print('')
+           log.error(f"调用百度api获取地点信息出错！：Unexpected Error: {e}")
+
+#查询路线规划信息出错
+def get_driving_direction(start,end):
+    try:
+        test = config.ReadConfig()
+        ak=test.get_other('ak')
+        startresult=getplace_byabbreviation(start)
+        endresult=getplace_byabbreviation(end)
+        starts=startresult[0]
+        starte=startresult[1]
+         
+        ends=endresult[0]
+        ende=endresult[1]
+        
+        urls=f'https://api.map.baidu.com/direction/v2/driving?origin={starts},{starte}&destination={ends},{ende}&ak={ak}'
+        res = requests.get(urls)
+        json_data = json.loads(res.text)
+        return json_data
+    except BaseException as e:
+           log.error(f"调用百度api获取地点信息出错！：Unexpected Error: {e}")
+     
+
 
 if __name__ == '__main__':
     # ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
     # ad='社贝村'
     # getPositions(ak,ad)
-    SQ= getFullAddressbyabbreviation('1')
-    if len(SQ)>1:
-       aw=SQ[0][3]
-       print(SQ[0])
+    
+   # result=getplace_byabbreviation('SKC')
+    result=get_driving_direction('社贝村','白云机场')
+    SQ= getFullAddressbyabbreviation('SKC')
+    if len(SQ)==1:
+       aw=SQ[0][2]
+ 
     
     place1=input("输入起点:")
-    place11=getplace_update(ak,place1)
+    place11=getplace_update(place1)
     print(place11)
     place2=input("输入终点:")
-    place22=getplace_update(ak,place2)
+    place22=getplace_update(place2)
     print(place22)
-    distance = calDistance(ak,place1,place2)
+    distance = calDistance(place1,place2)
     print("%s"%place11,"和%s之间的距离"%place22,"为%d千米"%distance)

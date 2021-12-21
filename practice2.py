@@ -1,3 +1,25 @@
+import pandas as pd
+
+dates=range(20161010,20161114)
+pieces=[]
+for date in dates:
+    try:
+        data=pd.read_csv('A_stock/overview-push-%d/stock overview.csv' %date, encoding='gbk')
+        pieces.append(data)
+    except BaseException as e:
+        print(e)
+         
+     
+data=pd.concat(pieces)
+
+
+
+
+
+
+
+
+
 
 
 def deleteDup(li,key):

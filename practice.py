@@ -1,4 +1,7 @@
 print(repr(1))
+address='1123'
+addresssql=f'select top 1* from CasDestination where  VagueLocation like \'%{address}%\''
+print(addresssql)
 
 
 

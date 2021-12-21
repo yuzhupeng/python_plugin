@@ -1,7 +1,13 @@
 import json
-from math import radians, cos, sin, asin, sqrt 
+from math import radians, cos, sin, asin, sqrt
+from typing import List 
 import requests
- 
+import sqlpymssql
+import config
+import sc.log4
+log = sc.log4.get_logger()
+
+
 #根据地址返回经纬度 
 def getPosition(ak, dw):
     url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
@@ -51,7 +57,9 @@ def getplace_update(ak, dw):
 
 
 #根据地址返回经纬度 
-def getPositions(ak, dw):
+def getPositions(dw):
+    test = config.ReadConfig()
+    ak=test.get_other('ak')
     #url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
     urls='https://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
     res = requests.get(urls)
@@ -67,16 +75,31 @@ def getPositions(ak, dw):
 
 #根据简称获取详细信息
 def getFullAddressbyabbreviation(address):
-    print('')
+    sqlhelper=sqlpymssql.SQLHelp('.','sa','1','Skc_Business')
+    addresssql=f'select top 1* from CasDestination where  VagueLocation like \'%{address}%\''
+    return sqlhelper.get_data(addresssql)
+     
 
-
+def getplace_byabbreviation(address):
+     
+    try:
+        actualaddress= getFullAddressbyabbreviation('1')
+        if len(actualaddress)>1:
+            detial=actualaddress[0][3]
+            return getPositions(detial)
+        else:
+            return getPositions(address)
+    except BaseException as e:
+           print('')
 
 if __name__ == '__main__':
-    ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
-    ad='社贝村'
-    getPositions(ak,ad)
-    
-    
+    # ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
+    # ad='社贝村'
+    # getPositions(ak,ad)
+    SQ= getFullAddressbyabbreviation('1')
+    if len(SQ)>1:
+       aw=SQ[0][3]
+       print(SQ[0])
     
     place1=input("输入起点:")
     place11=getplace_update(ak,place1)

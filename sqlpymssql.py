@@ -1,4 +1,7 @@
 import pymssql #引入pymssql模块 链接SQL server数据库
+import configparser
+import os
+import config
 
 
 class SQLHelp(object):
@@ -14,11 +17,13 @@ class SQLHelp(object):
          port： 数据库链接端口，默认1433
          as_dict：数据返回是否为字典，默认True
          '''
+         test = config.ReadConfig()
          self.__conn_path={
-               'host':host,
-               'user':user,
-               'password':password,
-               'database':database,
+               'host':test.get_db("host"),
+               'user':test.get_db("user"),
+               'password':test.get_db("password"),
+               'database':test.get_db("database"),
+               'charset':"UTF-8",
             }
   
     def update_data(self,Sql ,arge=''):
@@ -94,7 +99,6 @@ class SQLHelp(object):
                 raise Exception("type类型错误,异常")
             with pymssql.connect(**self.__conn_path) as conn:# with语句与连接和游标一起使用。这使您不必显式关闭游标和连接。
                 with conn.cursor() as cursor:
-                    print(arge[:-1])
                     cursor.execute(Sql,arge)
                     return cursor.fetchall()
         except BaseException as ex:
@@ -182,7 +186,7 @@ class SQLHelp(object):
 
 
 if __name__ == '__main__':
-    sqlhelps = SQLHelp("localhost","sa","1",'GuiYang_UniversityTown_New')
+    sqlhelps = SQLHelp("localhost","sa","1",'Skc_Business')
     lists = list()
     lists.append(sqlhelps.SqlClass(r"INSERT INTO [dbo].[T_Model]( [Code],[VillageCode], [Lon], [Lat], [3DMLName], [VillageName]) VALUES ( %s, %s,%s, %s, %s, %s);",
                                                               [( '5201412032090000000165', None,106.579311, 26.414393, '3DML_DT\G48H077147B_DT', None),

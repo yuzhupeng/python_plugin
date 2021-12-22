@@ -1,0 +1,57 @@
+{
+    "plugins": [
+        "disqus",
+        "ga",
+        "katex",
+        "richquotes",
+        "sitemap2",
+        "github",
+        "edit-link",
+        "feed",
+        "etoc",
+        "algolia",
+        "tags"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "algorithm4bill"
+        },
+        "ga": {
+            "token": "UA-32317667-7"
+        },
+        "richquotes": {
+            "todos": true
+        },
+        "sitemap2": {
+            "hostname": "http://algorithm.yuanbin.me/"
+        },
+        "github": {
+            "url": "https://github.com/billryan/algorithm-exercise"
+        },
+        "edit-link": {
+            "base": "https://github.com/billryan/algorithm-exercise/edit/master",
+            "label": {
+                    "en": "Edit Page",
+                    "zh-hans": "编辑此页",
+                    "zh-tw": "編輯此頁"
+            }
+        },
+        "feed": {
+            "title": "Data Structure and Algorithm notes",
+            "description": "Data Structure and Algorithm notes/数据结构与算法学习笔记/leetcode/lintcode 题解",
+            "hostname": "https://algorithm.yuanbin.me",
+            "author": "billryan",
+            "categories": [
+              "programming",
+              "algorithm",
+              "leetcode"
+            ]
+        },
+        "algolia": {
+            "index": "algorithm",
+            "applicationID": "9YBMOZR89J",
+            "publicKey": "5860a3e55ee72831917b1b9e2a4649ca",
+            "freeAccount": "true"
+        }
+    }
+}

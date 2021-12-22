@@ -332,6 +332,7 @@ def insert_CasTravel(travelobject):
                        end=detiallist[0]['travel'+repr(item)]
                        
                        CasTravelDetials=[]
+                       
                        CasTravelDetials.append(str(uuid.uuid1()))
                        CasTravelDetials.append(castraveldid)
                        CasTravelDetials.append(start)

@@ -704,3 +704,18 @@ stu1.eat()
 stu2.sleep()
 teacher.teach('Python程序设计')
 stu1.study('Python程序设计')
+
+
+example_list = [
+    {'points': 400, 'gold': 2480},
+    {'points': 100, 'gold': 610},
+    {'points': 100, 'gold': 620},
+    {'points': 100, 'gold': 620}
+]
+
+total_gold = 0
+for item in example_list:
+    total_gold += example_list["gold"]
+    
+ 
+sum(item['gold'] for item in example_list)

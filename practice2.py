@@ -1,5 +1,12 @@
 import pandas as pd
 
+
+
+
+
+a=float(111.22222222,6)
+
+
 dates=range(20161010,20161114)
 pieces=[]
 for date in dates:

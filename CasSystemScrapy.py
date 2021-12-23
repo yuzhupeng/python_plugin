@@ -14,6 +14,8 @@ from db2 import DB
 import sqlpymssql
 import uuid
 import  pymssql
+import baiduapi
+
 
 import time
 from requests.adapters import HTTPAdapter
@@ -289,10 +291,66 @@ def insert_CasTravel(travelobject):
                 castravel.append('')#审批信息
                 castravel.append('')#司机model关联ID
                 castravel.append('')#车辆model关联id
-                castravel.append(0)#路桥费
-                castravel.append(0)#公里数
+                cqf=0
+                duration=0
+                distance=0
+                
+                for item in range(1,6):
+                             
+                    if len(detiallist[0]['travel'+repr(item)])>0:
+                       start=''
+                       end=''
+                       if item==1:
+                           start=detiallist[0]['start']
+                       else:
+                           start=detiallist[0][('travel'+repr(item-1))]
+                       end=detiallist[0]['travel'+repr(item)]
+                       
+                       CasTravelDetials=[]
+                       
+                       CasTravelDetials.append(str(uuid.uuid1()))
+                       CasTravelDetials.append(castraveldid)
+                       CasTravelDetials.append(start)
+                       CasTravelDetials.append(end)
+                       
+                       Location=baiduapi.get_driving_direction(start,end)
+                       if len(Location)>0:
+                            CasTravelDetials.append(Location[3])
+                            CasTravelDetials.append(Location[4])
+                            CasTravelDetials.append('')#CasDestinationDID
+                            CasTravelDetials.append(Location[1])#preUseTime
+                            CasTravelDetials.append('')#经度
+                            CasTravelDetials.append('')#维度
+                            CasTravelDetials.append(Location[0])#公里数
+                            cqf+=Location[2]
+                            distance+=Location[0]
+                            duration+=Location[1]
+                            CasTravelDetials.append(Location[2])#cqf
+                       else:
+                           CasTravelDetials.append(start)
+                           CasTravelDetials.append(end)
+                           CasTravelDetials.append('')#CasDestinationDID
+                           CasTravelDetials.append(0)#preUseTime
+                           CasTravelDetials.append('')#经度
+                           CasTravelDetials.append('')#维度
+                           CasTravelDetials.append(0)#公里数
+
+                           CasTravelDetials.append(0)#cqf
+ 
+                       CasTravelDetials.append(1)#Enables
+                       CasTravelDetials.append(item)#顺序
+                       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
+                       excutedetialsql=excutedetialsql.replace(']','')
+                       excutedetialsql=excutedetialsql.replace('[','')
+                       insertsqllist.append(excutedetialsql)
+
+                
+                
+                
+                castravel.append(cqf)#路桥费
+                castravel.append(distance)#公里数
                 castravel.append('')#备注
-                castravel.append(0)#行程总用时
+                castravel.append(duration)#行程总用时
                 castravel.append(0)#类型：多日期行程的类型
                 castravel.append('')#父id
                 
@@ -320,41 +378,7 @@ def insert_CasTravel(travelobject):
                 
                 
                 
-                for item in range(1,6):
-                         
-                    if len(detiallist[0]['travel'+repr(item)])>0:
-                       start=''
-                       end=''
-                       if item==1:
-                           start=detiallist[0]['start']
-                       else:
-                           start=detiallist[0][('travel'+repr(item-1))]
-                       end=detiallist[0]['travel'+repr(item)]
-                       
-                       CasTravelDetials=[]
-                       
-                       CasTravelDetials.append(str(uuid.uuid1()))
-                       CasTravelDetials.append(castraveldid)
-                       CasTravelDetials.append(start)
-                       CasTravelDetials.append(end)
-                       CasTravelDetials.append(start)
-                       CasTravelDetials.append(end)
-                       CasTravelDetials.append('')#CasDestinationDID
-                       CasTravelDetials.append(0)#preUseTime
-                       CasTravelDetials.append('')#经度
-                       CasTravelDetials.append('')#维度
-                       CasTravelDetials.append(0)#公里数
-                       CasTravelDetials.append(0)#cqf
-                       CasTravelDetials.append(1)#Enables
-                       CasTravelDetials.append(item)#顺序
-                       
-                       
-                       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
-                       excutedetialsql=excutedetialsql.replace(']','')
-                       excutedetialsql=excutedetialsql.replace('[','')
-                       insertsqllist.append(excutedetialsql)
-                      
-                 
+ 
             else:
                  duplist=deleteDup(detiallist)
                  for item in duplist:
@@ -408,10 +432,62 @@ def create_apply_sql(travelobject,detiallist):
                 castravel.append('')#审批信息
                 castravel.append('')#司机model关联ID
                 castravel.append('')#车辆model关联id
-                castravel.append(0)#路桥费
-                castravel.append(0)#公里数
+                cqf=0
+                duration=0
+                distance=0
+                for item in range(1,6):
+                                 
+                    if len(detiallist['travel'+repr(item)])>0:
+                       start=''
+                       end=''
+                       if item==1:
+                           start=detiallist['start']
+                       else:
+                           start=detiallist[('travel'+repr(item-1))]
+                       end=detiallist['travel'+repr(item)]
+                       
+                       CasTravelDetials=[]
+                       
+                       CasTravelDetials.append(str(uuid.uuid1()))
+                       CasTravelDetials.append(castraveldid)
+                       CasTravelDetials.append(start)
+                       CasTravelDetials.append(end)
+                       
+                       Location=baiduapi.get_driving_direction(start,end)
+                       if len(Location)>0:
+                            CasTravelDetials.append(Location[3])
+                            CasTravelDetials.append(Location[4])
+                            CasTravelDetials.append('')#CasDestinationDID
+                            CasTravelDetials.append(Location[1])#preUseTime
+                            CasTravelDetials.append('')#经度
+                            CasTravelDetials.append('')#维度
+                            CasTravelDetials.append(Location[0])#公里数
+                            cqf+=Location[2]
+                            distance+=Location[0]
+                            duration+=Location[1]
+                            CasTravelDetials.append(Location[2])#cqf
+                       else:
+                           CasTravelDetials.append(start)
+                           CasTravelDetials.append(end)
+                           CasTravelDetials.append('')#CasDestinationDID
+                           CasTravelDetials.append(0)#preUseTime
+                           CasTravelDetials.append('')#经度
+                           CasTravelDetials.append('')#维度
+                           CasTravelDetials.append(0)#公里数
+                           CasTravelDetials.append(0)#cqf
+ 
+                       CasTravelDetials.append(1)#Enables
+                       CasTravelDetials.append(item)#顺序
+                       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
+                       excutedetialsql=excutedetialsql.replace(']','')
+                       excutedetialsql=excutedetialsql.replace('[','')
+                       insertsqllist.append(excutedetialsql)
+
+                
+                castravel.append(cqf)#路桥费
+                castravel.append(distance)#公里数
                 castravel.append('')#备注
-                castravel.append(0)#行程总用时
+                castravel.append(duration)#行程总用时
                 castravel.append(0)#类型：多日期行程的类型
                 castravel.append('')#父id
                 castravel.append(travelobject['phone1'])
@@ -430,39 +506,10 @@ def create_apply_sql(travelobject,detiallist):
                 excutesql=excutesql.replace(']','')
                 excutesql=excutesql.replace('[','')
                 insertsqllist.append(excutesql)
-
-                for item in range(1,6):
-                         
-                    if len(detiallist['travel'+repr(item)])>0:
-                       start=''
-                       end=''
-                       if item==1:
-                           start=detiallist['start']
-                       else:
-                           start=detiallist[('travel'+repr(item-1))]
-                       end=detiallist['travel'+repr(item)]
-                       
-                       CasTravelDetials=[]
-                       CasTravelDetials.append(str(uuid.uuid1()))
-                       CasTravelDetials.append(castraveldid)
-                       CasTravelDetials.append(start)
-                       CasTravelDetials.append(end)
-                       CasTravelDetials.append(start)
-                       CasTravelDetials.append(end)
-                       CasTravelDetials.append('')#CasDestinationDID
-                       CasTravelDetials.append(0)#preUseTime
-                       CasTravelDetials.append('')#经度
-                       CasTravelDetials.append('')#维度
-                       CasTravelDetials.append(0)#公里数
-                       CasTravelDetials.append(0)#cqf
-                       CasTravelDetials.append(1)#Enables
-                       CasTravelDetials.append(item)#顺序
+ 
                        
                        
-                       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
-                       excutedetialsql=excutedetialsql.replace(']','')
-                       excutedetialsql=excutedetialsql.replace('[','')
-                       insertsqllist.append(excutedetialsql)
+                       
                 return insertsqllist
     
      
@@ -595,7 +642,7 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
 
 
 
-COO='CFID=4243124; CFTOKEN=12412058'
+COO='CFID=4274539; CFTOKEN=98938767'
 log.info('ces')
 log.info('hello')
 inv_info=[]

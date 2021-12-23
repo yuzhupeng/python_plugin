@@ -6,7 +6,7 @@ import sqlpymssql
 import config
 import sc.log4
 log = sc.log4.get_logger()
-
+import numpy
 
 #根据地址返回经纬度 
 def getPosition(ak, dw):
@@ -22,20 +22,7 @@ def getPosition(ak, dw):
         return json_data['status']
     return lat,lng
 
-    '''
-    输入两个地点名，输出直线距离(千米)
-    place1：地点1
-    place2：地点2
-    '''
-    lat1,lng1 = getPosition(ak,place1)#经纬度1
-    lat2,lng2 = getPosition(ak,place2)#经纬度2
-    lng1, lat1, lng2, lat2 = map(radians, [float(lng1), float(lat1), float(lng2), float(lat2)]) # 经纬度转换成弧度
-    dlon=lng2-lng1
-    dlat=lat2-lat1
-    a=sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    distances =2*asin(sqrt(a))*6371*1000 # 地球平均半径，6371km
-    distance= round(distances/1000,3)
-    return distance
+ 
 #返回详细地址
 def getplace_update(ak, dw):
     add_url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
@@ -96,9 +83,9 @@ def getPositionMap(address):
         coordString = tmpList['location']
         coordList = [coordString['lng'], coordString['lat']]
         # places_ll.append([address, float(coordList[0]), float(coordList[1])])
-        return [address, float(coordList[0]), float(coordList[1])]
+        return [address, round(float(coordList[0]),6), round(float(coordList[1]),6)]
     else:
-        return -1
+        return []
 
 
 #根据经纬度获取详细地址信息
@@ -131,48 +118,93 @@ def getplace_byabbreviation(address):
         actualaddress= getFullAddressbyabbreviation(address)
         if len(actualaddress)==1:
             detial=actualaddress[0][2]
-            return getPositionMap(detial)
+            return get_place_accuracy_direction(detial)
         else:
-            return getPositionMap(address)
+             
+            return get_place_accuracy_direction(address)
     except BaseException as e:
            log.error(f"调用百度api获取地点信息出错！：Unexpected Error: {e}")
 
-#查询路线规划信息出错
+#查询路线规划信息
 def get_driving_direction(start,end):
     try:
         test = config.ReadConfig()
         ak=test.get_other('ak')
-        startresult=getplace_byabbreviation(start)
-        endresult=getplace_byabbreviation(end)
-        starts=startresult[1]
-        starte=startresult[2]
-         
-        ends=endresult[1]
-        ende=endresult[2]
+        startresult=getplace_byabbreviation(start)#查询常用地点并转化为经度纬度
+        endresult=getplace_byabbreviation(end)#查询常用地点并转化为经度纬度
         
-        urls=f'https://api.map.baidu.com/direction/v2/driving?origin={starte},{starts}&destination={ende},{ends}&ak={ak}'
-        res = requests.get(urls)
+        startlat=startresult['location']['lat']
+        startlng=startresult['location']['lng']
+        startuid=startresult['uid']
+        startplace=startresult['address']+'('+startresult['province']+'--'+startresult['city']+')'
+        
+        
+        endlat= endresult['location']['lat']
+        endlng=endresult['location']['lng']
+        enduid=endresult['uid']
+        endplace=endresult['address']+'('+endresult['province']+'--'+endresult['city']+')'
+        
+        url = 'https://api.map.baidu.com/direction/v2/driving?'
+        params = {
+            "origin": str(startlat)+','+str(startlng),
+            "destination":str(endlat)+','+str(endlng) ,
+            "origin_uid":startuid,
+            "destination_uid":enduid,
+            "output": 'json',
+            "ak": ak,
+        }
+        res = requests.get(url, params=params)
         if res:
             json_data = json.loads(res.text)
             tmpList = json_data['result']
             coordString = tmpList['routes'][0]
             
-            distance=coordString['distance']
-            duration=coordString['duration']
-            toll=coordString['toll']
+            distance=coordString['distance']/1000
+            duration=round((coordString['duration']/60),2)
             
+            tolls=sum(item['toll'] for item in coordString['steps'])
         
-            return json_data
+            return [distance,duration,tolls,startplace,endplace]
     except BaseException as e:
            log.error(f"调用百度api获取地点信息出错！：Unexpected Error: {e}")
+           return['']
+
+ 
+ 
+ 
+ 
+def get_place_accuracy_direction(address):
+    try:
+        print(0)
      
+        test = config.ReadConfig()
+        ak=test.get_other('ak')
+        url = 'https://api.map.baidu.com/place/v2/search?'
+        params = {
+            "query": address,
+            "region": '东莞市',
+            "output": 'json',
+            "ak": ak,
+        }
+        response = requests.get(url, params=params)
+        answer = response.json()
+        # places_ll = []
+        if answer['status'] == 0:
+            tmpList = answer['results'][0]
+            # coordString = tmpList['location']
+            # places_ll.append([address, float(coordList[0]), float(coordList[1])])
+            return  tmpList
+        else:
+            return []
+    except BaseException as e:
+        log.error(f"查询地点信息出错！：Unexpected Error: {e}")
 
 
 if __name__ == '__main__':
     # ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
     # ad='社贝村'
     # getPositions(ak,ad)
-    
+    result=get_driving_direction('广东省东莞市石龙镇西湖社区环湖西路','广州白云机场')
  
     
     
@@ -182,7 +214,7 @@ if __name__ == '__main__':
    # result=getplace_byabbreviation('SKC')
     # latlng=getPositions('社贝村')
     # addressdetial=getAddressbyPostions(latlng[0],latlng[1])
-    result=get_driving_direction('广东省东莞市石龙镇西湖社区环湖西路','育医林医院')
+ 
     
     
     

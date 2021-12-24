@@ -133,6 +133,11 @@ def get_driving_direction(start,end):
         startresult=getplace_byabbreviation(start)#查询常用地点并转化为经度纬度
         endresult=getplace_byabbreviation(end)#查询常用地点并转化为经度纬度
         
+        if startresult==None or endresult ==None or len(startresult)==0 or len(endresult)==0:
+            log.error(f"调用百度api获取地点信息出错！：出发点和目的地: {start}-------{end}")
+            return []
+        
+        
         startlat=startresult['location']['lat']
         startlng=startresult['location']['lng']
         startuid=startresult['uid']
@@ -167,7 +172,8 @@ def get_driving_direction(start,end):
             return [distance,duration,tolls,startplace,endplace]
     except BaseException as e:
            log.error(f"调用百度api获取地点信息出错！：Unexpected Error: {e}")
-           return['']
+           log.error(f"调用百度api获取地点信息出错！：出发点和目的地: {start}-------{end}")
+           return []
 
  
  

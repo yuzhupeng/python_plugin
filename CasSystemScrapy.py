@@ -99,7 +99,7 @@ def login():
 #获取列表数据
 def getpagecontent(pageno,cookie):
     url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
-    payload = 'DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=-100&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'.format(_PageNo=pageno)
+    payload = 'DispType=1&PageCount=100&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=-100&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'.format(_PageNo=pageno)
     headers = {
                     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
                     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -160,6 +160,7 @@ def getpagecontent(pageno,cookie):
  
          log.error(f"解析用车申请列表信息出错！：Unexpected Error: {e}")
          return []
+
 #根据编号查询是否存在
 def fecth_applyno(applyno):
     server = "."    # 连接服务器地址
@@ -192,6 +193,7 @@ def applydata_Update_Insert(inv_info):
     applyformlist=[]
     for info in inv_info:
         if len(info)>1:
+          print (info[0])
           print (info[1])
           print (info[2])
            #a if a>1 else b #如果a大于1的话，c=a，否则c=b
@@ -512,7 +514,71 @@ def create_apply_sql(travelobject,detiallist):
                        
                 return insertsqllist
     
-     
+# 获取退回和取消用车申请单
+def get_refuseandback_apply(cookie,payload):
+    url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
+    payload = payload
+    headers = {
+                    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
+                    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                    'Accept-Encoding': 'gzip, deflate',
+                    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,fil;q=0.7,zh-TW;q=0.6',
+                    'Cache-Control': 'max-age=0',
+                    'Connection': 'keep-alive',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Host':'10.9.140.98',
+                    'Origin':'http://10.9.140.98',
+                    'Referer': 'http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall',
+                    'Upgrade-Insecure-Requests': '1',
+                    'cookie':cookie
+                }
+    try:
+        response = requests.request("POST", url, headers=headers, data=payload)
+    except BaseException as  e:
+         print(e)
+         log.error(f"requests加载用车申请列表信息出错！：Unexpected Error: {e}")
+         
+    try:   
+        data = response.text
+        soup = BeautifulSoup(data, 'lxml')
+        tables=soup.find_all('table')
+        inv_info = []
+        if len(tables)==0:
+            return inv_info
+    
+        #table = soup.table;
+        tr_arr = tables[1].find_all("tr");
+        for tr in tr_arr:
+            #//查询所有td
+            tds = tr.find_all('td');  
+            if len(tds)!=11 or tds[0].text.strip()=='目录'or tds[0].text.strip()=='管理序号':
+                continue
+            temp = []
+            
+            if tds[0].text.strip()=='目录' or tds[0].text.strip()=='管理序号':
+                    break
+            if  len(tds[1].text.strip())>0:
+                temp.append(tds[1].text.strip())
+            else:
+                continue
+            astr=tds[1].find_all('a')
+            
+            if len(astr)>0:
+                    p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
+                    # p2 = re.compile(r'[(](.*)[)]', re.S)  #贪婪匹配
+                    applyid=re.findall(p1, astr[0].attrs['href'])
+                    applyidno = applyid[0].replace('[','').replace(']','')
+                    temp.append(applyidno)
+                    
+            temp.append(tds[5].text.strip())
+            inv_info.append(temp)
+    
+        return inv_info
+    except BaseException as e:
+ 
+         log.error(f"解析用车申请列表信息出错！：Unexpected Error: {e}")
+         return []
+  
 
 
 
@@ -645,10 +711,21 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
 COO='CFID=4274539; CFTOKEN=98938767'
 log.info('ces')
 log.info('hello')
+refusepageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=2&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
+cancelpageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=3&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
 inv_info=[]
 for item in range(0,1): 
     inv_info+=getpagecontent(item,COO)
 
+refuse=get_refuseandback_apply(COO,refusepageload)
+cancel=get_refuseandback_apply(COO,cancelpageload)
+
+if len(refuse)>0:
+   inv_info.append(refuse)
+
+if len(cancel)>0:
+     inv_info.append(cancel)
+    
 list=applydata_Update_Insert(inv_info)
 
 

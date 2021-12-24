@@ -1,83 +1,221 @@
-[2021-12-23 10:57:32,956]-[baiduapi.py]-[getplace_byabbreviation]-[139]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: float expected at most 1 arguments, got 2
-[2021-12-23 10:57:36,180]-[baiduapi.py]-[getplace_byabbreviation]-[139]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: float expected at most 1 arguments, got 2
-[2021-12-23 10:58:14,441]-[baiduapi.py]-[getplace_byabbreviation]-[139]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: float expected at most 1 arguments, got 2
-[2021-12-23 15:31:08,195]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
-[2021-12-23 15:31:09,315]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
-[2021-12-23 15:31:28,857]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
-[2021-12-23 15:31:31,931]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
-[2021-12-23 16:42:28,570]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:42:28,570]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:42:28,571]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:42:28,571]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:42:29,620]-[CasSystemScrapy.py]-[insert_CasTravel]-[390]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: 0
-[2021-12-23 16:42:29,620]-[CasSystemScrapy.py]-[insert_CasTravel]-[390]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: 0
-[2021-12-23 16:43:19,965]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:43:19,965]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:43:19,965]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:43:19,965]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:46:40,212]-[CasSystemScrapy.py]-[insert_CasTravel]-[390]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: 0
-[2021-12-23 16:46:40,212]-[CasSystemScrapy.py]-[insert_CasTravel]-[390]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: 0
-[2021-12-23 16:47:05,665]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:47:05,665]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:47:05,666]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:47:05,666]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:49:46,465]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:49:46,465]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:49:46,466]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:49:46,466]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:49:56,069]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: HTTPSConnectionPool(host='api.map.baidu.com', port=443): Max retries exceeded with url: /place/v2/search?query=%E5%B9%BF%E4%B8%9C%E7%9C%81%E7%9F%B3%E9%BE%99%E9%95%87%E4%BA%AC%E7%93%B7%E8%B7%AF%E5%85%AB%E5%8F%B7&region=%E4%B8%9C%E8%8E%9E%E5%B8%82&output=json&ak=5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq (Caused by ProxyError('Cannot connect to proxy.', OSError(0, 'Error')))
-[2021-12-23 16:49:56,069]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: HTTPSConnectionPool(host='api.map.baidu.com', port=443): Max retries exceeded with url: /place/v2/search?query=%E5%B9%BF%E4%B8%9C%E7%9C%81%E7%9F%B3%E9%BE%99%E9%95%87%E4%BA%AC%E7%93%B7%E8%B7%AF%E5%85%AB%E5%8F%B7&region=%E4%B8%9C%E8%8E%9E%E5%B8%82&output=json&ak=5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq (Caused by ProxyError('Cannot connect to proxy.', OSError(0, 'Error')))
-[2021-12-23 16:50:19,095]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:50:19,095]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:50:19,096]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:50:19,096]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:53:47,527]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:53:47,527]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 16:53:47,528]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 16:53:47,528]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 17:01:19,183]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 17:01:19,183]-[CasSystemScrapy.py]-[<module>]-[645]-12s: [INFO]-8s>> ces
-[2021-12-23 17:01:19,184]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 17:01:19,184]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> hello
-[2021-12-23 17:19:30,243]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 17:19:30,243]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 17:19:30,244]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 17:19:30,244]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 17:19:39,865]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
-[2021-12-23 17:19:39,865]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
-[2021-12-23 17:20:36,190]-[CasSystemScrapy.py]-[insert_CasTravel]-[391]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: list index out of range
-[2021-12-23 17:20:36,190]-[CasSystemScrapy.py]-[insert_CasTravel]-[391]-12s: [ERROR]-8s>> 将派车单号GA-202112-4新增转化为sql出错：Unexpected Error: list index out of range
-[2021-12-23 18:06:47,304]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:06:47,304]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:06:47,305]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:06:47,305]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:11:59,814]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
-[2021-12-23 18:11:59,814]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
-[2021-12-23 18:12:00,586]-[CasSystemScrapy.py]-[insert_CasTravel]-[391]-12s: [ERROR]-8s>> 将派车单号GA-202112-2新增转化为sql出错：Unexpected Error: list index out of range
-[2021-12-23 18:12:00,586]-[CasSystemScrapy.py]-[insert_CasTravel]-[391]-12s: [ERROR]-8s>> 将派车单号GA-202112-2新增转化为sql出错：Unexpected Error: list index out of range
-[2021-12-23 18:12:02,905]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:12:02,905]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:12:21,584]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:12:21,584]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:12:21,585]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:12:21,585]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:15:05,416]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:15:05,416]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:15:18,864]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:15:18,864]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:15:18,865]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:15:18,865]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:15:19,970]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:15:19,970]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:15:46,483]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:15:46,483]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:15:46,483]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:15:46,483]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:15:47,857]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:15:47,857]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:16:09,866]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:16:09,866]-[CasSystemScrapy.py]-[<module>]-[646]-12s: [INFO]-8s>> ces
-[2021-12-23 18:16:09,867]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:16:09,867]-[CasSystemScrapy.py]-[<module>]-[647]-12s: [INFO]-8s>> hello
-[2021-12-23 18:16:11,147]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
-[2021-12-23 18:16:11,147]-[CasSystemScrapy.py]-[get_apply_data]-[629]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
+[2021-12-24 09:49:39,699]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 09:49:39,716]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 09:51:31,406]-[CasSystemScrapy.py]-[get_apply_data]-[694]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
+[2021-12-24 15:27:24,097]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:27:24,097]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:27:24,098]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:27:24,098]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:27:58,388]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:27:58,388]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:27:58,938]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-26新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:27:58,938]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-26新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:17,875]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:28:17,875]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:28:17,875]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-24新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:17,875]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-24新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:31,538]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:31,538]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:31,539]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:31,539]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:31,539]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-20新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:31,539]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-20新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:32,495]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
+[2021-12-24 15:28:32,495]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
+[2021-12-24 15:28:32,496]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-19新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:32,496]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-19新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:37,292]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:37,292]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:37,806]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:37,806]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:37,806]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-17新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:37,806]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-17新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:42,180]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:42,180]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:28:42,789]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:42,789]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'NoneType' object is not subscriptable
+[2021-12-24 15:28:42,789]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-15新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:28:42,789]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-15新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:34:33,132]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:34:33,132]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:34:33,133]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:34:33,133]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:36:08,185]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:36:08,185]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:36:08,185]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-26新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:36:08,185]-[CasSystemScrapy.py]-[insert_CasTravel]-[392]-12s: [ERROR]-8s>> 将派车单号GA-202112-26新增转化为sql出错：Unexpected Error: list index out of range
+[2021-12-24 15:36:22,869]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:36:22,869]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:36:22,870]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:36:22,870]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:38:26,430]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:38:26,430]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:38:26,431]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:38:26,431]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:39:48,027]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
+[2021-12-24 15:39:48,027]-[baiduapi.py]-[get_driving_direction]-[169]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: list indices must be integers or slices, not str
+[2021-12-24 15:41:31,338]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:41:31,338]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:41:31,339]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:41:31,339]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:42:43,397]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:42:43,397]-[CasSystemScrapy.py]-[<module>]-[711]-12s: [INFO]-8s>> ces
+[2021-12-24 15:42:43,398]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:42:43,398]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> hello
+[2021-12-24 15:44:53,963]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:44:53,963]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:44:53,964]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:44:53,964]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:44:59,697]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:44:59,697]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:45:23,436]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:45:23,436]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:45:23,437]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:45:23,437]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:45:46,490]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:45:46,490]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:45:46,491]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:45:46,491]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:46:09,397]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:46:09,397]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:46:31,859]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:46:31,859]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:46:31,860]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:46:31,860]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:46:52,062]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:46:52,062]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:47:10,206]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:47:10,206]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:47:10,207]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:47:10,207]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:47:26,060]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:47:26,060]-[baiduapi.py]-[get_place_accuracy_direction]-[200]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:49:08,878]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:49:08,878]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:49:08,879]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:49:08,879]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:49:17,451]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:49:17,451]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:49:17,452]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:49:17,452]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:49:24,695]-[CasSystemScrapy.py]-[insert_CasTravel]-[393]-12s: [ERROR]-8s>> 将派车单号GA-202112-36新增转化为sql出错：Unexpected Error: object of type 'NoneType' has no len()
+[2021-12-24 15:49:24,695]-[CasSystemScrapy.py]-[insert_CasTravel]-[393]-12s: [ERROR]-8s>> 将派车单号GA-202112-36新增转化为sql出错：Unexpected Error: object of type 'NoneType' has no len()
+[2021-12-24 15:49:43,225]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:49:43,225]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:49:43,226]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:49:43,226]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:50:47,129]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:50:47,129]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:50:47,130]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:50:47,130]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:50:50,086]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:50:50,086]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:50:50,086]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:50:50,086]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:51:46,714]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:51:46,714]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:51:46,715]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:51:46,715]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:51:52,718]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:51:52,718]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:51:52,718]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:51:52,718]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 15:52:09,014]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:52:09,014]-[baiduapi.py]-[get_place_accuracy_direction]-[205]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 15:52:09,151]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------松山湖园区
+[2021-12-24 15:52:09,151]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------松山湖园区
+[2021-12-24 15:52:22,697]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:22,697]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:47,181]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:52:47,181]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 15:52:47,182]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:52:47,182]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 15:52:54,119]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:54,119]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:54,120]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 15:52:54,120]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 15:52:57,552]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:57,552]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 15:52:57,553]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-24 15:52:57,553]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-24 16:11:08,507]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:11:08,507]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:11:08,508]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:11:08,508]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:11:41,921]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:11:41,921]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:11:41,922]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:11:41,922]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:11:45,176]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:45,176]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:45,176]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-24 16:11:45,176]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-24 16:11:51,923]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:51,923]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:52,457]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------长安
+[2021-12-24 16:11:52,457]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------长安
+[2021-12-24 16:11:54,989]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:54,989]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:11:55,649]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------新工厂
+[2021-12-24 16:11:55,649]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------新工厂
+[2021-12-24 16:12:02,952]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:02,952]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:03,285]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------博爱医院
+[2021-12-24 16:12:03,285]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------博爱医院
+[2021-12-24 16:12:16,876]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:16,876]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:16,877]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-24 16:12:16,877]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-24 16:12:17,003]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:17,003]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:17,317]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-24 16:12:17,317]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-24 16:12:17,845]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:12:17,845]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:12:17,846]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司
+[2021-12-24 16:12:17,846]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司
+[2021-12-24 16:12:20,331]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:20,331]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:12:20,567]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------优里加
+[2021-12-24 16:12:20,567]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: KOPD-------优里加
+[2021-12-24 16:12:20,794]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 优里加-------东莞市第六人民医院
+[2021-12-24 16:12:20,794]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 优里加-------东莞市第六人民医院
+[2021-12-24 16:12:26,519]-[CasSystemScrapy.py]-[get_apply_data]-[695]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
+[2021-12-24 16:12:26,519]-[CasSystemScrapy.py]-[get_apply_data]-[695]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
+[2021-12-24 16:17:10,233]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:17:10,233]-[CasSystemScrapy.py]-[<module>]-[712]-12s: [INFO]-8s>> ces
+[2021-12-24 16:17:10,234]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:17:10,234]-[CasSystemScrapy.py]-[<module>]-[713]-12s: [INFO]-8s>> hello
+[2021-12-24 16:17:13,212]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'uid'
+[2021-12-24 16:17:13,212]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'uid'
+[2021-12-24 16:17:13,212]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 16:17:13,212]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-24 16:17:22,833]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州华优检测技术服务有限公司
+[2021-12-24 16:17:22,833]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州华优检测技术服务有限公司
+[2021-12-24 16:17:25,542]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:25,542]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:25,542]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 16:17:25,542]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 16:17:49,189]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:49,189]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:49,189]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 16:17:49,189]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-24 16:17:56,601]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:56,601]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:17:56,602]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-24 16:17:56,602]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-24 16:18:14,164]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:18:14,164]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:18:14,164]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-24 16:18:14,164]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-24 16:19:00,510]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:19:00,510]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:19:00,510]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-24 16:19:00,510]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-24 16:19:00,687]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:19:00,687]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-24 16:19:00,878]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-24 16:19:00,878]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-24 16:19:01,326]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:19:01,326]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-24 16:19:01,326]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司
+[2021-12-24 16:19:01,326]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司

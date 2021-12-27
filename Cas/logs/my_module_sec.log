@@ -1,0 +1,64 @@
+[2021-12-27 09:48:09,614]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:09,614]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:09,615]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:09,615]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:15,484]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:15,484]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:15,485]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:15,485]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:21,001]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:21,001]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:21,002]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:21,002]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:53,941]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:53,941]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:48:54,988]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:48:54,988]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:50:07,442]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:50:07,442]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:50:07,761]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:50:07,761]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:51:40,935]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:51:40,935]-[CasSystemScrapy.py]-[<module>]-[704]-12s: [INFO]-8s>> ces
+[2021-12-27 09:51:40,936]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 09:51:40,936]-[CasSystemScrapy.py]-[<module>]-[705]-12s: [INFO]-8s>> hello
+[2021-12-27 10:07:13,182]-[CasSystemScrapy.py]-[<module>]-[718]-12s: [INFO]-8s>> ces
+[2021-12-27 10:07:13,182]-[CasSystemScrapy.py]-[<module>]-[718]-12s: [INFO]-8s>> ces
+[2021-12-27 10:07:13,182]-[CasSystemScrapy.py]-[<module>]-[719]-12s: [INFO]-8s>> hello
+[2021-12-27 10:07:13,182]-[CasSystemScrapy.py]-[<module>]-[719]-12s: [INFO]-8s>> hello
+[2021-12-27 10:07:20,976]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'uid'
+[2021-12-27 10:07:20,976]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'uid'
+[2021-12-27 10:07:20,976]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-27 10:07:20,976]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------KPTG
+[2021-12-27 10:07:34,171]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:07:34,171]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:07:34,171]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-27 10:07:34,171]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-27 10:07:56,968]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:07:56,968]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:07:56,968]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-27 10:07:56,968]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------广州
+[2021-12-27 10:08:06,014]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:08:06,014]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:08:06,014]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-27 10:08:06,014]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 帝景湾-------深圳罗湖区
+[2021-12-27 10:08:24,413]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:08:24,413]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:08:24,413]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-27 10:08:24,413]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------深圳TESS
+[2021-12-27 10:09:17,570]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:09:17,570]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:09:17,570]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-27 10:09:17,570]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: SKC-------住建局
+[2021-12-27 10:09:17,739]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:09:17,739]-[baiduapi.py]-[get_place_accuracy_direction]-[206]-12s: [ERROR]-8s>> 查询地点信息出错！：Unexpected Error: list index out of range
+[2021-12-27 10:09:18,125]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-27 10:09:18,125]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 住建局-------到四会
+[2021-12-27 10:09:18,696]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:09:18,696]-[baiduapi.py]-[get_driving_direction]-[174]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'address'
+[2021-12-27 10:09:18,697]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司
+[2021-12-27 10:09:18,697]-[baiduapi.py]-[get_driving_direction]-[175]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地: 到四会-------深圳SGS通标公司
+[2021-12-27 10:09:52,394]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地:  三号宿舍-------美能达工场
+[2021-12-27 10:09:52,394]-[baiduapi.py]-[get_driving_direction]-[137]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：出发点和目的地:  三号宿舍-------美能达工场
+[2021-12-27 10:10:08,355]-[CasSystemScrapy.py]-[get_apply_data]-[710]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range
+[2021-12-27 10:10:08,355]-[CasSystemScrapy.py]-[get_apply_data]-[710]-12s: [ERROR]-8s>> 解析明细信息出错，错误单号：GA-202111-1：Unexpected Error: list index out of range

@@ -8,7 +8,7 @@ def setup_log(log_name):
     # 创建logger对象。传入logger名字
     log_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'logs' 
     logger = logging.getLogger(log_name)
-    log_path =log_dir
+    log_path = log_dir
     # 设置日志记录等级
     logger.setLevel(logging.INFO)
     # interval 滚动周期，

@@ -8,38 +8,8 @@ import log4
 log = log4.get_logger()
 import numpy
 
-#根据地址返回经纬度 
-def getPosition(ak, dw):
-    url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
-    res = requests.get(url)
-    json_data = json.loads(res.text)
-    if json_data['status'] == 0:
-        lat = json_data['result']['location']['lat']  # 纬度
-        lng = json_data['result']['location']['lng']  # 经度
-    else:
-        print("Error output!")
-        print(json_data)
-        return json_data['status']
-    return lat,lng
-
  
-#返回详细地址
-def getplace_update(ak, dw):
-    add_url = 'http://api.map.baidu.com/geocoding/v3/?address={Address}&output=json&ak={Ak}'.format(Address=dw, Ak=ak)
-    (lat, lng) = getPosition(ak,add_url)
-    url = 'http://api.map.baidu.com/reverse_geocoding/v3/?ak=' + ak + '&output=json&coordtype=wgs84ll&location='+str(lat)+','+str(lng)
-    result = requests.get(url)
-    text = json.loads(result.text)
-    address = text.get('result').get('addressComponent')
-    city = address.get('city')
-    province = address.get('province')
-    district = address.get('district')
-    if city == province:
-        place = province+district
-    else:
-        place = province + city + district
-    return place
-
+ 
 
 #根据地址返回经纬度 
 def getPositions(dw):
@@ -58,49 +28,7 @@ def getPositions(dw):
         return json_data['status']
     return lat,lng
 
-
-def getPositionMap(address):
-    """
-    address convert lat and lng
-    :param address: address
-    :param currentkey: AK
-    :return: places_ll
-    """
-    test = config.ReadConfig()
-    ak=test.get_other('ak')
-    url = 'http://api.map.baidu.com/geocoding/v3/?'
-    params = {
-        "address": address,
-        "city": '东莞市',
-        "output": 'json',
-        "ak": ak,
-    }
-    response = requests.get(url, params=params)
-    answer = response.json()
-    # places_ll = []
-    if answer['status'] == 0:
-        tmpList = answer['result']
-        coordString = tmpList['location']
-        coordList = [coordString['lng'], coordString['lat']]
-        # places_ll.append([address, float(coordList[0]), float(coordList[1])])
-        return [address, round(float(coordList[0]),6), round(float(coordList[1]),6)]
-    else:
-        return []
-
-
-#根据经纬度获取详细地址信息
-#lat 维度  lng 经度
-def getAddressbyPostions(lat,lng):
-    try:
-        test = config.ReadConfig()
-        ak=test.get_other('ak')
-        urls=f'https://api.map.baidu.com/reverse_geocoding/v3/?ak={ak}&output=json&coordtype=bd09ll&location={lat},{lng}'
-        res = requests.get(urls)
-        json_data = json.loads(res.text)
-        return json_data
-    except BaseException as e:
-        log.error(f"根据经度纬度查询地点信息出错！：Unexpected Error: {e}")
-
+ 
 #根据简称获取详细信息
 def getFullAddressbyabbreviation(address):
     try:
@@ -137,17 +65,33 @@ def get_driving_direction(start,end):
             log.error(f"调用百度api获取地点信息出错！：出发点和目的地: {start}-------{end}")
             return []
         
-        
+        ss=startresult.get('uid') 
         startlat=startresult['location']['lat']
         startlng=startresult['location']['lng']
-        startuid=startresult['uid']
-        startplace=startresult['address']+'('+startresult['province']+'--'+startresult['city']+')'
+        startuid = startresult['uid'] if startresult.get('uid') != None else ''
+     
+        
+        sprovince =startresult['province'] if startresult.get('province') != None else ''
+        saddress =startresult['address'] if startresult.get('address') != None else ''
+        scity =startresult['city'] if startresult.get('city') != None else ''
+        startplace= saddress+'('+sprovince +'--'+scity+')'
+        #startplace=startresult['address']+'('+startresult['province']+'--'+startresult['city']+')'
         
         
         endlat= endresult['location']['lat']
         endlng=endresult['location']['lng']
-        enduid=endresult['uid']
-        endplace=endresult['address']+'('+endresult['province']+'--'+endresult['city']+')'
+         
+        enduid = endresult['uid'] if endresult.get('uid') != None else ''
+        
+        
+        #endplace=endresult['address']+'('+endresult['province']+'--'+endresult['city']+')'
+        esprovince =endresult['province'] if endresult.get('province') != None else ''
+        esaddress =endresult['address'] if endresult.get('address') != None else ''
+        ecity =endresult['city'] if endresult.get('city') != None else ''
+        endplace= esaddress+'('+esprovince +'--'+ecity+')'
+        
+        
+        
         
         url = 'https://api.map.baidu.com/direction/v2/driving?'
         params = {
@@ -210,18 +154,13 @@ if __name__ == '__main__':
     # ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
     # ad='社贝村'
     # getPositions(ak,ad)
-    result=get_driving_direction('SKC','濠兴海鲜酒楼')
+    result=get_driving_direction('东莞市石龙镇新城区京瓷路8号','广州白云机场')
  
     
     
     
     
-    
-   # result=getplace_byabbreviation('SKC')
-    # latlng=getPositions('社贝村')
-    # addressdetial=getAddressbyPostions(latlng[0],latlng[1])
  
-    
     
     
     
@@ -230,12 +169,4 @@ if __name__ == '__main__':
        aw=SQ[0][2]
        
     
-    
-    place1=input("输入起点:")
-    place11=getplace_update(place1)
-    print(place11)
-    place2=input("输入终点:")
-    place22=getplace_update(place2)
-    print(place22)
-    distance = calDistance(place1,place2)
-    print("%s"%place11,"和%s之间的距离"%place22,"为%d千米"%distance)
+     

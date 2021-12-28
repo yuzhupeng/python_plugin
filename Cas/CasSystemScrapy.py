@@ -20,7 +20,8 @@ requests.mount('http://', HTTPAdapter(max_retries=3))
 requests.mount('https://', HTTPAdapter(max_retries=3))
 
 log = log4.get_logger()
-
+skcs = {"SKC":"SKC","KOPD":"KOPD","KCPD":"KCPD","公司":"SKC"}
+ 
 
 # coding: utf-8
 # fun1
@@ -320,8 +321,8 @@ def insert_CasTravel(travelobject):
                             duration+=Location[1]
                             CasTravelDetials.append(Location[2])#cqf
                        else:
-                           CasTravelDetials.append(start)
-                           CasTravelDetials.append(end)
+                           CasTravelDetials.append('')
+                           CasTravelDetials.append('')
                            CasTravelDetials.append('')#CasDestinationDID
                            CasTravelDetials.append(0)#preUseTime
                            CasTravelDetials.append('')#经度
@@ -461,8 +462,8 @@ def create_apply_sql(travelobject,detiallist):
                             duration+=Location[1]
                             CasTravelDetials.append(Location[2])#cqf
                        else:
-                           CasTravelDetials.append(start)
-                           CasTravelDetials.append(end)
+                           CasTravelDetials.append('')
+                           CasTravelDetials.append('')
                            CasTravelDetials.append('')#CasDestinationDID
                            CasTravelDetials.append(0)#preUseTime
                            CasTravelDetials.append('')#经度
@@ -507,7 +508,102 @@ def create_apply_sql(travelobject,detiallist):
                 return insertsqllist
 
 
+def getstate(SDeparture):
+    skcs = {"SKC": "SKC", "KOPD": "KOPD", "KCPD": "KCPD", "公司": "SKC"}
     
+    result = 'false'
+    parture = ''
+    for item in skcs:
+        if SDeparture.upper() in item.upper():
+            result = 'true'
+            parture = item
+            break
+    return parture
+
+
+
+#处理出发回程  SDeparture 出發地， EDestination 目的地    
+def Add_come_return(SDeparture,EDestination,castraveldid):
+    ed=getstate(EDestination)
+    sd=getstate(SDeparture)
+    insertsqllist=[]
+    cqf=0
+    distance=0
+    duration=0
+    if sd=='':
+       CasTravelDetials=[]
+       CasTravelDetials.append(str(uuid.uuid1()))
+       CasTravelDetials.append(castraveldid)
+       CasTravelDetials.append('SKC')
+       CasTravelDetials.append(sd)
+       Location=baiduapi.get_driving_direction('SKC',sd)
+       if len(Location)>0:
+          CasTravelDetials.append(Location[3])
+          CasTravelDetials.append(Location[4])
+          CasTravelDetials.append('')#CasDestinationDID
+          CasTravelDetials.append(Location[1])#preUseTime
+          CasTravelDetials.append('')#经度
+          CasTravelDetials.append('')#维度
+          CasTravelDetials.append(Location[0])#公里数
+          cqf+=Location[2]
+          distance+=Location[0]
+          duration+=Location[1]
+          CasTravelDetials.append(Location[2])#cqf
+       else:
+            CasTravelDetials.append('SKC')
+            CasTravelDetials.append(sd)
+            CasTravelDetials.append('')#CasDestinationDID
+            CasTravelDetials.append(0)#preUseTime
+            CasTravelDetials.append('')#经度
+            CasTravelDetials.append('')#维度
+            CasTravelDetials.append(0)#公里数
+            CasTravelDetials.append(0)#cqf
+
+       CasTravelDetials.append(1)#Enables
+       CasTravelDetials.append(item)#顺序
+       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
+       excutedetialsql=excutedetialsql.replace(']','')
+       excutedetialsql=excutedetialsql.replace('[','')
+       insertsqllist.append(excutedetialsql)
+    
+    if ed=='':
+       CasTravelDetials=[]
+       CasTravelDetials.append(str(uuid.uuid1()))
+       CasTravelDetials.append(castraveldid)
+       CasTravelDetials.append(ed)
+       CasTravelDetials.append('SKC')
+       Location=baiduapi.get_driving_direction(ed,'SKC')
+       if len(Location)>0:
+          CasTravelDetials.append(Location[3])
+          CasTravelDetials.append(Location[4])
+          CasTravelDetials.append('')#CasDestinationDID
+          CasTravelDetials.append(Location[1])#preUseTime
+          CasTravelDetials.append('')#经度
+          CasTravelDetials.append('')#维度
+          CasTravelDetials.append(Location[0])#公里数
+          cqf+=Location[2]
+          distance+=Location[0]
+          duration+=Location[1]
+          CasTravelDetials.append(Location[2])#cqf
+       else:
+            CasTravelDetials.append('')
+            CasTravelDetials.append('')
+            CasTravelDetials.append('')#CasDestinationDID
+            CasTravelDetials.append(0)#preUseTime
+            CasTravelDetials.append('')#经度
+            CasTravelDetials.append('')#维度
+            CasTravelDetials.append(0)#公里数
+            CasTravelDetials.append(0)#cqf
+
+       CasTravelDetials.append(1)#Enables
+       CasTravelDetials.append(item)#顺序
+       excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
+       excutedetialsql=excutedetialsql.replace(']','')
+       excutedetialsql=excutedetialsql.replace('[','')
+       insertsqllist.append(excutedetialsql)
+    
+    return insertsqllist
+ 
 # 获取退回和取消用车申请单
 def get_refuseandback_apply(cookie,payload):
     url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
@@ -572,7 +668,7 @@ def get_refuseandback_apply(cookie,payload):
  
          log.error(f"解析用车申请列表信息出错！：Unexpected Error: {e}")
          return []
-  
+    
 
 
 

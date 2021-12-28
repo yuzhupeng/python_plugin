@@ -1,7 +1,5 @@
-
 items2 = [45, 8, 29]
 print(items2[1])
-
 
 # file = open('致橡树.txt', 'a', encoding='utf-8')
 # file.write('\n标题：《致橡树》')

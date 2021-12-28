@@ -1,0 +1,38 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load static %}
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+在线考试系统
+{% endblock title %}
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+<div class="container">
+    <div class="container">
+        <br>
+        <h3>考试信息</h3>
+        <div class="container">
+            <div class="row mt-4">
+                {% for paper1 in paper %}
+                <!-- 文章内容 -->
+                <div class="col-6 mb-6">
+                    <!-- 卡片容器 -->
+                    <div class="card">
+                        <!-- 标题 -->
+                        <h4 class="card-header">{{ paper1.title }}</h4>
+                        <!-- 摘要 -->
+                        <div class="card-body">
+                            <h4 class="card-title">{{ paper1.course }}</h4>
+                            <p class="card-text">{{ paper1.examtime  }}</p>
+                            <a href="/startExam/?sid={{ student.sid }}&title={{ paper1.title }}&subject={{ paper1.course }}"  class="card-link">开始考试</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <p></p>
+    </div>
+</div>
+{% endblock content %}
+

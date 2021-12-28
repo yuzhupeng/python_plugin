@@ -7,7 +7,7 @@ import gevent
 from gevent import monkey
 from gevent.pool import Pool
 
-monkey.patch_all()
+#monkey.patch_all()
 import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry

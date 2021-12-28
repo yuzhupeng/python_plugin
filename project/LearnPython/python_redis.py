@@ -9,7 +9,7 @@ import time
 import redis
 
 # 全局变量
-conn_pool = redis.ConnectionPool(host="localhost", port=6379, db=1)
+conn_pool = redis.ConnectionPool(host="localhost", port=6379, db=5)
 conn_inst = redis.Redis(connection_pool=conn_pool)
 channel_name = "fm-101.1"
 
@@ -49,7 +49,13 @@ def subscribe_test(_type=0):
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == "public":
+    subscribe_test()
+    public_test()
+    subscribe_test()
+    
+    
+    
+    if sys.argv[0] == "public":
         public_test()
     else:
         subscribe_test(int(sys.argv[2]))

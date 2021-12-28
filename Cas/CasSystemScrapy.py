@@ -288,7 +288,7 @@ def insert_CasTravel(travelobject):
                 cqf=0
                 duration=0
                 distance=0
-                
+                lasttravel=''
                 for item in range(1,6):
                              
                     if len(detiallist[0]['travel'+repr(item)])>0:
@@ -299,6 +299,7 @@ def insert_CasTravel(travelobject):
                        else:
                            start=detiallist[0][('travel'+repr(item-1))]
                        end=detiallist[0]['travel'+repr(item)]
+                       lasttravel=detiallist[0]['travel'+repr(item)]
                        
                        CasTravelDetials=[]
                        
@@ -340,7 +341,10 @@ def insert_CasTravel(travelobject):
 
                 
                 
-                
+                LReturn=Add_come_return(detiallist[0]['start'],lasttravel,castraveldid)
+                cqf+=LReturn[1]
+                distance+=LReturn[2]
+                duration+=LReturn[3]
                 castravel.append(cqf)#路桥费
                 castravel.append(distance)#公里数
                 castravel.append('')#备注
@@ -369,7 +373,8 @@ def insert_CasTravel(travelobject):
                 excutesql=excutesql.replace('[','')
                 insertsqllist.append(excutesql)
                 
-                
+                for item in LReturn[0]:
+                    insertsqllist.append(item)
                 
                 
  
@@ -535,8 +540,8 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
        CasTravelDetials.append(str(uuid.uuid1()))
        CasTravelDetials.append(castraveldid)
        CasTravelDetials.append('SKC')
-       CasTravelDetials.append(sd)
-       Location=baiduapi.get_driving_direction('SKC',sd)
+       CasTravelDetials.append(SDeparture)
+       Location=baiduapi.get_driving_direction('SKC',SDeparture)
        if len(Location)>0:
           CasTravelDetials.append(Location[3])
           CasTravelDetials.append(Location[4])
@@ -550,8 +555,8 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
           duration+=Location[1]
           CasTravelDetials.append(Location[2])#cqf
        else:
-            CasTravelDetials.append('SKC')
-            CasTravelDetials.append(sd)
+            CasTravelDetials.append('')
+            CasTravelDetials.append('')
             CasTravelDetials.append('')#CasDestinationDID
             CasTravelDetials.append(0)#preUseTime
             CasTravelDetials.append('')#经度
@@ -570,9 +575,9 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
        CasTravelDetials=[]
        CasTravelDetials.append(str(uuid.uuid1()))
        CasTravelDetials.append(castraveldid)
-       CasTravelDetials.append(ed)
+       CasTravelDetials.append(EDestination)
        CasTravelDetials.append('SKC')
-       Location=baiduapi.get_driving_direction(ed,'SKC')
+       Location=baiduapi.get_driving_direction(EDestination,'SKC')
        if len(Location)>0:
           CasTravelDetials.append(Location[3])
           CasTravelDetials.append(Location[4])
@@ -602,7 +607,7 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
        excutedetialsql=excutedetialsql.replace('[','')
        insertsqllist.append(excutedetialsql)
     
-    return insertsqllist
+    return [insertsqllist,cqf,distance,duration]
  
 # 获取退回和取消用车申请单
 def get_refuseandback_apply(cookie,payload):

@@ -801,7 +801,7 @@ refusepageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&Adm
 cancelpageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=3&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
 inv_info=[]
 log.info('开始获取用车申请单列表信息')
-for item in range(0,1): 
+for item in range(0,2): 
     inv_info+=getpagecontent(item,COO)
     
 log.info('开始获取用车申请单-取消，退回 列表信息')
@@ -823,30 +823,6 @@ log.info('处理结束......退出')
 
  
  
- 
-# for info in inv_info:
-#     if len(info)>1:
-#        print (info[1])
-#        print (info[2])
-#        for item in info:
-#            print(item)
+  
  
  
-
- 
-
-my_dict = {
-    'name': '骆昊',
-    'age': 40,
-    'friends': ['王大锤', '白元芳'],
-    'cars': [
-        {'brand': 'BMW', 'max_speed': 240},
-        {'brand': 'Audi', 'max_speed': 280},
-        {'brand': 'Benz', 'max_speed': 280}
-    ]
-}
-
-
-print(my_dict)
-print('-------------------')
-print(json.dumps(my_dict))

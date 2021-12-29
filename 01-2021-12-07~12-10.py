@@ -719,3 +719,31 @@ for item in example_list:
     
  
 sum(item['gold'] for item in example_list)
+
+#encoding:UTF-8
+def foo(num):
+    for i in num:
+        yield i
+        print('end'+str(i))
+num=[1, 2, 3, 4, 5]
+demo = foo(num)
+#next()返回迭代器的下一个项目（项目在本示例是一个数值）
+print(next(demo))
+print("*"*20)
+print(next(demo))
+print("*"*20)
+print(next(demo))
+'''返回值：
+1
+********************
+end1
+2
+********************
+end2
+3
+'''
+# yield相当于一个迭代生成器。带有yield的函数是迭代函数，返回一个可迭代对象；
+# 在遍历其部分迭代项目时，获取下一个项目会沿着上一次yield截止处，
+# 继续运行同级代码后，再重头运行函数；yield后的不同级代码只有获取最后一个项目后运行。
+
+

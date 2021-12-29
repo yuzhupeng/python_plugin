@@ -1,6 +1,4 @@
 import pymssql #引入pymssql模块 链接SQL server数据库
-from pymssql import _mssql
-from pymssql import _pymssql
 import configparser
 import os
 import config

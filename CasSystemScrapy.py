@@ -822,15 +822,7 @@ if len(cancel) > 0:
 
 list = applydata_Update_Insert(inv_info)
 
-for item in list:
-    print(item)
 
-# for info in inv_info:
-#     if len(info)>1:
-#        print (info[1])
-#        print (info[2])
-#        for item in info:
-#            print(item)
 
 my_dict = {
     'name':

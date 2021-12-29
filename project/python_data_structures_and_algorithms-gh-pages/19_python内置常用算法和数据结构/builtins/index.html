@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>19_python内置常用算法和数据结构 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "19_python\u5185\u7f6e\u5e38\u7528\u7b97\u6cd5\u548c\u6570\u636e\u7ed3\u6784";
+    var mkdocs_page_input_path = "19_python\u5185\u7f6e\u5e38\u7528\u7b97\u6cd5\u548c\u6570\u636e\u7ed3\u6784/builtins.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../00_课程简介之笨方法学算法/why_and_how_to_learn/">00_课程简介之笨方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../01_抽象数据类型和面向对象编程/ADT_OOP/">01_抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../02_数组和列表/array_and_list/">02_数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../03_链表/linked_list/">03_链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../04_队列/queue/">04_队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../05_栈/stack/">05_栈</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../06_算法分析/big_o/">06_算法分析</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../07_哈希表/hashtable/">07_哈希表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../08_字典/dict/">08_字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../09_集合/set/">09_集合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../10_递归/recursion/">10_递归</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../11_线性查找与二分查找/search/">11_线性查找与二分查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../12_基本排序算法/basic_sort/">12_基本排序算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13_高级排序算法</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/advanced_sorting/">高级排序算法</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/merge_sort/">分治法与归并排序</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/quick_sort/">快速排序</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../14_树与二叉树/tree/">14_树与二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../15_堆与堆排序/heap_and_heapsort/">15_堆和堆排序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../16_优先级队列/priority_queue/">16_优先级队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../17_二叉查找树/binary_search_tree/">17_二叉查找树</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../18_图与图的遍历/graph/">18_图与图的遍历</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">19_python内置常用算法和数据结构</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#python">Python 常用内置算法和数据结构</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../20_面试指南/interview/">20_面试指南</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>19_python内置常用算法和数据结构</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="python">Python 常用内置算法和数据结构</h1>
+<p>相信到这里大家对常用的数据结构和算法及其实现都比较熟悉了。
+之前在每章的数据结构和算法中涉及到的章节我都会提到对应的 python 内置模块，一般如果内置的可以满足需求，我们优先使用内置模块，
+因为在性能和容错性方面内置模块要好于我们自己实现（比如有些是 c 实现的）。本章我们不会再对每个模块的原理详细说明，仅列举出一些常见模块供大家参考，
+如果有需要最好的学习方式就是参考 Python 的官方文档。很多高级的数据结构我们也可以通过 google 搜索现成的库拿来直接用。</p>
+<ul>
+<li>常用内置数据类型：list, tuple, dict, set, frozenset</li>
+<li>collections</li>
+<li>heapq</li>
+<li>bisect</li>
+</ul>
+<p>下边我列了一个常用的表格，如果有遗漏可以在 issue 中提出。确保你了解这些数据结构和算法的使用以及时间、空间复杂度。</p>
+<table>
+<thead>
+<tr>
+<th>数据结构/算法</th>
+<th>语言内置</th>
+<th>内置库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性结构</td>
+<td>list(列表)/tuple(元祖)</td>
+<td>array(数组，不常用)/collections.namedtuple</td>
+</tr>
+<tr>
+<td>链式结构</td>
+<td></td>
+<td>collections.deque(双端队列)</td>
+</tr>
+<tr>
+<td>字典结构</td>
+<td>dict(字典)</td>
+<td>collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict</td>
+</tr>
+<tr>
+<td>集合结构</td>
+<td>set(集合)/frozenset(不可变集合)</td>
+<td></td>
+</tr>
+<tr>
+<td>排序算法</td>
+<td>sorted</td>
+<td></td>
+</tr>
+<tr>
+<td>二分算法</td>
+<td></td>
+<td>bisect模块</td>
+</tr>
+<tr>
+<td>堆算法</td>
+<td></td>
+<td>heapq模块</td>
+</tr>
+<tr>
+<td>缓存算法</td>
+<td></td>
+<td>functools.lru_cache(Least Recent Used, python3)</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../20_面试指南/interview/" class="btn btn-neutral float-right" title="20_面试指南">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../18_图与图的遍历/graph/" class="btn btn-neutral" title="18_图与图的遍历"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../18_图与图的遍历/graph/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../20_面试指南/interview/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

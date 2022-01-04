@@ -11,7 +11,7 @@
             "console": "internalConsole"
         },
         {
-            "name": "Python: 当前文件",
+            "name": "Python: OUTSAIDE",
             "type": "python",
             "request": "launch",
             "program": "${file}",

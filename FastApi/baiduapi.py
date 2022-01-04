@@ -205,26 +205,37 @@ def get_place_accuracy_direction(address):
     except BaseException as e:
         log.error(f"查询地点信息出错！：Unexpected Error: {e}")
 
- 
- 
- 
- 
- 
- 
-result=get_driving_direction('增城','广州白云机场')
- 
-    
-print(result)
-    
-print(123)
-    
- 
+
+if __name__ == '__main__':
+    # ak = '5FOb4Fa180itR3lIYyhC2MU7FQEsdBbq'
+    # ad='社贝村'
+    # getPositions(ak,ad)
+    result=get_driving_direction('广东省东莞市石龙镇西湖社区环湖西路','广州白云机场')
  
     
+    print(result)
+    
+    A=input()
+    
+   # result=getplace_byabbreviation('SKC')
+    # latlng=getPositions('社贝村')
+    # addressdetial=getAddressbyPostions(latlng[0],latlng[1])
+ 
     
     
     
+    
+    SQ= getFullAddressbyabbreviation('SKC')
+    if len(SQ)==1:
+       aw=SQ[0][2]
        
     
     
- 
+    place1=input("输入起点:")
+    place11=getplace_update(place1)
+    print(place11)
+    place2=input("输入终点:")
+    place22=getplace_update(place2)
+    print(place22)
+    distance = calDistance(place1,place2)
+    print("%s"%place11,"和%s之间的距离"%place22,"为%d千米"%distance)

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>docker笔记 - My Docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主頁</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Django <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Django/001%20Django%E5%88%9D%E6%8E%A2/" class="dropdown-item">Django - 初探</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/002%20Django-ORM/" class="dropdown-item">Django-ORM</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/003%20Django-DRF/" class="dropdown-item">Django REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/004%20Django%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" class="dropdown-item">Djang 命令汇总</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Docker <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">docker笔记</a>
+</li>
+                                    
+<li>
+    <a href="../002docker%E5%AE%89%E8%A3%85%E9%9B%86%E5%90%88/" class="dropdown-item">docker安装集合</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">FastAPI <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../FastAPI/001FastAPI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="dropdown-item">FastAPI简单使用</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/002FastAPI-JWT%E9%AA%8C%E8%AF%81/" class="dropdown-item">JWT(JSON Web Tokens)</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/003%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" class="dropdown-item">分页功能实现</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/004%E6%8C%82%E8%BD%BDFastAPI%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="dropdown-item">挂载FastAPI应用程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/005%E9%83%A8%E7%BD%B2FastAPI/" class="dropdown-item">部署FastAPI</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/006FastAPI%E5%90%AF%E5%8A%A8%E5%89%8D%E5%90%8E%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="dropdown-item">FastAPI启动前后处理程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/007FastAPI%E9%9B%86%E6%88%90Redis/" class="dropdown-item">FastAPI集成Redis</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/008FastAPI%E9%9B%86%E6%88%90APScheduler/" class="dropdown-item">FastAPI集成APScheduler</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HTTPRunner <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../HTTPRunner/HTTPRunner2.x/" class="dropdown-item">HTTPRunner2.x</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ORM <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../ORM/001SQLAlchemy/" class="dropdown-item">SQLAlchemy ORM 框架</a>
+</li>
+                                    
+<li>
+    <a href="../../ORM/002%E6%A0%B9%E6%8D%AE%E7%8E%B0%E6%9C%89%E8%A1%A8%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%B1%BB/" class="dropdown-item">根据现有表生成数据模型sqlacodegen</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Other/001%20CentOS%208%20%E5%AE%89%E8%A3%85%E6%97%A0%E5%A4%B4%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" class="dropdown-item">CentOS 8 安装无头谷歌浏览器</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/002%20helium%E7%AC%94%E8%AE%B0/" class="dropdown-item">helium(selenium-python-helium)笔记</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/003%20APScheduler%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="dropdown-item">APScheduler 定时任务</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/004%20MySQL%E4%BF%AE%E6%94%B9%E5%AD%97%E7%AC%A6%E9%9B%86%E6%94%AF%E6%8C%81emoji%E8%A1%A8%E6%83%85/" class="dropdown-item">MySQL修改字符集支持emoji表情</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/005%20Faker-%E4%B8%93%E4%B8%9A%E9%80%A0%E6%95%B0%E6%8D%AE/" class="dropdown-item">Faker-专业造数据</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shell <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Shell/shell%E7%AC%94%E8%AE%B0/" class="dropdown-item">shell笔记</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../Django/004%20Django%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../002docker%E5%AE%89%E8%A3%85%E9%9B%86%E5%90%88/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#docker" class="nav-link">docker笔记</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#dockercentos-8" class="nav-link">安装Docker(CentOS 8)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker_1" class="nav-link">docker</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="docker">docker笔记</h1>
+<h2 id="dockercentos-8">安装Docker(CentOS 8)</h2>
+<h3 id="1yum-utilsyum-config-manager">1、安装yum-utils命令包（yum-config-manager命令需要）</h3>
+<pre><code class="language-bash">sudo yum -y install yum-utils
+</code></pre>
+<h3 id="2">2、添加软件源信息(国内源, 速度更快, 推荐)</h3>
+<pre><code class="language-bash">sudo yum-config-manager \
+    --add-repo \
+    https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
+</code></pre>
+<h3 id="3docker-ce">3、更新Docker-CE</h3>
+<pre><code class="language-bash">yum makecache fast(可能会报错，报错的话，用下面的)
+yum makecache (CentOS8没有fast参数，可以去掉)
+</code></pre>
+<h3 id="4docker-engine">4、安装Docker Engine</h3>
+<pre><code class="language-bash">yum install docker-ce docker-ce-cli containerd.io
+</code></pre>
+<h3 id="5docker">5、开启docker</h3>
+<pre><code class="language-bash">systemctl enable docker(设置开机自启动)
+systemctl start docker
+</code></pre>
+<h3 id="6">6、验证是否安装成功</h3>
+<pre><code class="language-bash">docker run hello-world
+</code></pre>
+<p><strong>如果出现“Hello from Docker!”，则代表运行成功</strong></p>
+<h3 id="7docker">7、docker 版本信息</h3>
+<pre><code class="language-bash">docker version
+</code></pre>
+<h2 id="docker_1">docker</h2>
+<h3 id="docker_2">一、docker基本操作</h3>
+<h4 id="1docker-image">1、docker image(镜像)</h4>
+<ul>
+<li>列出镜像</li>
+</ul>
+<pre><code class="language-bash"># 列出所有镜像
+docker images
+
+# 仅列出镜像的ID
+docker images -q
+</code></pre>
+<ul>
+<li>搜索镜像</li>
+</ul>
+<pre><code class="language-bash">docker search mysql
+</code></pre>
+<ul>
+<li>下载镜像</li>
+</ul>
+<pre><code class="language-bash">docker pull nginx
+</code></pre>
+<ul>
+<li>删除镜像</li>
+</ul>
+<pre><code class="language-bash">docker rmi ImageID
+</code></pre>
+<ul>
+<li>查看镜像详细信息</li>
+</ul>
+<pre><code class="language-bash">docker inspect jenkins
+</code></pre>
+<h4 id="2docker-container">2、docker container(容器)</h4>
+<ul>
+<li>运行容器</li>
+</ul>
+<pre><code class="language-bash">docker run image
+
+docker run centos
+# 启动容器并打开容器bash终端
+docker run -it centos /bin/bash
+
+docker run --name web -d -p 8080:80 -v $PWD:/usr/share/nginx/html nginx
+
+参数：-i -t --name -d -p -P -v --net
+
+docker exec -it mysql /bin/bash
+</code></pre>
+<blockquote>
+<ul>
+<li>-i 已交互模式运行容器，通常与-t同时使用</li>
+<li>-t 为容器重新分配一个伪输入终端，通常与-i同时使用</li>
+<li>--name 为容器指定一个名称</li>
+<li>-d 后台运行容器，并返回容器ID</li>
+<li>-p 代表端口映射，格式为 宿主机映射端口:容器运行端口</li>
+<li>-P 随机端口映射，容器内部端口随机映射到主机的端口</li>
+<li>-v 映射目录，将容器内的配置与数据文件夹，映射到宿主机目录</li>
+<li>-e 代表添加环境变量</li>
+<li>--net指定容器的网络连接类型，支持bridge/host/none/container四种类型</li>
+<li>--volume 绑定一个卷</li>
+<li>-h 指定容器的hostname</li>
+</ul>
+</blockquote>
+<ul>
+<li>列出容器</li>
+</ul>
+<pre><code class="language-bash"># 列出当前运行的容器
+docker ps
+
+# 列出系统中所有的容器
+docker ps -a
+
+# 列出容器上运行的所有历史命令
+sudo docker history centos
+</code></pre>
+<ul>
+<li>查看容器的进程和资源利用情况</li>
+</ul>
+<pre><code class="language-bash"># 查看容器的进程
+docker top ContainerID
+
+# 查看容器的资源利用情况
+docker stats ContainerID
+</code></pre>
+<ul>
+<li>停止/开启容器</li>
+</ul>
+<pre><code class="language-bash"># 停止容器
+docker stop ContainerID
+
+# 开启容器
+docker restart ContainerID
+</code></pre>
+<ul>
+<li>暂停/启动容器</li>
+</ul>
+<pre><code class="language-bash"># 暂停容器
+docker pause web
+
+# 启动容器
+docker unpause web
+</code></pre>
+<ul>
+<li>删除容器</li>
+</ul>
+<pre><code class="language-bash"># 删除一个未运行的容器
+docker rm web
+
+# 删除一个正在运行的容器
+docker rm -f web
+</code></pre>
+<h3 id="docker_3">二、docker网络</h3>
+<h4 id="1docker0">1、docker0</h4>
+<ul>
+<li>默认容器与宿主机之间的桥梁</li>
+</ul>
+<h4 id="2_1">2、网络类型</h4>
+<ul>
+<li>bridge<ul>
+<li>nat网络模型</li>
+<li>虚拟交换机</li>
+</ul>
+</li>
+<li>host<ul>
+<li>与宿主机共享网络</li>
+<li>--net=host</li>
+</ul>
+</li>
+<li>none<ul>
+<li>不配置网络<ul>
+<li>--net=none</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>overlay<ul>
+<li>不同网络进行通信</li>
+</ul>
+</li>
+<li>与一个容器共享网络<ul>
+<li>--net=container:ContainerName</li>
+</ul>
+</li>
+</ul>
+<h4 id="3">3、相关操作</h4>
+<h5 id="1">1）查看</h5>
+<pre><code class="language-bash">docker network ls
+
+docker network inspect networkname
+</code></pre>
+<h5 id="2_2">2）创建</h5>
+<pre><code class="language-bash">docker network create --driver drivername name
+
+docker network create -d bridge --subnet 172.16.100.0/24 one_network
+</code></pre>
+<h3 id="volume">三、volume 数据卷</h3>
+<h4 id="1_1">1、介绍</h4>
+<ul>
+<li>使用数据卷实现数据持久化</li>
+<li>数据备份/数据共享</li>
+</ul>
+<h4 id="2_3">2、相关操作</h4>
+<h5 id="1_2">1）创建</h5>
+<pre><code class="language-bash"># 手动创建
+docker volume create nginx11
+
+# 运行容器的时候，如果不存在则自动创建
+docker run --name nginx33 -d -v nginx22:/usr/share/nginx/html -p 8888:80 nginx:alpine
+
+</code></pre>
+<h5 id="2_4">2）查看</h5>
+<pre><code class="language-bash"># 列出所有的volume卷
+docker volume ls
+
+# 查询指定的volume卷的详细信息
+docker volume inspect nginx22
+</code></pre>
+<h5 id="3_1">3）挂载</h5>
+<pre><code class="language-bash">docker run -v 宿主机目录:容器目录
+
+docker run --name nginx33 -d -v nginx22:/usr/share/nginx/html -p 8888:80 nginx:alpine
+
+</code></pre>
+<h5 id="4">4）删除</h5>
+<pre><code class="language-bash">docker volume rm nginx11
+</code></pre>
+<h3 id="dockerfile">四、Dockerfile</h3>
+<ul>
+<li>可以使用#号指定注释信息</li>
+<li>文件名一般为Dockerfile</li>
+<li>可以使用Dockerfile文件来自定义镜像</li>
+<li>指定base image，基本镜像</li>
+<li>FROM一般为第一行，FROM基本镜像名称:tag版本编号</li>
+<li>如果本地没有，会自动从docker hub 远程仓库下载，否则直接使用本地仓库提供的</li>
+</ul>
+<h4 id="1from">1、FROM</h4>
+<ul>
+<li>FROM一般为第一行，FROM基本镜像名称:tag版本编号</li>
+</ul>
+<pre><code class="language-bash">FROM python:alpine
+</code></pre>
+<h4 id="2label">2、LABEL</h4>
+<ul>
+<li>使用LABEL指定镜像的元数据信息（提示说明作用）</li>
+<li>LABEL key=value</li>
+<li>如果value中有空格，需要使用引号括起来或者使用\进行转义</li>
+</ul>
+<h4 id="3copy">3、COPY</h4>
+<ul>
+<li>用于将宿主机中的资源复制粘贴至容器中</li>
+<li>COPY 宿主机路径 容器中的路径</li>
+<li>如果容器中指定的路径不存在，会自动创建</li>
+<li>如果将一个文件复制到容器中，指定的容器路径，建议添加/</li>
+</ul>
+<pre><code class="language-bash">COPY . /app
+</code></pre>
+<h4 id="4add">4、ADD</h4>
+<ul>
+<li>ADD与COPY类似，用于将宿主机中的资源复制到容器中</li>
+<li>ADD 可以将远程文件下载之后，复制到容器中：ADD 远程文件链接 容器目录</li>
+<li>也可以将本地的压缩文件解压之后，复制到容器中：ADD 本地压缩文件 容器目录</li>
+</ul>
+<pre><code class="language-bash">ADD https://github.com/docker-library/python/raw/master/update.sh .
+</code></pre>
+<h4 id="5workdir">5、WORKDIR</h4>
+<ul>
+<li>相当于cd命令，用于容器进入到某个目录中</li>
+<li>如果指定的路径不存在，会自动创建</li>
+</ul>
+<pre><code class="language-bash">WORKDIR /app
+</code></pre>
+<h4 id="6run">6、RUN</h4>
+<ul>
+<li>用于在容器中执行linux命令</li>
+<li>每一个RUN指令会独自占一层</li>
+<li>为了优化镜像的大小，如果有多条命令，可以使用一个RUN指令，多条命令之间&amp;&amp;或者;使用\进行换行</li>
+</ul>
+<pre><code class="language-bash">RUN pip install -r requirements.txt
+</code></pre>
+<h4 id="7env">7、ENV</h4>
+<pre><code class="language-bash">ENV username=Desire\
+    password=123456
+</code></pre>
+<h4 id="8volume">8、VOLUME</h4>
+<ul>
+<li>指定容器中哪些目录可以与宿主机进行共享</li>
+</ul>
+<pre><code class="language-bash">LABEL maintaier=&quot;Desire &lt;desireyang.qq.com&gt;&quot;
+LABEL description=&quot;define Dockerfile Demo&quot;
+</code></pre>
+<h4 id="9expose">9、EXPOSE</h4>
+<ul>
+<li>指定容器中可以暴露的端口</li>
+</ul>
+<pre><code class="language-bash">EXPOSE 8000
+</code></pre>
+<h4 id="10cmd">10、CMD</h4>
+<ul>
+<li>指定容器运行（docker run ）时，默认会执行的命令</li>
+<li>如果在运行容器时，指定了其他命令，那么CMD命令会被覆盖</li>
+<li>如果有多个CMD命令，只有最后一个会被执行</li>
+<li>有两种格式，shell格式、exec格式</li>
+<li>exec格式(常用)：["命令的绝对路径","参数1","参数2"]</li>
+<li>shell格式：命令的绝对路径 参数1 参数2</li>
+</ul>
+<pre><code class="language-bash">CMD [&quot;python&quot;, &quot;fun.py&quot;]
+# CMD [&quot;/bin/ls&quot;,&quot;/&quot;,&quot;/etc&quot;]
+# CMD python fun.py
+</code></pre>
+<h4 id="11entrypoint">11、ENTRYPOINT</h4>
+<ul>
+<li>与CMD类似，当运行容器时，如果指定了其他命令，那么ENTRYPOINT不会被覆盖</li>
+<li>如果有多个ENTRYPOINT，那么只有最后一个ENTRYPOINT会被执行</li>
+<li>可以与CMD一起用，放在ENTRYPOINT后面，作为ENTRYPOINT默认参数</li>
+</ul>
+<pre><code class="language-bash">ENTRYPOINT [&quot;python&quot;, &quot;fun.py&quot;]
+ENTRYPOINT [&quot;cat&quot;, &quot;fun.py&quot;]
+CMD [&quot;etc/passwd&quot;]
+# 可以指定shell脚本
+ENTRYPOINT [&quot;/bin/sh&quot;,&quot;docker-entrypoint.sh&quot;]
+</code></pre>
+<h4 id="12arg">12、ARG</h4>
+<ul>
+<li>构建参数</li>
+<li>和ENV的效果一样，都是设置环境变量</li>
+<li>ARG所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的</li>
+<li>不要因此使用ARG保存密码之类的信息，<code>docker history</code>是可以看到所有值的</li>
+<li>定义的值可以在<code>docker build</code>中用<code>--build-arg &lt;参数名&gt;=&lt;值&gt;</code>进行覆盖</li>
+<li>生效范围<ul>
+<li>如果是在<code>FROM</code>指令之前指定，那么只能用于<code>FROM</code>指令中</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash"># 只在 FROM 中生效
+ARG DOCKER_USERNAME=library
+
+FROM ${DOCKER_USERNAME}/alpine
+
+# 要想在 FROM 之后使用，必须再次指定
+ARG DOCKER_USERNAME=library
+
+RUN set -x ; echo ${DOCKER_USERNAME}
+</code></pre>
+<h4 id="13user">13、USER</h4>
+<ul>
+<li>指定当前用户</li>
+<li>USER只是帮助切换到指定用户，并不会创建用户</li>
+</ul>
+<pre><code class="language-bash">USER root
+</code></pre>
+<h4 id="dockerfile_1">通过Dockerfile文件构建镜像</h4>
+<pre><code class="language-bash">docker build -t 镜像名:tag -f 指定Dockerfile文件路径 .
+</code></pre>
+<ul>
+<li>-t 指定构建的镜像名称和tag，如果不指定tag，默认使用latest，镜像名一般为用户名/镜像名称</li>
+<li>-f 指定Dockerfile文件路径，如果命名为Dockerfile，且在当前路径下，那么可以不用指定，否则必须指定</li>
+<li>. 代表将当前路径作为构建上下文</li>
+</ul>
+<h4 id="dockerfile_2">Dockerfile文件</h4>
+<pre><code class="language-bash">FROM python:alpine
+
+LABEL maintaier=&quot;Desire &lt;desireyang.qq.com&gt;&quot;
+LABEL description=&quot;define Dockerfile Demo&quot;
+
+COPY . /app
+
+# ADD https://github.com/docker-library/python/raw/master/update.sh .
+
+WORKDIR /app
+
+RUN pip install -r requirements.txt
+
+ENV username=Desire\
+    password=123456
+
+VOLUME /app
+
+# EXPOSE 8000
+
+CMD [&quot;python&quot;, &quot;fun.py&quot;]
+# CMD [&quot;/bin/ls&quot;,&quot;/&quot;,&quot;/etc&quot;]
+# CMD python fun.py
+
+# ENTRYPOINT [&quot;python&quot;, &quot;fun.py&quot;]
+# ENTRYPOINT [&quot;cat&quot;, &quot;fun.py&quot;]
+# CMD [&quot;etc/passwd&quot;]
+# 可以指定shell脚本
+# ENTRYPOINT [&quot;/bin/sh&quot;,&quot;docker-entrypoint.sh&quot;]
+</code></pre>
+<h3 id="docker-compose">五、docker-compose</h3>
+<h4 id="1_3">1、安装</h4>
+<pre><code class="language-bash"># 运行此命令下载当前的 Docker Compose 稳定版本
+sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+# 对二进制文件应用可执行权限
+sudo chmod +x /usr/local/bin/docker-compose
+# 检查是否安装成功
+docker-compose --version
+</code></pre>
+<h4 id="2docker-compose">2、使用docker-compose部署应用</h4>
+<pre><code class="language-bash"># 指定版本信息
+version: '3'
+
+# 定义服务（容器）
+services:
+   # 创建具体的服务（容器）
+   db:
+     # 指定需要使用的镜像名称
+     # 镜像名:tag
+     # 如果本地没有指定镜像，那么会从docker hub中下载，否则直接使用本地的镜像
+     image: mariadb
+     # 在运行容器时，指定需要执行的命令或者参数
+     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+     # 指定数据持久化映射
+     volumes:
+       # - 数据卷名称或者宿主机文件、路径:容器中的路径
+       - mysql_db:/var/lib/mysql
+     # 指定容器失败时（Existed），重启策略
+     restart: always
+     # 指定容器中的全局变量
+     environment:
+      # 变量名: 变量值
+      MYSQL_ROOT_PASSWORD: &quot;123456&quot;
+      MYSQL_DATABASE: my_django
+     # 指定当前容器需要加入的网络
+     networks:
+      - django_app_net
+
+   django_app:
+     # 指定当前服务（容器）依赖的服务
+     depends_on:
+      - db
+     # 指定通过Dockerfile去构建镜像（Dockerfile所在路径）
+     build: ./django
+     # 在build下方，指定构建的镜像名称:tag
+     image: desireyang/django_app:v2
+     restart: always
+     volumes:
+       - logs:/usr/src/app/logs/
+       - django_code:/usr/src/app/web_test/
+     networks:
+      - django_app_net
+
+   web:
+     depends_on:
+       - django_app
+     build: ./nginx
+     image: desireyang/web:v2
+     restart: always
+     # 将容器中监听的端口与宿主机端口镜像映射
+     ports:
+       - &quot;8444:80&quot;
+       - &quot;8440:8000&quot;
+     volumes:
+       - logs:/var/log/nginx/
+     networks:
+      - django_app_net
+
+# 指定需要使用的网络
+networks:
+  # 指定网络的名称，默认会创建bridge桥接网络
+  django_app_net:
+
+# 指定数据卷
+volumes:
+    mysql_db:
+    django_code:
+    logs:
+</code></pre>
+<h4 id="3_2">3、检查是否有错误</h4>
+<pre><code class="language-bash">docker-compose config
+</code></pre>
+<h4 id="4_1">4、只构建不运行</h4>
+<pre><code class="language-bash">docker-compose build
+</code></pre>
+<h4 id="5">5、运行</h4>
+<pre><code class="language-bash">docker-compose up -d
+# 如果docker-compose文件名不是docker-compose.yml，需要加上-f指定文件
+docker-compose up -d -f docker-compose-django.yml
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

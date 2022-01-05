@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Django - 初探 - My Docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主頁</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Django <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Django - 初探</a>
+</li>
+                                    
+<li>
+    <a href="../002%20Django-ORM/" class="dropdown-item">Django-ORM</a>
+</li>
+                                    
+<li>
+    <a href="../003%20Django-DRF/" class="dropdown-item">Django REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../004%20Django%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" class="dropdown-item">Djang 命令汇总</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Docker <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Docker/001docker%E7%AC%94%E8%AE%B0/" class="dropdown-item">docker笔记</a>
+</li>
+                                    
+<li>
+    <a href="../../Docker/002docker%E5%AE%89%E8%A3%85%E9%9B%86%E5%90%88/" class="dropdown-item">docker安装集合</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">FastAPI <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../FastAPI/001FastAPI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="dropdown-item">FastAPI简单使用</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/002FastAPI-JWT%E9%AA%8C%E8%AF%81/" class="dropdown-item">JWT(JSON Web Tokens)</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/003%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" class="dropdown-item">分页功能实现</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/004%E6%8C%82%E8%BD%BDFastAPI%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="dropdown-item">挂载FastAPI应用程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/005%E9%83%A8%E7%BD%B2FastAPI/" class="dropdown-item">部署FastAPI</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/006FastAPI%E5%90%AF%E5%8A%A8%E5%89%8D%E5%90%8E%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="dropdown-item">FastAPI启动前后处理程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/007FastAPI%E9%9B%86%E6%88%90Redis/" class="dropdown-item">FastAPI集成Redis</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/008FastAPI%E9%9B%86%E6%88%90APScheduler/" class="dropdown-item">FastAPI集成APScheduler</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HTTPRunner <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../HTTPRunner/HTTPRunner2.x/" class="dropdown-item">HTTPRunner2.x</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ORM <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../ORM/001SQLAlchemy/" class="dropdown-item">SQLAlchemy ORM 框架</a>
+</li>
+                                    
+<li>
+    <a href="../../ORM/002%E6%A0%B9%E6%8D%AE%E7%8E%B0%E6%9C%89%E8%A1%A8%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%B1%BB/" class="dropdown-item">根据现有表生成数据模型sqlacodegen</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Other/001%20CentOS%208%20%E5%AE%89%E8%A3%85%E6%97%A0%E5%A4%B4%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" class="dropdown-item">CentOS 8 安装无头谷歌浏览器</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/002%20helium%E7%AC%94%E8%AE%B0/" class="dropdown-item">helium(selenium-python-helium)笔记</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/003%20APScheduler%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="dropdown-item">APScheduler 定时任务</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/004%20MySQL%E4%BF%AE%E6%94%B9%E5%AD%97%E7%AC%A6%E9%9B%86%E6%94%AF%E6%8C%81emoji%E8%A1%A8%E6%83%85/" class="dropdown-item">MySQL修改字符集支持emoji表情</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/005%20Faker-%E4%B8%93%E4%B8%9A%E9%80%A0%E6%95%B0%E6%8D%AE/" class="dropdown-item">Faker-专业造数据</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shell <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Shell/shell%E7%AC%94%E8%AE%B0/" class="dropdown-item">shell笔记</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../002%20Django-ORM/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#django-" class="nav-link">Django - 初探</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1django" class="nav-link">1、创建django项目</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2app" class="nav-link">2、创建子应用app</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3settingspy" class="nav-link">3、修改配置项（settings.py）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4" class="nav-link">4、运行</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#5django" class="nav-link">5、django工程目录结构</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#6-path" class="nav-link">6、 path函数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#7urlspy" class="nav-link">7、引入子应用中的路由urls.py</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#8post" class="nav-link">8、发送POST请求需注意</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#9" class="nav-link">9、视图函数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#10" class="nav-link">10、类视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#11templatestemplates" class="nav-link">11、templates模板配置（创建templates模板文件夹）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#12" class="nav-link">12、请求参数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#13" class="nav-link">13、响应</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#14mvt" class="nav-link">14、MVT模式</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="django-">Django - 初探</h1>
+<h2 id="1django">1、创建django项目</h2>
+<pre><code class="language-bash">django-admin startproject djangodemo .
+</code></pre>
+<ul>
+<li>"."代表在当前目录下创建项目，会把当前目录作为项目的根目录</li>
+<li>不加"."，会在当前目录下创建一个完整的项目</li>
+</ul>
+<h2 id="2app">2、创建子应用app</h2>
+<pre><code class="language-bash">python manage.py startapp hello
+</code></pre>
+<h2 id="3settingspy">3、修改配置项（settings.py）</h2>
+<pre><code class="language-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'hello' # 新创建的App需要进行注册
+]
+
+# 修改语言
+LANGUAGE_CODE = 'zh-hans'
+# 修改时区
+TIME_ZONE = &quot;Asia/Shanghai&quot;
+</code></pre>
+<h2 id="4">4、运行</h2>
+<pre><code class="language-bash">python manage.py runserver
+</code></pre>
+<h2 id="5django">5、django工程目录结构</h2>
+<h3 id="1-django">1） 与项目名称同名的目录（保存django的项目配置信息）</h3>
+<ul>
+<li>sagi.py   用于启动ASGI协议的启动问题</li>
+<li>settings.py   用于存放Django的全局配置信息</li>
+<li>urls.py   用于创建全局路由信息</li>
+<li>wsgi.py   兼容WSGI协议的web服务器入口文件</li>
+</ul>
+<h3 id="2">2）子应用结构</h3>
+<ul>
+<li>migtations    用于存放数据库迁移历史记录的目录</li>
+<li>admin.py  跟网站的后台管理站点配置相关的文件</li>
+<li>apps.py   用于配置当前子应用相关信息的文件</li>
+<li>models.py 保存数据库模型类</li>
+<li>tests.py  用于编写单元测试</li>
+<li>views.py  用于编写web应用视图</li>
+</ul>
+<h3 id="3managepy-django">3）manage.py 用于多种方式与django项目交互的命令行工具</h3>
+<h2 id="6-path">6、 path函数</h2>
+<pre><code class="language-bash">from django.urls import path
+</code></pre>
+<ul>
+<li>用于定义路由条录<ul>
+<li>第一个参数为url路径，默认最后的/需要添加</li>
+<li>第二个参数为需要调用的函数，直接使用函数名即可</li>
+</ul>
+</li>
+</ul>
+<h2 id="7urlspy">7、引入子应用中的路由urls.py</h2>
+<pre><code class="language-python">from django.urls import path,include
+
+path('project/', include(&quot;projects.urls&quot;))
+</code></pre>
+<h2 id="8post">8、发送POST请求需注意</h2>
+<pre><code class="language-python">MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # 默认发起GET、OPTIONS以外的请求，需要携带CSRF TOKEN才行
+    # 可以将CsrfViewMiddleware中间件注释掉
+    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+</code></pre>
+<h2 id="9">9、视图函数</h2>
+<ul>
+<li>好理解</li>
+<li>代码可读性与复用性都不佳</li>
+</ul>
+<pre><code class="language-python">def index(request):
+    if request.method == 'GET':
+        return HttpResponse(&quot;GET请求&quot;)
+    return HttpResponse(&quot;hello world&quot;)
+</code></pre>
+<ul>
+<li>a. request: 为HttpRequest对象，存放了用户所有的请求信息</li>
+<li>b. 可以使用HTTPRequest对象中method属性获取请求方法</li>
+<li>c. 通过不同的方法，执行不同的逻辑</li>
+</ul>
+<h2 id="10">10、类视图</h2>
+<h3 id="1">1）优点</h3>
+<ul>
+<li>可读性和复用性更好</li>
+<li>不同的请求方式以不同的方法呈现</li>
+</ul>
+<h3 id="2_1">2）定义类视图：</h3>
+<ul>
+<li>a. 必须继承View父类或者子类</li>
+<li>b. 不同的请求方式，是以不同请求方法一一对应的</li>
+<li>c. GET -&gt;get  POST-&gt;post  PUT-&gt;put        DELETE-&gt;delete</li>
+</ul>
+<pre><code class="language-python">## 创建类视图
+from django.views import View
+
+class ProjectViews(View):
+
+    def get(self, request):
+        &quot;&quot;&quot;
+        self：ProjectViews对象
+        request：HttpRequest对象
+        &quot;&quot;&quot;
+        return HttpResponse(&quot;GET 请求&quot;)
+
+    def post(self, request):
+        return HttpResponse(&quot;POST 请求&quot;)
+
+    def put(self, request):
+        return HttpResponse(&quot;PUT 请求&quot;)
+
+    def delete(self, request):
+        return HttpResponse(&quot;DELETE 请求&quot;)
+
+## 添加路由
+# 类视图.as_view()
+path('project/', ProjectViews.as_view())
+</code></pre>
+<h2 id="11templatestemplates">11、templates模板配置（创建templates模板文件夹）</h2>
+<pre><code class="language-python">import os
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 指定模板存放的绝对路径
+        'DIRS': [os.path.json(BASE_DIR,'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+</code></pre>
+<h2 id="12">12、请求参数</h2>
+<h3 id="query-string-nameddage18">query string 查询字符串参数：?name=dd&amp;age=18</h3>
+<ul>
+<li>可以使用request.GET获取</li>
+<li>request.GET是QueryDict类型，可以类比为python中的dict类型</li>
+<li>可以使用request.GET["参数名"]或者使用request.GET.get("参数名")</li>
+<li>可以获取多个相同key的查询字符串参数</li>
+<li>使用request.GET["参数名"]或者使用request.GET.get("参数名")，获取的是最后一个参数</li>
+<li>request.GET.getlist("参数名")，获取所有的参数，且为列表类型</li>
+</ul>
+<h3 id="postx-www-form-urlencoded">在POST请求体中，可以传递请求体参数（x-www-form-urlencoded）</h3>
+<ul>
+<li>可以使用request.POST获取</li>
+</ul>
+<h3 id="postapplicationjson">在POST请求体中，可以传递请求体参数（application/json）</h3>
+<ul>
+<li>可以使用request.body来获取所有请求体参数（request.body.decode('utf-8')）</li>
+<li>需要使用json模块转换成字典之后再提取值</li>
+</ul>
+<h3 id="multipartform-data">在请求体中，可以传递请求体参数（multipart/form-data）</h3>
+<ul>
+<li>传递的文本参数可以使用request.POST去获取</li>
+<li>传递到非文本参数可以使用request.body去获取</li>
+</ul>
+<h3 id="_1">请求头参数</h3>
+<ul>
+<li>可以使用request.META获取请求头参数，是一个字典类型</li>
+<li>请求头中的key值会被转化为HTTP_参数名大写</li>
+</ul>
+<h2 id="13">13、响应</h2>
+<ul>
+<li>视图中必须返回HTTPResponse对象或子对象</li>
+<li>HTTPResponse(content = 响应体, content_type = 响应数据类型, status = 状态码)</li>
+<li>JsonResponse(data = jsondata, safe=True，status = 状态码)<ul>
+<li>如果第一个参数为字典无需safe关键字参数参数</li>
+<li>如果第一个参数为嵌套字典的列表，那么必须执行safe=False关键字参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="14mvt">14、MVT模式</h2>
+<p><img alt="Snipaste_2021-05-19_15-27-12" src="../assets/Snipaste_2021-05-19_15-27-12.png" />
+- M mdoel，与MVC中M的功能相同，负责和数据库交互，进行数据处理
+- V View，与MVC中C功能相同，接收请求，进行业务处理，返回响应
+- T Template，与MVC中V功能相同，负责构造要返回的HTML页面
+- 在前后端分离的项目中没有T，只有MV</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

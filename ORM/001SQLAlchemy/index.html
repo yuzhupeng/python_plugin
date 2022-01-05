@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SQLAlchemy ORM 框架 - My Docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主頁</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Django <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Django/001%20Django%E5%88%9D%E6%8E%A2/" class="dropdown-item">Django - 初探</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/002%20Django-ORM/" class="dropdown-item">Django-ORM</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/003%20Django-DRF/" class="dropdown-item">Django REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../Django/004%20Django%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" class="dropdown-item">Djang 命令汇总</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Docker <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Docker/001docker%E7%AC%94%E8%AE%B0/" class="dropdown-item">docker笔记</a>
+</li>
+                                    
+<li>
+    <a href="../../Docker/002docker%E5%AE%89%E8%A3%85%E9%9B%86%E5%90%88/" class="dropdown-item">docker安装集合</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">FastAPI <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../FastAPI/001FastAPI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="dropdown-item">FastAPI简单使用</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/002FastAPI-JWT%E9%AA%8C%E8%AF%81/" class="dropdown-item">JWT(JSON Web Tokens)</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/003%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" class="dropdown-item">分页功能实现</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/004%E6%8C%82%E8%BD%BDFastAPI%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="dropdown-item">挂载FastAPI应用程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/005%E9%83%A8%E7%BD%B2FastAPI/" class="dropdown-item">部署FastAPI</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/006FastAPI%E5%90%AF%E5%8A%A8%E5%89%8D%E5%90%8E%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="dropdown-item">FastAPI启动前后处理程序</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/007FastAPI%E9%9B%86%E6%88%90Redis/" class="dropdown-item">FastAPI集成Redis</a>
+</li>
+                                    
+<li>
+    <a href="../../FastAPI/008FastAPI%E9%9B%86%E6%88%90APScheduler/" class="dropdown-item">FastAPI集成APScheduler</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HTTPRunner <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../HTTPRunner/HTTPRunner2.x/" class="dropdown-item">HTTPRunner2.x</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ORM <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">SQLAlchemy ORM 框架</a>
+</li>
+                                    
+<li>
+    <a href="../002%E6%A0%B9%E6%8D%AE%E7%8E%B0%E6%9C%89%E8%A1%A8%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%B1%BB/" class="dropdown-item">根据现有表生成数据模型sqlacodegen</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Other/001%20CentOS%208%20%E5%AE%89%E8%A3%85%E6%97%A0%E5%A4%B4%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" class="dropdown-item">CentOS 8 安装无头谷歌浏览器</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/002%20helium%E7%AC%94%E8%AE%B0/" class="dropdown-item">helium(selenium-python-helium)笔记</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/003%20APScheduler%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="dropdown-item">APScheduler 定时任务</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/004%20MySQL%E4%BF%AE%E6%94%B9%E5%AD%97%E7%AC%A6%E9%9B%86%E6%94%AF%E6%8C%81emoji%E8%A1%A8%E6%83%85/" class="dropdown-item">MySQL修改字符集支持emoji表情</a>
+</li>
+                                    
+<li>
+    <a href="../../Other/005%20Faker-%E4%B8%93%E4%B8%9A%E9%80%A0%E6%95%B0%E6%8D%AE/" class="dropdown-item">Faker-专业造数据</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shell <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Shell/shell%E7%AC%94%E8%AE%B0/" class="dropdown-item">shell笔记</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../HTTPRunner/HTTPRunner2.x/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../002%E6%A0%B9%E6%8D%AE%E7%8E%B0%E6%9C%89%E8%A1%A8%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%B1%BB/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#sqlalchemy-orm" class="nav-link">SQLAlchemy ORM 框架</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">一、安装</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">二、连接数据库</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">三、创建会话通道</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">四、关闭会话通道</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">五、创建数据表模型</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">六、自动生成数据表（在没有表的情况下）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_7" class="nav-link">七、数据库操作</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="sqlalchemy-orm">SQLAlchemy ORM 框架</h1>
+<h2 id="_1">一、安装</h2>
+<pre><code class="language-bash">pip install sqlalchemy==1.4.7
+pip install pymysql # 连接mysql数据库所需库
+</code></pre>
+<h2 id="_2">二、连接数据库</h2>
+<pre><code class="language-python">from sqlalchemy import create_engine
+
+engine = create_engine(f&quot;mysql+pymysql://{数据库账号}:{密码}@{数据库地址}:3306/{数据库}&quot;, echo=True)
+print(engine)
+
+------打印结果------
+Engine(mysql+pymysql://root:***@127.0.0.1:3306/scrapy)
+</code></pre>
+<h2 id="_3">三、创建会话通道</h2>
+<pre><code class="language-python">from sqlalchemy.orm import sessionmaker
+
+maker = sessionmaker(bind=engine)
+session = maker()
+print(session)
+
+------打印结果----------------
+&lt;sqlalchemy.orm.session.Session object at 0x03BB4400&gt;
+</code></pre>
+<h2 id="_4">四、关闭会话通道</h2>
+<pre><code class="language-python">session.close_all()
+</code></pre>
+<h2 id="_5">五、创建数据表模型</h2>
+<ul>
+<li>创建models模块，存放模型对象</li>
+<li>创建表的模型对象，要继承<code>declarative_base</code>对象</li>
+<li><code>__tablename__</code>：数据库中表的名称</li>
+<li>字段要与数据库中字段对应</li>
+</ul>
+<pre><code class="language-python">from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class User(Base):
+
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(20))
+    fullname = Column(String(32))
+    password = Column(String(32))
+
+    def __repr__(self): # 当查询的时候，返回模型结果数据时调用
+        return f&quot;&lt;User(name='{self.name}', fullname='{self.fullname}', password='{self.password}')&gt;&quot;
+</code></pre>
+<h2 id="_6">六、自动生成数据表（在没有表的情况下）</h2>
+<pre><code class="language-python">Base.metadata.create_all(engine, checkfirst=True)
+</code></pre>
+<h2 id="_7">七、数据库操作</h2>
+<h3 id="1">1、添加</h3>
+<h4 id="1add">1）add: 单条添加</h4>
+<pre><code class="language-python"># 实例化模型类
+ed_user = User(name=&quot;desire&quot;, fullname=&quot;asdfasdf&quot;, password=&quot;123123&quot;)
+# 添加
+session.add(ed_user)
+# 提交
+session.commit()
+</code></pre>
+<p>====&gt; sql</p>
+<pre><code class="language-sql">INSERT INTO users (name, fullname, password) VALUES (%(name)s, %(fullname)s, %(password)s)
+[generated in 0.00054s] {'name': 'desire', 'fullname': 'asdfasdf', 'password': '123123'}
+</code></pre>
+<h4 id="2add_all-add">2）add_all: 批量添加（内部还是使用的add）</h4>
+<pre><code class="language-python"># 列表每个元素为模型类实例
+session.add_all([
+        User(name='wendy', fullname='Wendy Williams', password='windy'),
+        User(name='mary', fullname='Mary Contrary', password='mary'),
+        User(name='fred', fullname='Fred Flintstone', password='freddy')])
+    session.commit()
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">INSERT INTO users (name, fullname, password) VALUES (%(name)s, %(fullname)s, %(password)s)
+[cached since 0.005862s ago] {'name': 'wendy', 'fullname': 'Wendy Williams', 'password': 'windy'}
+
+INSERT INTO users (name, fullname, password) VALUES (%(name)s, %(fullname)s, %(password)s)
+[cached since 0.01483s ago] {'name': 'mary', 'fullname': 'Mary Contrary', 'password': 'mary'}
+
+INSERT INTO users (name, fullname, password) VALUES (%(name)s, %(fullname)s, %(password)s)
+[cached since 0.01808s ago] {'name': 'fred', 'fullname': 'Fred Flintstone', 'password': 'freddy'}
+</code></pre>
+<h3 id="2">2、修改</h3>
+<h4 id="1_1">1）方式一</h4>
+<ul>
+<li>根据ID查询出来数据实体类</li>
+<li>然后直接修改数据实体类中的数据</li>
+<li>进行commit提交，</li>
+</ul>
+<pre><code class="language-python">user = session.get(User, 8)
+user.password = &quot;123456&quot;
+session.commit()
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id = %(pk_1)s
+-- [generated in 0.00105s] {'pk_1': 8}
+UPDATE users SET password=%(password)s WHERE users.id = %(users_id)s
+-- [generated in 0.00042s] {'password': '123456', 'users_id': 8}
+</code></pre>
+<h4 id="2_1">2）方式二</h4>
+<ul>
+<li>通过链式调用进行更新操作</li>
+<li>update参数为字典形式，字典的key要跟列名对应</li>
+<li>更新成功返回1，更新失败返回0</li>
+</ul>
+<pre><code class="language-python">session.query(User).filter(User.id==8).update({&quot;password&quot;:&quot;654321&quot;})
+session.commit()
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">UPDATE users SET password=%(password)s WHERE users.id = %(id_1)s
+-- [generated in 0.00195s] {'password': '654321', 'id_1': 8}
+</code></pre>
+<h3 id="3">3、查询</h3>
+<h4 id="1_2">1）查询所有数据</h4>
+<ul>
+<li>通过query进行查询，使用all()查询所有数据，返回数据为列表嵌套模型类</li>
+<li>可以通过循环遍历获取</li>
+<li>可以通过【类名.属性名】获取指定的数据</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).all()
+for user in users:
+    print(user, user.name)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt; desire
+&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt; wendy
+&lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt; mary
+&lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt; fred
+</code></pre>
+<h4 id="2_2">2）查询第一条数据</h4>
+<ul>
+<li>使用first查询第一条数据</li>
+<li>返回的是模型类，可以通过【类名.属性名】获取指定的数据</li>
+</ul>
+<pre><code class="language-python">user = session.query(User).first()
+print(user, user.name)
+</code></pre>
+<p>==&gt;  sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+ LIMIT %(param_1)s
+-- [generated in 0.00076s] {'param_1': 1}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt; desire
+</code></pre>
+<h4 id="3_1">3）查询指定列数据</h4>
+<ul>
+<li>在query中添加多个参数，参数可以为模型类，也可以为列名，返回的数据为列表嵌套元组</li>
+<li>通过循环遍历获取</li>
+<li>同样可以使用【类名.属性名】获取指定的数据</li>
+</ul>
+<pre><code class="language-python">users = session.query(User.name, User.fullname).all()
+for user in users:
+    print(user, user.name,user.fullname)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.name AS users_name, users.fullname AS users_fullname
+FROM users
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">('desire', 'asdfasdf') desire asdfasdf
+('wendy', 'Wendy Williams') wendy Wendy Williams
+('mary', 'Mary Contrary') mary Mary Contrary
+('fred', 'Fred Flintstone') fred Fred Flintstone
+</code></pre>
+<h4 id="4">4）条件查询</h4>
+<h5 id="1-filter">1. filter条件查询</h5>
+<ul>
+<li>使用filter进行条件查询，查询条件为【User.fullname==Wendy Williams】</li>
+<li>使用filter指定列为条件时，需要使用【类名.属性名】当做条件</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter(User.fullname == &quot;Wendy Williams&quot;).all()
+    for user in users:
+        print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.fullname = %(fullname_1)s
+-- [generated in 0.00043s] {'fullname_1': 'Wendy Williams'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h5 id="2-filter_by">2. filter_by条件查询</h5>
+<ul>
+<li>使用filter_by进行条件查询，可以把模型类属性当做filter_by参数进行条件查询【fullname="Wendy Williams"】</li>
+<li>可以简化代码复杂度</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter_by(fullname=&quot;Wendy Williams&quot;).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.fullname = %(fullname_1)s
+-- [generated in 0.00053s] {'fullname_1': 'Wendy Williams'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h5 id="3_2">3.多条件查询</h5>
+<ul>
+<li>可以使用链式调用，添加多个<code>filter</code>/<code>filter_by</code></li>
+<li>也可以在<code>filter</code>/<code>filter_by</code>添加多个参数进行多条件查询</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter_by(fullname=&quot;Wendy Williams&quot;, name=&quot;wendy&quot;).all()
+# users = session.query(User).filter_by(fullname=&quot;Wendy Williams&quot;).filter_by(name=&quot;wendy&quot;).all()
+# users = session.query(User).filter(User.fullname==&quot;Wendy Williams&quot;, User.name==&quot;wendy&quot;).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.fullname = %(fullname_1)s AND users.name = %(name_1)s
+-- [generated in 0.00053s] {'fullname_1': 'Wendy Williams', 'name_1': 'wendy'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h4 id="5">5）模糊查询</h4>
+<ul>
+<li><code>like</code>模糊查询，不区分大小写，但是在其他后端区分大小写（暂时没遇到过）</li>
+<li><code>ilike</code>模糊查询，对于保证不区分大小写的比较，推荐使用这个</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter(User.fullname.like('%F%')).all()
+# users = session.query(User).filter(User.fullname.ilike('%F%')).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">-- like&gt;&gt;
+SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.fullname LIKE %(fullname_1)s
+-- [generated in 0.00051s] {'fullname_1': '%F%'}
+
+-- ilike&gt;&gt;
+SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE lower(users.fullname) LIKE lower(%(fullname_1)s)
+-- [generated in 0.00061s] {'fullname_1': '%F%'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+&lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h4 id="6in">6）IN查询</h4>
+<h5 id="1-in">1. IN查询</h5>
+<ul>
+<li>查询多个id的数据时，可以使用IN查询</li>
+<li>可以使用【类名.属性名.in_()】进行IN查询</li>
+<li>IN查询参数为列表</li>
+<li>返回值为列表</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter(User.id.in_([1,2,3])).all()
+for user in users:
+    print(user)
+</code></pre>
+<blockquote>
+<p>sql</p>
+</blockquote>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id IN (%(id_1_1)s, %(id_1_2)s, %(id_1_3)s)
+-- [generated in 0.00055s] {'id_1_1': 1, 'id_1_2': 2, 'id_1_3': 3}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+&lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+</code></pre>
+<h5 id="2-not-in">2. not IN查询</h5>
+<ul>
+<li>只需在IN查询的基础上添加<code>~</code></li>
+<li>【~类名.属性名.in_()】进行not IN查询</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).filter(~User.id.in_([1,2,3])).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id NOT IN (%(id_1_1)s, %(id_1_2)s, %(id_1_3)s)
+-- [generated in 0.00086s] {'id_1_1': 1, 'id_1_2': 2, 'id_1_3': 3}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h4 id="7and">7）and查询</h4>
+<ul>
+<li>可以直接使用<code>filter</code>进行<code>and</code>多条件查询</li>
+<li>也可以使用<code>and_</code>进行多条件查询</li>
+</ul>
+<pre><code class="language-python">from sqlalchemy import and_
+
+users = session.query(User).filter(and_(User.name == &quot;wendy&quot;,User.fullname == &quot;Wendy Williams&quot;)).all()
+# users = session.query(User).filter(User.name == &quot;wendy&quot;,User.fullname == &quot;Wendy Williams&quot;).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.name = %(name_1)s AND users.fullname = %(fullname_1)s
+-- [generated in 0.00065s] {'name_1': 'wendy', 'fullname_1': 'Wendy Williams'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h4 id="8or">8）or查询</h4>
+<ul>
+<li>再进行过滤的时候，可以通过<code>or_</code>进行多个条件满足其一即可查询出来</li>
+</ul>
+<pre><code class="language-python">from sqlalchemy import or_
+
+users = session.query(User).filter(or_(User.name == &quot;wendy1&quot;,User.fullname == &quot;Wendy Williams&quot;)).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.name = %(name_1)s OR users.fullname = %(fullname_1)s
+-- [generated in 0.00045s] {'name_1': 'wendy1', 'fullname_1': 'Wendy Williams'}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h4 id="9">9）主键查询</h4>
+<ul>
+<li>可以使用<code>get</code>进行主键查询</li>
+<li>直接使用<code>session.get</code><ul>
+<li>第一个参数为模型类</li>
+<li>第二个参数为id值</li>
+</ul>
+</li>
+<li>使用链式调用<code>session.query(User).get(1)</code></li>
+</ul>
+<pre><code class="language-python">user = session.get(User, 1)
+# user = session.query(User).get(1)
+print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id = %(pk_1)s
+-- [generated in 0.00083s] {'pk_1': 1}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+</code></pre>
+<h4 id="10">10）范围查询</h4>
+<h5 id="1-between-and">1. <code>BETWEEN ... AND ...</code></h5>
+<ul>
+<li><code>between</code> 范围查询</li>
+<li>查询确定范围的值，这些值可以是数字，文本或日期</li>
+<li>范围包含开始和结束值</li>
+</ul>
+<pre><code class="language-python">q = session.query(User).filter(User.id.between(2,4)).all()
+for user in q:
+    print(user.id, user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id BETWEEN %(id_1)s AND %(id_2)s
+-- [generated in 0.00053s] {'id_1': 2, 'id_2': 4}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">2 &lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+3 &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+4 &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h5 id="2-not-between-and">2. <code>NOT BETWEEN ... AND ...</code></h5>
+<ul>
+<li>只需在<code>between</code>查询的基础上添加<code>~</code></li>
+</ul>
+<pre><code class="language-python">q = session.query(User).filter(~User.id.between(2,4)).all()
+for user in q:
+    print(user.id,user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE users.id NOT BETWEEN %(id_1)s AND %(id_2)s
+-- [generated in 0.00042s] {'id_1': 2, 'id_2': 4}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">1 &lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+7 &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+8 &lt;User(name='fred', fullname='Fred Flintstone', password='654321')&gt;
+</code></pre>
+<h4 id="11">11）分组查询</h4>
+<h5 id="group_by"><code>group_by</code> 分组查询</h5>
+<pre><code class="language-python">q = session.query(User).group_by(User.name).all()
+for user in q:
+    print(user.id,user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users GROUP BY users.name
+-- [generated in 0.00048s] {}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">1 &lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+2 &lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+3 &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+4 &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h5 id="having-func"><code>having</code> 聚合操作（使用聚合操作 需要导入 <code>func</code> 库）</h5>
+<pre><code class="language-python">from sqlalchemy.sql import func
+q = session.query(User).group_by(User.name).having(func.min(User.id)&gt;3).all()
+for user in q:
+    print(user.id,user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users GROUP BY users.name
+HAVING min(users.id) &gt; %(min_1)s
+-- [generated in 0.00083s] {'min_1': 3}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">4 &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h5 id="_8">统计分组后的数据量</h5>
+<pre><code class="language-python">from sqlalchemy.sql import func
+q = session.query(User.name, func.count(User.name)) \
+    .group_by(User.name).all()
+print(q)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.name AS users_name, count(users.name) AS count_1
+FROM users GROUP BY users.name
+-- [generated in 0.00184s] {}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">[('desire', 1), ('wendy', 1), ('mary', 2), ('fred', 2)]
+</code></pre>
+<h3 id="4_1">4、删除</h3>
+<ul>
+<li><code>delete</code> 删除操作</li>
+<li>删除操作后，要进行提交<code>commit</code></li>
+<li>返回：删除成功 1，删除失败 0</li>
+</ul>
+<pre><code class="language-python">result = session.query(User).filter_by(id=5).delete()
+print(result)
+session.commit()
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">DELETE FROM users WHERE users.id = %(id_1)s
+-- [generated in 0.00052s] {'id_1': 5}
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">1
+</code></pre>
+<h3 id="5sql">5、使用文本SQL</h3>
+<ul>
+<li>可以使用<code>text()</code>进行文本SQL执行</li>
+</ul>
+<pre><code class="language-python">from sqlalchemy import text
+
+users = session.query(User).filter(text(&quot;id &lt; 3&quot;)).all()
+for user in users:
+    print(user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+WHERE id &lt; 3
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+</code></pre>
+<h3 id="6">6、统计</h3>
+<ul>
+<li><code>count</code> 统计结果数</li>
+</ul>
+<pre><code class="language-python">num = session.query(User).count()
+print(num)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT count(*) AS count_1
+FROM (SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users) AS anon_1
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">4
+</code></pre>
+<h3 id="7">7、去重</h3>
+<ul>
+<li><code>distinct</code> 去重</li>
+</ul>
+<pre><code class="language-python">users = session.query(User).distinct().all()
+print(users)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT DISTINCT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">[
+    &lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;, 
+    &lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;, 
+    &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;, 
+    &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+]
+</code></pre>
+<h3 id="8">8、排序</h3>
+<ul>
+<li><code>order_by</code> 排序</li>
+</ul>
+<h4 id="1_3">1. 默认排序，升序</h4>
+<pre><code class="language-python">users = session.query(User).order_by(User.id).all()
+for user in users:
+    print(user.id, user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users ORDER BY users.id
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">1 &lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+2 &lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+3 &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+4 &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+</code></pre>
+<h4 id="2_3">2. 降序</h4>
+<pre><code class="language-python">users = session.query(User).order_by(User.id.desc())
+for user in users:
+    print(user.id, user)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.fullname AS users_fullname, users.password AS users_password
+FROM users ORDER BY users.id DESC
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">4 &lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt;
+3 &lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt;
+2 &lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt;
+1 &lt;User(name='desire', fullname='asdfasdf', password='123123')&gt;
+</code></pre>
+<h3 id="9_1">9、别名</h3>
+<h4 id="1_4">1. 为实体类指定别名</h4>
+<ul>
+<li>使用<code>aliased</code>对实体类指定别名<ul>
+<li>第一个参数为：实体类名</li>
+<li>第二个参数为：别名</li>
+</ul>
+</li>
+<li>添加列时，要使用【别名.属性】</li>
+</ul>
+<pre><code class="language-python">user_alias = aliased(User, name='user_alias')
+users = session.query(user_alias, user_alias.name).all()
+for instance in users:
+    print(instance.user_alias, instance.name)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT user_alias.id AS user_alias_id, user_alias.name AS user_alias_name, user_alias.fullname AS user_alias_fullname, user_alias.password AS user_alias_password
+FROM users AS user_alias
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">&lt;User(name='desire', fullname='asdfasdf', password='123123')&gt; desire
+&lt;User(name='wendy', fullname='Wendy Williams', password='windy')&gt; wendy
+&lt;User(name='mary', fullname='Mary Contrary', password='mary')&gt; mary
+&lt;User(name='fred', fullname='Fred Flintstone', password='freddy')&gt; fred
+</code></pre>
+<h4 id="2_4">2. 为列指定别名</h4>
+<ul>
+<li><code>label</code> 为列指定别名</li>
+<li>获取值得时候，要使用别名进行获取，否则会报错</li>
+</ul>
+<pre><code class="language-python">users = session.query(User.name.label('name_label')).all()
+for user in users:
+    print(user.name_label)
+</code></pre>
+<p>==&gt; sql</p>
+<pre><code class="language-sql">SELECT users.name AS name_label
+FROM users
+</code></pre>
+<p>==&gt; 打印结果</p>
+<pre><code class="language-bash">desire
+wendy
+mary
+fred
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

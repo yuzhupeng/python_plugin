@@ -1,5 +1,6 @@
 # coding: utf-8
 # fun1
+from tkinter.constants import NONE
 import requests
 import time
 import random
@@ -186,6 +187,10 @@ def applydata_Update_Insert(inv_info):
           print (info[2])
            #a if a>1 else b #如果a大于1的话，c=a，否则c=b
           COUNTS=fecth_applynon(info[0],sqlhelper)
+          if COUNTS==NONE:
+              print(f"获取单号{info[0]} 信息出错！") 
+              log.info(f"获取单号{info[0]} 信息出错！")
+              continue          
           flags=True if len(COUNTS)>0 else False
           if flags==True or info[2]=='取消' or info[2]=='退回':
              print("执行更新")#执行更新
@@ -289,9 +294,11 @@ def insert_CasTravel(travelobject):
                 duration=0
                 distance=0
                 lasttravel=''
+                counts=0
                 for item in range(1,6):
                              
                     if len(detiallist[0]['travel'+repr(item)])>0:
+                       counts+=1 
                        start=''
                        end=''
                        if item==1:
@@ -340,8 +347,8 @@ def insert_CasTravel(travelobject):
                        insertsqllist.append(excutedetialsql)
 
                 
-                
-                LReturn=Add_come_return(detiallist[0]['start'],lasttravel,castraveldid)
+                 
+                LReturn=Add_come_return(detiallist[0]['start'],lasttravel,castraveldid,counts)
                 cqf+=LReturn[1]
                 distance+=LReturn[2]
                 duration+=LReturn[3]
@@ -435,9 +442,12 @@ def create_apply_sql(travelobject,detiallist):
                 cqf=0
                 duration=0
                 distance=0
+                lasttravel=''
+                counts=0
                 for item in range(1,6):
-                                 
+                                
                     if len(detiallist['travel'+repr(item)])>0:
+                       counts=counts+1 
                        start=''
                        end=''
                        if item==1:
@@ -484,6 +494,12 @@ def create_apply_sql(travelobject,detiallist):
                        insertsqllist.append(excutedetialsql)
 
                 
+          
+                #counts=len(detiallist)
+                LReturn=Add_come_return(detiallist[0]['start'],lasttravel,castraveldid,counts)
+                cqf+=LReturn[1]
+                distance+=LReturn[2]
+                duration+=LReturn[3]
                 castravel.append(cqf)#路桥费
                 castravel.append(distance)#公里数
                 castravel.append('')#备注
@@ -506,7 +522,9 @@ def create_apply_sql(travelobject,detiallist):
                 excutesql=excutesql.replace(']','')
                 excutesql=excutesql.replace('[','')
                 insertsqllist.append(excutesql)
- 
+                
+                for item in LReturn[0]:
+                        insertsqllist.append(item)
                        
                        
                        
@@ -528,7 +546,7 @@ def getstate(SDeparture):
 
 
 #处理出发回程  SDeparture 出發地， EDestination 目的地    
-def Add_come_return(SDeparture,EDestination,castraveldid):
+def Add_come_return(SDeparture,EDestination,castraveldid,counts):
     ed=getstate(EDestination)
     sd=getstate(SDeparture)
     insertsqllist=[]
@@ -565,7 +583,7 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
             CasTravelDetials.append(0)#cqf
 
        CasTravelDetials.append(1)#Enables
-       CasTravelDetials.append(item)#顺序
+       CasTravelDetials.append(counts-1)#顺序
        excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
        excutedetialsql=excutedetialsql.replace(']','')
        excutedetialsql=excutedetialsql.replace('[','')
@@ -601,7 +619,7 @@ def Add_come_return(SDeparture,EDestination,castraveldid):
             CasTravelDetials.append(0)#cqf
 
        CasTravelDetials.append(1)#Enables
-       CasTravelDetials.append(item)#顺序
+       CasTravelDetials.append(counts+1)#顺序
        excutedetialsql=f'insert into CasTravelDetial values({CasTravelDetials})'
        excutedetialsql=excutedetialsql.replace(']','')
        excutedetialsql=excutedetialsql.replace('[','')
@@ -769,8 +787,12 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
                     travel2= tds[4].xpath("./span/input")[0].get('value', default=None)#目的地2
                     travel3= tds[5].xpath("./span/input")[0].get('value', default=None)#目的地3
                     travel4= tds[6].xpath("./span/input")[0].get('value', default=None)#目的地4
-                    travel5= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
-                    travel6= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
+                    travel5=''
+                    travel6=''
+                    if len(tds[7])>0 and len(tds[8])>0:
+                     travel5= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
+                     travel6= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
+                  
                     OstartTime= tds[9].xpath("./span/input")[0].get('value', default=None)#出发日期  
                     ReturnTime= tds[10].xpath("./span/input")[0].get('value', default=None)#返回日期  
                     FlightNo= tds[11].xpath("./span/input")[0].get('value', default=None)#航班号    
@@ -794,7 +816,7 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
 
 
 log.info('开始获取BWF Cookie')
-COO='CFID=4280304; CFTOKEN=12412870'
+COO='CFID=4306113; CFTOKEN=73906132'
  
  
 refusepageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=2&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'

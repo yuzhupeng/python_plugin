@@ -1,4 +1,0 @@
-2021-12-18 08:59:36,905 - e:\python\100day\sc\LoggerConfig.py[line:74] - DEBUG: debug  aaaaaaaaa
-2021-12-18 08:59:36,907 - e:\python\100day\sc\LoggerConfig.py[line:75] - INFO: info 
-2021-12-18 08:59:36,908 - e:\python\100day\sc\LoggerConfig.py[line:76] - CRITICAL: something unusual happened
-2021-12-18 08:59:36,908 - e:\python\100day\sc\LoggerConfig.py[line:77] - WARNING: war

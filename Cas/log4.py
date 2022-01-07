@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 import logging.handlers 
-log_dir = 'C:\\'+ 'logs' 
+log_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'logs' 
+#log_dir = 'C:\\'+ 'logs' 
 print(log_dir)
 if not os.path.isdir(log_dir):
  os.makedirs(log_dir) 

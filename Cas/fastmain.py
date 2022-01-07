@@ -15,8 +15,8 @@ async def root():
 
 @app.get("/address/{start}/{end}")
 def read_item(start: str, end:str):
-    result=baiduapi.get_driving_direction(start,'广州白云机场')
-    return {"item_id": result, "end": end}
+    result=baiduapi.get_driving_direction(start,end)
+    return result
 
 
 @app.get("/items/{item_id}")

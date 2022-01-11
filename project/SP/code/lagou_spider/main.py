@@ -18,7 +18,7 @@ data = {
     'kd': '.net'
 }
 
-for x in range(1, 3):
+for x in range(1, 10):
     data['pn'] = x
     response = requests.post(url, headers=headers, data=data)
     positions = response.json()["content"]["positionResult"]["result"]

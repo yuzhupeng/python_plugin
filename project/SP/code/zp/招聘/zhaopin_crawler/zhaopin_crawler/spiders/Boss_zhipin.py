@@ -52,6 +52,7 @@ class Bosszhipin_Spider(scrapy.Spider):
         self.spider_log.info(f"检索到招聘信息：{len(job_board)} 条")
         for job_list in job_board:
             list_item = {}
+            job_url=job_list.xpath('.//*[@class="job-name"]/a')[0].get("href")
             list_item["title"] = job_list.xpath(".//div[@class=\"job-title\"]//text()")
             # 工作薪资
             list_item["job_salary"] = job_list.xpath(".//div[@class=\"job-limit clearfix\"]/span/text()")
@@ -65,7 +66,7 @@ class Bosszhipin_Spider(scrapy.Spider):
             list_item["company_industry"] = job_list
             list_item["company_name"] = job_list.xpath("")
             list_item["job_education"] = job_list.xpath("")
-
+            job_url=''
             if job_url:
                 yield scrapy.Request(
                     url=response.urljoin(job_url),

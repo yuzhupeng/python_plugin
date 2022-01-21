@@ -39,13 +39,13 @@ class Sample:
     def main(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('LTAI5tMkpeuVqvmJ3sgizcqp', '329fyA6IsIQUXq8p5r23TG9RsIzsWZ')
+        client = Sample.create_client(' ', ' ')
         send_sms_request = dysmsapi_20170525_models.SendSmsRequest(
             sign_name='东莞石龙京瓷有限公司',
-            template_code='SMS_229355203',
+            template_code='SMS_232164934',
             phone_numbers='13794928207',
-            template_param='{"code":"1111"}'
-        )
+            template_param='{"name":"fhsyue","side":"SKC","sides":"广州白云机场","car":"粤SDV8892","drive":"粤SDV8892","phone":"137948282828","time":"2022年1月13日15:20:53"}'
+        ) 
         # 复制代码运行请自行打印 API 的返回值
         acode=client.send_sms(send_sms_request)
         print(acode)

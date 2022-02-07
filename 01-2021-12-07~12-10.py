@@ -683,7 +683,7 @@ class Student(Person):
     def study(self, course_name):
         print(f'{self.name}正在学习{course_name}.')
 
-
+      
 class Teacher(Person):
     """老师类"""
 

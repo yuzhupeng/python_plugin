@@ -8,7 +8,7 @@
 # print('%d %% %d = %d' % (a, b, a % b))
 # print('%d ** %d = %d' % (a, b, a ** b))
  
-a =1
+a = 1
 b = 2
 c= a if a>1 else b #如果a大于1的话，c=a，否则c=b
  
@@ -727,7 +727,7 @@ def foo(num):
         print('end'+str(i))
 num=[1, 2, 3, 4, 5]
 demo = foo(num)
-#next()返回迭代器的下一个项目（项目在本示例是一个数值）
+#next()返回迭代器的下一个项目（项目在本示例是一个数值）1
 print(next(demo))
 print("*"*20)
 print(next(demo))

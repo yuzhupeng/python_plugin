@@ -11,10 +11,20 @@ from bs4 import BeautifulSoup
 import log4 
 from lxml import etree
 import json
-import sqlpymssql
+ 
 import uuid
 import baiduapi
 from requests.adapters import HTTPAdapter
+import os
+# 获取当前脚本路径
+dirpath = os.path.dirname(os.path.abspath(__file__))
+print(dirpath)
+# 添加环境变量
+
+os.chdir(dirpath)
+import sqlpymssqls
+
+
 
 requests = requests.Session()
 requests.mount('http://', HTTPAdapter(max_retries=3))
@@ -94,14 +104,24 @@ def login():
             }
     RES = getContent(LOGIN_URL,datas=DATA,header=HEADERS)  #模拟登陆操作 获取cookie
     # print (RES.text) #打印返回的文本信息
-    # print(RES.cookies) 
-    return RES.cookies
+    print(RES.cookies._cookies)
+    cookies = RES.cookies.items()
+    cookie = ''
+    for name, value in cookies:
+            cookie += '{0}={1};'.format(name, value)
+   
+ 
+    
+    print(cookie)
+    
+    
+    return cookie
 
 
 #获取列表数据
 def getpagecontent(pageno,cookie):
     url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.Apply'
-    payload = 'DispType=1&PageCount=100&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=-100&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'.format(_PageNo=pageno)
+    payload = 'CategoryID=3&BusinessModelAdminID=3507&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
     headers = {
                     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
                     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -178,7 +198,7 @@ def fecth_applynon(applyno,sqlhelper):
 
 #插入cas用车申请单
 def applydata_Update_Insert(inv_info):      
-    sqlhelper=sqlpymssql.SQLHelp('.','sa','1','Skc_Business')
+    sqlhelper=sqlpymssqls.SQLHelp('.','sa','1','Skc_Business')
     applyformlist=[]
     for info in inv_info:
         if len(info)>1:
@@ -187,7 +207,7 @@ def applydata_Update_Insert(inv_info):
           print (info[2])
            #a if a>1 else b #如果a大于1的话，c=a，否则c=b
           COUNTS=fecth_applynon(info[0],sqlhelper)
-          if COUNTS==NONE:
+          if COUNTS is None:
               print(f"获取单号{info[0]} 信息出错！") 
               log.info(f"获取单号{info[0]} 信息出错！")
               continue          
@@ -198,19 +218,20 @@ def applydata_Update_Insert(inv_info):
              sqlhelper.update_data(updatesql)
           else:
             detial=get_apply_data(1,info[1],COO,info[0],info[2])
-            insql=insert_CasTravel(detial)
-            if insql==None:
-               continue
-            sqlhelper.transaction_sqlist(insql)
-            time.sleep(2)
-            if len(detial)>0:
-               print(f'获取【{info[1]}】的数据完成！')
-               applyformlist.append(detial)
-               file = open('html.txt', 'a', encoding='utf-8') 
-               js = json.dumps(detial,ensure_ascii=False)
-               file.write(js+'\n')
-               file.write('---------------'+'\n')
-               file.close()  #关闭
+            if len(detial)>0:         
+                insql=insert_CasTravel(detial)
+                if insql==None:
+                  continue
+                sqlhelper.transaction_sqlist(insql)
+                time.sleep(2)
+             
+            #    print(f'获取【{info[1]}】的数据完成！')
+            #    applyformlist.append(detial)
+            #    file = open('html.txt', 'a', encoding='utf-8') 
+            #    js = json.dumps(detial,ensure_ascii=False)
+            #    file.write(js+'\n')
+            #    file.write('---------------'+'\n')
+            #    file.close()  #关闭
             else:
                 print(f'获取【{info[1]}】的数据失败！')
             
@@ -496,7 +517,7 @@ def create_apply_sql(travelobject,detiallist):
                 
           
                 #counts=len(detiallist)
-                LReturn=Add_come_return(detiallist[0]['start'],lasttravel,castraveldid,counts)
+                LReturn=Add_come_return(detiallist['start'],lasttravel,castraveldid,counts)
                 cqf+=LReturn[1]
                 distance+=LReturn[2]
                 duration+=LReturn[3]
@@ -698,7 +719,7 @@ def get_refuseandback_apply(cookie,payload):
 #BWF系统获取用车申请明细信息
 def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
      url='http://10.9.140.98/workflow_skc/apps/index.cfm?fuseaction=inquiryall.ApplyDisp&ApplyID={applyid}'.format(applyid=applyids)
-     payload = 'CategoryID=11&BusinessModelAdminID=3495&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=15&PageNo=={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
+     payload = 'CategoryID=3&BusinessModelAdminID=3507&ApplyStatus=-100&ApplyerSection=-100&SApplyDate=&EApplyDate=&SCompleteDate=&ECompleteDate=&SDocApplyDate=&EDocApplyDate=&SDocCompleteDate=&EDocCompleteDate=&PageCount=100&PageNo=={_PageNo}&SortKey=ApplyDate&Order=DESC&KeepSortKey=ApplyDate&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&FreeWord=&Lst_ConditionParam=CategoryID%2CBusinessModelAdminID%2CApplyStatus%2CApplyerSection%2CSApplyDate%2CEApplyDate%2CSCompleteDate%2CECompleteDate%2CSDocApplyDate%2CEDocApplyDate%2CSDocCompleteDate%2CEDocCompleteDate%2CPageCount%2CPageNo%2CSortKey%2COrder%2CKeepSortKey%2CAdminCD%2CSAdminNumber%2CEAdminNumber%2CAdminCDNumber%2CSubject1%2CSubject2%2CSubject3%2CSubject4%2CSubject5%2CFreeWord'.format(_PageNo=pageno)
      headers = {
                     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', #模拟登陆的浏览器
                     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -756,16 +777,20 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
             passenger5=table2.xpath("./tr[12]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#联系人5 
             
   
-            ShareCore=table2.xpath("./tr[14]/td/table/tr/td[2]/span/input")[0].get('value', default=None)#经费代码
+            ShareCore=table2.xpath("./tr[13]/td/table/tr/td[6]/span/input")[0].get('value', default=None)#经费代码
             CostDepartment=table2.xpath("./tr[13]/td/table/tr/td[4]/span/input")[0].get('value', default=None)#部门
-            applyperson=table2.xpath("./tr[21]/td/table/tr[5]/td[2]/span")[0].text#申请人
-            applydate=table2.xpath("./tr[21]/td/table/tr[6]/td[2]/span")[0].text#申请日期
+            applyperson=table2.xpath("./tr[19]/td/table/tr[5]/td[2]/span")[0].text#申请人
+            applydate=table2.xpath("./tr[19]/td/table/tr[6]/td[2]/span")[0].text#申请日期
             createtime= (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             Company=table2.xpath("./tr[13]/td/table/tr/td[2]/span/textarea")[0].text#公司
-            
+           
+            # html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[13]/td/table/tbody/tr/td[6]/span/input//div
+            # html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[13]/td/table/tbody/tr/td[2]/span/textarea//div
+            # html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[19]/td/table/tbody/tr[6]/td[2]/span
+            # html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[19]/td/table/tbody/tr[5]/td[2]/span
             #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[2]/span/input 手机1
             #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[4]/span/input 乘车人1
-            
+            #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td/table/tbody/tr/td[2]/span/input//div
             
             #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[9]/td/table/tbody/tr/td[2]/span/input
             #/html/body/table[2]/tbody/tr/td/form/table[1]/tbody/tr[2]/td/table/tbody/tr[9]/td/table/tbody/tr/td[4]/span/input
@@ -789,14 +814,14 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
                     travel4= tds[6].xpath("./span/input")[0].get('value', default=None)#目的地4
                     travel5=''
                     travel6=''
-                    if len(tds[7])>0 and len(tds[8])>0:
-                     travel5= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
-                     travel6= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
+                    # if len(tds[7])>0 and len(tds[8])>0:
+                    #  travel5= tds[7].xpath("./span/input")[0].get('value', default=None)#目的地5
+                    #  travel6= tds[8].xpath("./span/input")[0].get('value', default=None)#目的地6
                   
-                    OstartTime= tds[9].xpath("./span/input")[0].get('value', default=None)#出发日期  
-                    ReturnTime= tds[10].xpath("./span/input")[0].get('value', default=None)#返回日期  
-                    FlightNo= tds[11].xpath("./span/input")[0].get('value', default=None)#航班号    
-                    FlightTime= tds[12].xpath("./span/input")[0].get('value', default=None)#起飞到达日期
+                    OstartTime= tds[7].xpath("./span/input")[0].get('value', default=None)#出发日期  
+                    ReturnTime= tds[8].xpath("./span/input")[0].get('value', default=None)#返回日期  
+                    FlightNo= tds[9].xpath("./span/input")[0].get('value', default=None)#航班号    
+                    FlightTime= tds[10].xpath("./span/input")[0].get('value', default=None)#起飞到达日期
                     detials={'usedate':usedate,'travel1':travel1,'travel2':travel2,'travel3':travel3,'travel4':travel4,'travel5':travel5,'travel6':travel6,'start':start,'OstartTime':OstartTime,'ReturnTime':ReturnTime,'FlightNo':FlightNo,'FlightTime':FlightTime}
                     TravelDetial.append(detials)
             
@@ -816,14 +841,14 @@ def get_apply_data(pageno,applyids,cookie,applyno,bwfstatus):
 
 
 log.info('开始获取BWF Cookie')
-COO='CFID=4306113; CFTOKEN=73906132'
+COO=login()
+#COO='CFID=82048; CFTOKEN=cbca55e746164de%2D6A554B30%2DCACB%2DEAAB%2D2E7370651A6AD977'
  
- 
-refusepageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=2&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
-cancelpageload='DispType=1&PageCount=15&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=11&BusinessModelAdminID=3495&FreeWord=&ApplyerSection=-100&ApplyStatus=3&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
+refusepageload='DispType=1&PageCount=50&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=3&BusinessModelAdminID=3507&FreeWord=&ApplyerSection=-100&ApplyStatus=2&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
+cancelpageload='DispType=1&PageCount=50&AdminCD=&SAdminNumber=&EAdminNumber=&AdminCDNumber=&CategoryID=3&BusinessModelAdminID=3507&FreeWord=&ApplyerSection=-100&ApplyStatus=3&Subject1=&Subject2=&Subject3=&Subject4=&Subject5=&SApplyDate=&EApplyDate=&SDocApplyDate=&EDocApplyDate=&SCompleteDate=&ECompleteDate=&SDocCompleteDate=&EDocCompleteDate=&SubBtn=%E8%A1%A8%E7%A4%BA'
 inv_info=[]
 log.info('开始获取用车申请单列表信息')
-for item in range(0,2): 
+for item in range(1,2): 
     inv_info+=getpagecontent(item,COO)
     
 log.info('开始获取用车申请单-取消，退回 列表信息')

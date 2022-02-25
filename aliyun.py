@@ -39,7 +39,7 @@ class Sample:
     def main(
         args: List[str],
     ) -> None:
-        client = Sample.create_client(' ', ' ')
+        client = Sample.create_client('LTAI5tMkpeuVqvmJ3sgizcqp', '329fyA6IsIQUXq8p5r23TG9RsIzsWZ')
         send_sms_request = dysmsapi_20170525_models.SendSmsRequest(
             sign_name='东莞石龙京瓷有限公司',
             template_code='SMS_232164934',
@@ -54,7 +54,7 @@ class Sample:
     async def main_async(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        client = Sample.create_client('LTAI5tMkpeuVqvmJ3sgizcqp', '329fyA6IsIQUXq8p5r23TG9RsIzsWZ')
         send_sms_request = dysmsapi_20170525_models.SendSmsRequest(
             sign_name='东莞石龙京瓷有限公司',
             template_code='SMS_154950909',

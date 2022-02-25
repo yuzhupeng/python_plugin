@@ -83,7 +83,7 @@ def make_app():
     runningText.insert(END, '\n第二步：手动添加商品进购物车（注意限购数量），并将商品ID，填入商品ID输入框')
 
     return app
-
+ 
 
 def orderThread():
     th = threading.Thread(target=checkCartAndSubmit)

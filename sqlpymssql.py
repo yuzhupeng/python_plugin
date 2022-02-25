@@ -169,11 +169,7 @@ class SQLHelp(object):
             with pymssql.connect(**self.__conn_path) as conn:
                 with conn.cursor() as cursor:
                     for x in sql:
-                        if isinstance(x,list):
-                            for item in x:
-                                cursor.execute(item)
-                        else:
-                            cursor.execute(x)
+                        cursor.execute(x)
                         n+=cursor.rowcount
                     if n:
                         conn.commit()

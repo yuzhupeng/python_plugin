@@ -74,7 +74,11 @@ def get_driving_direction(start,end):
         sprovince =startresult['province'] if startresult.get('province') != None else ''
         saddress =startresult['address'] if startresult.get('address') != None else ''
         scity =startresult['city'] if startresult.get('city') != None else ''
-        startplace= saddress+'('+sprovince +'--'+scity+')'
+       
+        startname =startresult['name'] if endresult.get('name') != None else ''
+        startplace= scity+'('+sprovince +'--'+startname+')'
+      
+      
         #startplace=startresult['address']+'('+startresult['province']+'--'+startresult['city']+')'
         
         
@@ -88,7 +92,8 @@ def get_driving_direction(start,end):
         esprovince =endresult['province'] if endresult.get('province') != None else ''
         esaddress =endresult['address'] if endresult.get('address') != None else ''
         ecity =endresult['city'] if endresult.get('city') != None else ''
-        endplace= esaddress+'('+esprovince +'--'+ecity+')'
+        name =endresult['name'] if endresult.get('name') != None else ''
+        endplace= ecity+'('+esprovince +'--'+name+')'
         
         
         

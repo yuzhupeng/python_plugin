@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\command_book",
+    "\\src\\command_book\\resources",
+    "\\src\\common",
+    "\\src\\detection",
+    "\\src\\gui"
+  ],
+  "SelectedNode": "\\src\\detection\\detection.py",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,1 +1,0 @@
-[2021-12-22 10:41:46,969]-[baiduapi.py]-[get_driving_direction]-[128]-12s: [ERROR]-8s>> 调用百度api获取地点信息出错！：Unexpected Error: 'int' object is not subscriptable

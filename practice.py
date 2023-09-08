@@ -1,4 +1,21 @@
 #encoding:UTF-8
+
+import time
+
+def getstate(SDeparture):
+    skcs = {"SKC": "SKC", "KOPD": "KOPD", "KCPD": "KCPD", "公司": "SKC"}
+    
+    result = 'false'
+    parture = ''
+    for i in range(SDeparture, 0, -1):
+        time.sleep(2)
+        print(i)
+
+getstate(10000)
+
+
+
+
 def foo(num):
     for i in num:
         yield i

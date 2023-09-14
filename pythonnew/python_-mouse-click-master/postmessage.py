@@ -2,6 +2,8 @@ from ctypes import windll
 from ctypes.wintypes import HWND
 import string
 import time
+from input import presss, key_downs, key_ups
+
 
 PostMessageW = windll.user32.PostMessageW
 MapVirtualKeyW = windll.user32.MapVirtualKeyW
@@ -158,7 +160,21 @@ if __name__ == "__main__":
     handle = windll.user32.FindWindowW(None, "notepad")
  
  
+    time.sleep(5)
+    print(1)
+    key_downs('left')
     
     key_down(handle, 'w')
     time.sleep(2)
     key_up(handle, 'w')
+    
+    key_downs('right')
+    
+    key_downs('left')
+    
+    key_down(handle, 'w')
+    time.sleep(2)
+    key_up(handle, 'w')
+    
+    key_downs('right')
+    print(2)

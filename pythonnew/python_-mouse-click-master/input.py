@@ -218,9 +218,9 @@ def presss(key, n, down_time=0.05, up_time=0.1):
     """
 
     for _ in range(n):
-        key_down(key)
+        key_downs(key)
         time.sleep(down_time * (0.8 + 0.4 * random()))
-        key_up(key)
+        key_ups(key)
         time.sleep(up_time * (0.8 + 0.4 * random()))
 
 

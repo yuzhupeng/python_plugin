@@ -168,6 +168,8 @@ if __name__ == "__main__":
     time.sleep(2)
     key_up(handle, 'w')
     
+    presss('ctrl',2)
+    presss('e',2)
     key_downs('right')
     
     key_downs('left')

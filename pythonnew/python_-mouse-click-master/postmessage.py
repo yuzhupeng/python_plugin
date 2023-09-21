@@ -211,5 +211,5 @@ if __name__ == "__main__":
     import cv2
     handle = windll.user32.FindWindowW(None, "MapleStory")
  
- 
-    
+    #9999执行次数，3来回循环次数
+    zhanshi(handle,9999,3)

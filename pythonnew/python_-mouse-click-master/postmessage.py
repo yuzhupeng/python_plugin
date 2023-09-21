@@ -3,7 +3,7 @@ from ctypes.wintypes import HWND
 import string
 import time
 from input import presss, key_downs, key_ups
-
+from random import random
 
 PostMessageW = windll.user32.PostMessageW
 MapVirtualKeyW = windll.user32.MapVirtualKeyW
@@ -147,6 +147,58 @@ def key_up(handle: HWND, key: str):
     lparam = (scan_code << 16) | 0XC0000001
     PostMessageW(handle, WM_KEYUP, wparam, lparam)
 
+def presssP(handle: HWND,key, n, down_time=0.05, up_time=0.1):
+    """
+    Presses KEY N times, holding it for DOWN_TIME seconds, and releasing for UP_TIME seconds.
+    :param key:         The keyboard input to press.
+    :param n:           Number of times to press KEY.
+    :param down_time:   Duration of down-press (in seconds).
+    :param up_time:     Duration of release (in seconds).
+    :return:            None
+    """
+   
+    for _ in range(n):
+        key_down(handle,key)
+        time.sleep(down_time * (0.8 + 0.4 * random()))
+        key_up(handle,key)
+        time.sleep(up_time * (0.8 + 0.4 * random()))
+
+
+def zhanshi(handle: HWND,times,n,down_time=0.05, up_time=0.1):
+   
+    for _ in range(times):
+   
+        key_downs('right')        
+        for _ in range(n):
+            presssP(handle,'ctrl',2)   
+            presssP(handle,'x',1)             
+        key_ups('right')
+  
+        key_downs('left')        
+        for _ in range(n):
+            presssP(handle,'ctrl',2)     
+            presssP(handle,'x',1)             
+        key_ups('left')
+  
+  
+def fashi(handle: HWND,times,n,down_time=0.05, up_time=0.1):
+       
+    for _ in range(times):
+   
+        key_downs('right')        
+        for _ in range(n):
+            presssP(handle,'c',1)
+            presssP(handle,'x',1)             
+        key_ups('right')
+  
+        key_downs('left')        
+        for _ in range(n):
+            presssP(handle,'c',1)
+            presssP(handle,'x',1)             
+        key_ups('left')
+  
+  
+
 
 if __name__ == "__main__":
     # 需要和目标窗口同一权限，窗口通常是管理员权限
@@ -157,26 +209,7 @@ if __name__ == "__main__":
             None, "runas", sys.executable, __file__, None, 1)
 
     import cv2
-    handle = windll.user32.FindWindowW(None, "notepad")
+    handle = windll.user32.FindWindowW(None, "MapleStory")
  
  
-    time.sleep(5)
-    print(1)
-    key_downs('left')
     
-    key_down(handle, 'w')
-    time.sleep(2)
-    key_up(handle, 'w')
-    
-    presss('ctrl',2)
-    presss('e',2)
-    key_downs('right')
-    
-    key_downs('left')
-    
-    key_down(handle, 'w')
-    time.sleep(2)
-    key_up(handle, 'w')
-    
-    key_downs('right')
-    print(2)

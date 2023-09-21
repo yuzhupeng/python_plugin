@@ -168,15 +168,15 @@ def zhanshi(handle: HWND,times,n,down_time=0.05, up_time=0.1):
    
     for _ in range(times):
    
-        key_downs('right')        
+        presssP('right')        
         for _ in range(n):
-            presssP(handle,'ctrl',2)   
+            presssP(handle,'ctrl',2,0.00001,0.00001)   
             presssP(handle,'x',1)             
-        key_ups('right')
+        presssP('right')
   
         key_downs('left')        
         for _ in range(n):
-            presssP(handle,'ctrl',2)     
+            presssP(handle,'ctrl',2,0.00001,0.00001)     
             presssP(handle,'x',1)             
         key_ups('left')
   
@@ -187,13 +187,13 @@ def fashi(handle: HWND,times,n,down_time=0.05, up_time=0.1):
    
         key_downs('right')        
         for _ in range(n):
-            presssP(handle,'c',1)
+            presssP(handle,'c',1,0.00001,0.00001)
             presssP(handle,'x',1)             
         key_ups('right')
   
         key_downs('left')        
         for _ in range(n):
-            presssP(handle,'c',1)
+            presssP(handle,'c',1,0.00001,0.00001)
             presssP(handle,'x',1)             
         key_ups('left')
   

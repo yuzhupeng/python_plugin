@@ -1,0 +1,6 @@
+$, target=rent_frenzy, value=true
+*, x=-1, y=-1, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    CustomKey, name=, key=f12, direction=, jump=false, delay=0.8, rep=1, rep_interval=0.3, rep_interval_increase=0, duration=0, cool_down=30, ground_skill=true, buff_time=, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Wait, duration=10
+    CustomKey, name=f11, key=f11, direction=, jump=false, delay=0.5, rep=1, rep_interval=0.3, rep_interval_increase=0, duration=0, cool_down=60, ground_skill=true, buff_time=, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Wait, duration=1

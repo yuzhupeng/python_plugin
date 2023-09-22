@@ -1,0 +1,70 @@
+$, target=id, value=wet
+$, target=move_tolerance, value=15
+$, target=home_scroll_key, value=f9
+$, target=auto_change_channel, value=true
+$, target=frenzy_key, value=f12
+$, target=platforms, value=b44|16
+
+@, label=fixed
+*, x=10, y=16, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Fall, direction=right, duration=0.13
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    WaitStanding, duration=0.5
+    Skill_1, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=False, fast_jump=false
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=false, fast_jump=false
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Rope, direction=, jump=true, rep=1, pre_delay=0, duration=0, combo=true, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Wait, duration=0.5
+    Rope, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=true, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Skill_A, direction=left, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+*, x=114.000, y=16.000, frequency=1, skip=False, adjust=true, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Skill_D, direction=, jump=false, rep=1, pre_delay=0.1, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Fall, direction=, duration=0.2
+    Wait, duration=0.4
+    Skill_A, direction=left, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Walk, direction=right, duration=0.2
+    Fall, direction=, duration=0.05
+    Skill_A, direction=right, jump=false, rep=1, pre_delay=0.15, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+*, x=10, y=16, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Fall, direction=, duration=0.25
+    SkillCombination, direction=, jump=false, target_skills=skill_2|skill_w|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    WaitStanding, duration=0.5
+    FlashJump, direction=right, jump=False, combo=False, triple_jump=False, fast_jump=False
+    SkillCombination, direction=, jump=false, target_skills=skill_2|skill_s|skill_e|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=False, fast_jump=false
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    WaitStanding, duration=0.5
+    Walk, direction=right, duration=0.07
+    Wait, duration=0.05
+    Fall, direction=, duration=0.03
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0.15, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+
+@, label=standard
+*, x=10, y=16, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Fall, direction=right, duration=0.13
+    SkillCombination, direction=, jump=false, target_skills=skill_2|skill_w|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    WaitStanding, duration=0.5
+    FlashJump, direction=, jump=true, combo=False, triple_jump=False, fast_jump=False
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=False, fast_jump=false
+    SkillCombination, direction=left, jump=false, target_skills=skill_2|skill_s|skill_e|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    WaitStanding, duration=0.5
+    Walk, direction=right, duration=0.07
+    Wait, duration=0.05
+    Fall, direction=, duration=0.03
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0.15, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+*, x=10, y=16, frequency=2, skip=true, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=False, fast_jump=false
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=, jump=false, combo=False, triple_jump=False, fast_jump=false
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Fall, direction=, duration=0.15
+    SkillCombination, direction=, jump=false, target_skills=skill_2|skill_w|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    FlashJump, direction=right, jump=true, combo=False, triple_jump=False, fast_jump=false
+    SkillCombination, direction=left, jump=false, target_skills=skill_s|skill_e|skill_a, combo=false, wait=0, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    Walk, direction=right, duration=0.1
+    Fall, direction=, duration=0.05
+    Skill_A, direction=, jump=false, rep=1, pre_delay=0.15, duration=0, combo=false, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+>, label=standard, frequency=1, skip=False, frequency_to_loop=False, active_if_skill_ready=, active_if_skill_cd=skill_d, active_if_in_skill_buff=, active_if_not_in_skill_buff=

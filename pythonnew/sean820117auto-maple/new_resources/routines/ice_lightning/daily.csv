@@ -1,0 +1,8 @@
+$, target=id, value=ewei
+$, target=move_tolerance, value=30
+$, target=home_scroll_key, value=f9
+$, target=auto_change_channel, value=true
+$, target=frenzy_key, value=f12
+*, x=-1, y=-1, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    DailyCombination, maps=, remote=true
+    EndScript, should_back_home=true, home_scroll_key=f9

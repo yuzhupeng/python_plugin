@@ -1,0 +1,20 @@
+$, target=platforms, value=b63
+$, target=move_tolerance, value=10
+*, x=132, y=63.000, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    SkillCombination, direction=left, jump=false, target_skills=upjump+skill_q
+    Fall, direction=, duration=0.04
+    Skill_1, direction=, jump=false
+    Move, x=98, y=63, max_steps=15
+    SkillCombination, direction=right, jump=true, target_skills=skill_2|skill_3
+*, x=12, y=63, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    UpJump, jump=false, direction=right, combo=true
+    Wait, duration=0.2
+    Skill_Q, direction=, jump=false
+    Move, x=54, y=63, max_steps=15
+    SkillCombination, direction=left, jump=true, target_skills=skill_2|skill_3
+*, x=120, y=63, frequency=5, skip=true, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    UpJump, jump=false, direction=, combo=true
+    Skill_X, direction=up, jump=false
+*, x=18, y=63, frequency=5, skip=true, adjust=False, active_if_skill_ready=, active_if_skill_cd=, active_if_in_skill_buff=, active_if_not_in_skill_buff=
+    UpJump, jump=false, direction=, combo=true
+    Skill_X, direction=up, jump=false

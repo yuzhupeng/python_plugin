@@ -1,0 +1,14 @@
+$, target=id, value=veg
+$, target=move_tolerance, value=12
+$, target=platforms, value=16|39
+*, x=105, y=39.000, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=
+    SkillCombination, direction=right, jump=false, target_skills=skill_2|skill_x
+*, x=74.000, y=39.000, frequency=9, skip=true, adjust=False, active_if_skill_ready=, active_if_skill_cd=
+    Rope, jump=false
+    Skill_X, direction=up, jump=false
+    Skill_1, direction=, jump=false
+*, x=41.000, y=39.000, frequency=1, skip=False, adjust=False, active_if_skill_ready=, active_if_skill_cd=
+    SkillCombination, direction=left, jump=false, target_skills=skill_2|skill_x
+*, x=81, y=39, frequency=7, skip=true, adjust=False, active_if_skill_ready=, active_if_skill_cd=
+    UpJump, direction=right
+    Skill_X, direction=up, jump=false

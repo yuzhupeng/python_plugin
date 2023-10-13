@@ -62,8 +62,8 @@ def has_expected_potential_lines(OCR_result, potential, lines: int, True3: bool)
                     count += 1
                     
         # If potential is ATT
-        elif potential == "ATT":
-            if potential in potential_line and not potential_line.startswith("MATT:"):
+        elif potential == "攻擊力":
+            if potential in potential_line and not potential_line.startswith("魔法攻擊力:"):
                 count += 1
                 
         # All other cases

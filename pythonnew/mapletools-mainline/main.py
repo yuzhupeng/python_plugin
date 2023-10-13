@@ -49,7 +49,7 @@ label.grid(row=0, column=0, pady=10, columnspan=3,padx=(100,0))
 
 # select drop down
 potential_var = tk.StringVar(value="Select potential")
-potential_options = ["select potential","力量", "敏捷", "智力", "幸運", "ATT", "MATT", "掉率", "金幣獲取"]
+potential_options = ["select potential","力量", "敏捷", "智力", "幸運", "攻擊力", "魔法攻擊力", "掉率", "金幣獲取"]
 option_menu = ttk.OptionMenu(main_frame, potential_var, *potential_options)
 option_menu.grid(row=1, column=0, padx=(10,100))
 

@@ -7,8 +7,8 @@ driver_dir_path = r'./driver'
 # dll_path = 'C:\\Users\\sean8\\Documents\\auto-maple\\kmclassdll.dll'
 # driver_path = b'C:\\Users\\sean8\\Documents\\auto-maple\\kmclass.sys'
 # os.add_dll_directory(os.path.abspath(driver_dir_path))
-kmclass_dll_path = 'C:\\Users\\sean8\\Documents\\auto-maple\\driver\\win10\\kmclassdll.dll'
-kmclass_driver_path = b'C:\\Users\\sean8\\Documents\\auto-maple\\driver\\win10\\kmclass.sys'
+kmclass_dll_path = 'E:\\Maple\\python\\pythons\\python_plugin\\pythonnew\\sean820117auto-maple\\driver\\win10\\kmclassdll.dll'
+kmclass_driver_path = b'E:\\Maple\python\\pythons\\python_plugin\\pythonnew\\sean820117auto-maple\\driver\\win10\\kmclass.sys'
 print(kmclass_driver_path)
 driver = None
 

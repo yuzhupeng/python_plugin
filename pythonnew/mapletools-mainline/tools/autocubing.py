@@ -51,14 +51,14 @@ def has_expected_potential_lines(OCR_result, potential, lines: int, True3: bool)
     for potential_line in OCR_result:
         
         # If potential is one of STR, DEX, INT, or LUK
-        if potential in ["STR", "DEX", "INT", "LUK"]:
+        if potential in ["力量", "敏捷", "智力", "幸運"]:
             
             if True3:
                 # Extra condition for True3
-                if potential in potential_line and "All Stats: 6%" not in potential_line and "All Stats: 7%" not in potential_line:
+                if potential in potential_line and "全屬性: 6%" not in potential_line and "全屬性: 7%" not in potential_line:
                     count += 1
             else:
-                if potential in potential_line or "All Stats" in potential_line:
+                if potential in potential_line or "全屬性" in potential_line:
                     count += 1
                     
         # If potential is ATT

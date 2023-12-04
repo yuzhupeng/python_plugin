@@ -173,7 +173,8 @@ while True:
           time.sleep(1)
           print(f"当前时间：{datetime.now()} press key :y")
           key_down(handle, 'y')
-          key_up(handle, 'y')  
+          key_up(handle, 'y')
+    time.sleep(0.3)    
          
      
   

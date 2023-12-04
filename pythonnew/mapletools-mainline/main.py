@@ -46,15 +46,15 @@ label = ttk.Label(main_frame, text="Auto Cubing")
 label.grid(row=0, column=0, pady=10, columnspan=3,padx=(100,0))
 
 
-
+      # If potential is one of STR, DEX, INT, or LUK
 # select drop down
 potential_var = tk.StringVar(value="Select potential")
-potential_options = ["select potential","力量", "敏捷", "智力", "幸運", "攻擊力", "魔法攻擊力", "掉率", "金幣獲取"]
+potential_options = ["select potential","STR", "DEX", "INT", "LUK", "攻擊力", "魔法攻擊力", "掉率", "金幣獲取"]
 option_menu = ttk.OptionMenu(main_frame, potential_var, *potential_options)
 option_menu.grid(row=1, column=0, padx=(10,100))
 
 def update_checkbox_state(*args):
-    if potential_var.get() in ["力量", "敏捷", "智力", "幸運"]:
+    if potential_var.get() in ["STR", "DEX", "INT", "LUK"]:
         Check_True3["state"] = tk.NORMAL
     else:
         Check_True3["state"] = tk.DISABLED

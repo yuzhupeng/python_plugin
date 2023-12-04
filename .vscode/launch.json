@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
     
-    {
+  /*   {
             "name": "Python: 当前文件1",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "internalConsole"
-        },
+        }, */
         {
             "name": "Python: OUTSAIDE",
             "type": "python",

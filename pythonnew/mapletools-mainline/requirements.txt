@@ -3,3 +3,6 @@ pytesseract
 pygetwindow
 pyautogui
 opencv-python
+pygetwindow
+pytesseract
+pyautogui

@@ -4,11 +4,12 @@ import time
 import pygetwindow as gw
 import pyautogui
 import threading
-
-
+import AutoKey as auto
+import sys
 # find the coordinate of the window of maplestory 
 # screen shot the rectangle part we need
-
+ 
+  
 
 def locate_potentail_redcube_red():
     try:
@@ -90,6 +91,7 @@ def main(cube_type: str,potential, lines: int, True3: bool,above_160: bool, stop
     line_count = 0
     found = False
     
+    handle=gw.getWindowsWithTitle('MapleStory')[0]
     
     while True:
         if stop_event and stop_event.is_set():
@@ -106,11 +108,14 @@ def main(cube_type: str,potential, lines: int, True3: bool,above_160: bool, stop
         if not found:
             pyautogui.click()
             time.sleep(0.050)
-            pyautogui.press('enter')
+            aoto.key_down(handle, 'return')
+            aoto.key_up(handle, 'return')
             time.sleep(0.050)
-            pyautogui.press('enter')
+            aoto.key_down(handle, 'return')
+            aoto.key_up(handle, 'return')
             time.sleep(0.050)
-            pyautogui.press('enter')
+            aoto.key_down(handle, 'return')
+            aoto.key_up(handle, 'return')
             time.sleep(0.050)
         else:   
             break

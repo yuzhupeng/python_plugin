@@ -1,92 +1,47 @@
-import win32api
-import win32gui
-import pythoncom
+import ctypes
+from ctypes import wintypes
+
+# 定义 Windows API 函数和常量
+user32 = ctypes.windll.user32
+GetCursorPos = user32.GetCursorPos
+GetCursorPos.argtypes = [wintypes.POINT]
+PostMessageW = user32.PostMessageW
+WM_LBUTTONDOWN = 0x0201
+
+def left_down(handle: wintypes.HWND, x: int, y: int):
+    """在坐标(x, y)按下鼠标左键
+
+    Args:
+        handle (wintypes.HWND): 窗口句柄
+        x (int): 横坐标
+        y (int): 纵坐标
+    """
+    wparam = 0
+    lparam = y << 16 | x
+    PostMessageW(handle, WM_LBUTTONDOWN, wparam, lparam)
+
+
+
+if __name__ == "__main__":
+    # 需要和目标窗口同一权限，游戏窗口通常是管理员权限
+    import sys
+    if not windll.shell32.IsUserAnAdmin():
+        # 不是管理员就提权
+        windll.shell32.ShellExecuteW(
+            None, "runas", sys.executable, __file__, None, 1)
+
  
-import time
-from tkinter import Tk, Button
+ 
+handle = windll.user32.FindWindowW(None, "notepad++")
 
-def on_keyboard_event(event):
-    global actions
-    
-    # 记录按下的键
-    if event.MessageName == 'key down':
-        actions.append(event.Key)
-    
-    # 检查是否停止录制
-    if event.Key == 'Escape':
-        return False
-    
-    return True
 
-def record_keyboard_actions(hwnd):
-    global actions
-    
-    actions = []
-    
-    # 创建键盘钩子
-    hook_manager = pyHook.HookManager()
-    hook_manager.KeyDown = on_keyboard_event
-    
-    # 启动键盘钩子
-    hook_manager.HookKeyboard()
-    
-    # 进入消息循环
-    pythoncom.PumpMessages()
-    
-    return actions
 
-def replay_keyboard_actions(hwnd, actions):
-    # 激活窗口
-    win32gui.SetForegroundWindow(hwnd)
-    
-    # 模拟键盘操作
-    for key in actions:
-        # 按下键
-        win32api.keybd_event(ord(key), 0, 0, 0)
-        
-        # 等待一小段时间
-        time.sleep(0.1)
-        
-        # 释放键
-        win32api.keybd_event(ord(key), 0, win32api.KEYEVENTF_KEYUP, 0)
+# 获取当前鼠标位置
+point = wintypes.POINT()
+GetCursorPos(ctypes.byref(point))
+x = point.x
+y = point.y
 
-def start_recording(hwnd):
-    global recording, actions
-    
-    if not recording:
-        actions = record_keyboard_actions(hwnd)
-        recording = True
-
-def stop_recording():
-    global recording
-    
-    recording = False
-
-def replay_actions(hwnd):
-    global actions
-    
-    replay_keyboard_actions(hwnd, actions)
-
-# 获取目标应用程序窗口句柄
-app_title = "目标应用程序标题"
-hwnd = win32gui.FindWindow(None, app_title)
-
-if hwnd != 0:
-    # 创建UI界面
-    root = Tk()
-    
-    # 创建按钮
-    start_button = Button(root, text="开始录制", command=lambda: start_recording(hwnd))
-    start_button.pack()
-    
-    stop_button = Button(root, text="停止录制", command=stop_recording)
-    stop_button.pack()
-    
-    replay_button = Button(root, text="回放操作", command=lambda: replay_actions(hwnd))
-    replay_button.pack()
-    
-    # 启动UI界面
-    root.mainloop()
-    
-else:
-    print("找不到目标应用程序窗口")
+# 调用 left_down 函数点击当前位置
+ 
+left_down(handle, x, y)

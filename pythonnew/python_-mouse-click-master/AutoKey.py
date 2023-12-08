@@ -151,8 +151,7 @@ keyboard.on_press(on_key_press)
 while True:
     if running:
         #print(f"当前时间：{datetime.now()} press key :x")
-        key_down(handle, 'x')
-        key_up(handle,'x')  
+import keyboard
         current_time = time.time()
         if current_time  % 11 <1:
           time.sleep(1)

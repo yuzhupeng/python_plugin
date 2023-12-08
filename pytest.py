@@ -1,5 +1,5 @@
-import ctypes
-from ctypes import wintypes
+from ctypes import windll, byref
+from ctypes.wintypes import HWND, POINT
 
 # 定义 Windows API 函数和常量
 user32 = ctypes.windll.user32
@@ -31,7 +31,8 @@ if __name__ == "__main__":
             None, "runas", sys.executable, __file__, None, 1)
 
  
- 
+    
+
 handle = windll.user32.FindWindowW(None, "notepad++")
 
 
@@ -41,7 +42,8 @@ point = wintypes.POINT()
 GetCursorPos(ctypes.byref(point))
 x = point.x
 y = point.y
+print(f"鼠标位置：X={x}, Y={y}")
 
 # 调用 left_down 函数点击当前位置
- 
-left_down(handle, x, y)
+for i in range(0, 20, 1):
+ left_down(handle, x, y)

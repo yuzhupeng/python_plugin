@@ -110,8 +110,9 @@ def main(cube_type: str,potential, lines: int, True3: bool,above_160: bool, stop
             print(f"鼠标位置：X={x}, Y={y}")
             handle=gw.getWindowsWithTitle('MapleStory')[0]
             auto.left_down(handle, x, y)
-            time.sleep(0.050)
-            left_up(handle, x, y)            
+            auto.left_down(handle, x, y)
+            auto.left_down(handle, x, y)
+            auto.left_up(handle, x, y)          
             auto.key_down(handle, 'return')
             auto.key_up(handle, 'return')
             time.sleep(0.050)

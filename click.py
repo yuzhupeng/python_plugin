@@ -1,6 +1,8 @@
 import time
 from ctypes import windll
 import pyautogui
+import keyboard
+ 
 # 定义常量
 HWND = windll.user32.GetForegroundWindow()
 WM_MOUSEMOVE = 0x0200
@@ -31,20 +33,40 @@ def left_up(handle: HWND, x: int, y: int):
     windll.user32.PostMessageW(handle, WM_LBUTTONUP, wparam, lparam)
 
 
+running=False 
+ 
+def on_key_press(event):
+    global running
+    if event.name == '0':
+        running = not running
+        if running:
+            print("循环已启动")
+        else:
+            print("循环已暂停")
+print("加载完毕，请按数字 0 启动/暂停")
+keyboard.on_press(on_key_press)     
+
+
+
+
+
 def test_left_down():
-    #x = 100  # 设置横坐标
-    #y = 100  # 设置纵坐标
-    num_clicks = 555  # 设置按下次数
-    x, y = pyautogui.position()
-    print(f"鼠标位置：X={x}, Y={y}")
-    for _ in range(num_clicks):
-        left_down(HWND, x, y)
-        left_down(HWND, x, y)
-        left_down(HWND, x, y)
-        left_up(HWND, x, y)
-        time.sleep(0.3)  # 添加延迟，等待1秒钟
-        d, s = pyautogui.position()
-        print(f"鼠标位置：X={d}, Y={s}")
+    while True:
+     if running:
+        #x = 100  # 设置横坐标
+        #y = 100  # 设置纵坐标
+        num_clicks = 555  # 设置按下次数
+        x, y = pyautogui.position()
+        print(f"鼠标位置：X={x}, Y={y}")
+        for _ in range(num_clicks):
+            if running:
+                left_down(HWND, x, y)
+                left_down(HWND, x, y)
+                left_down(HWND, x, y)
+                left_up(HWND, x, y)
+                time.sleep(0.3)  # 添加延迟，等待1秒钟
+                d, s = pyautogui.position()
+                print(f"鼠标位置：X={d}, Y={s}")
 
 # 调用测试函数
 test_left_down()

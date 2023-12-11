@@ -1,4 +1,6 @@
 import tkinter as tk
+ 
+
 from tkinter import ttk  
 from tools.autocubing import main as autocubing_main
 import threading

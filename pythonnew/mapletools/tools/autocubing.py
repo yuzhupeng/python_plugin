@@ -91,7 +91,7 @@ def main(cube_type: str,potential, lines: int, True3: bool,above_160: bool, stop
     line_count = 0
     found = False
     
-    handle=gw.getWindowsWithTitle('MapleStory')[0]
+     
     
     while True:
         if stop_event and stop_event.is_set():
@@ -106,16 +106,20 @@ def main(cube_type: str,potential, lines: int, True3: bool,above_160: bool, stop
         found = has_expected_potential_lines(OCR_result, potential,lines,True3,above_160)
     
         if not found:
-            pyautogui.click()
+            x, y = pyautogui.position()
+            print(f"鼠标位置：X={x}, Y={y}")
+            handle=gw.getWindowsWithTitle('MapleStory')[0]
+            auto.left_down(handle, x, y)
             time.sleep(0.050)
-            aoto.key_down(handle, 'return')
-            aoto.key_up(handle, 'return')
+            left_up(handle, x, y)            
+            auto.key_down(handle, 'return')
+            auto.key_up(handle, 'return')
             time.sleep(0.050)
-            aoto.key_down(handle, 'return')
-            aoto.key_up(handle, 'return')
+            auto.key_down(handle, 'return')
+            auto.key_up(handle, 'return')
             time.sleep(0.050)
-            aoto.key_down(handle, 'return')
-            aoto.key_up(handle, 'return')
+            auto.key_down(handle, 'return')
+            auto.key_up(handle, 'return')
             time.sleep(0.050)
         else:   
             break

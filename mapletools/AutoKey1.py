@@ -1,19 +1,22 @@
 from ctypes import windll, byref
 from ctypes.wintypes import HWND, POINT
-import string
 import time
 import keyboard
-from datetime import datetime
+import pyautogui
+import string
 
 PostMessageW = windll.user32.PostMessageW
-MapVirtualKeyW = windll.user32.MapVirtualKeyW
-VkKeyScanA = windll.user32.VkKeyScanA
 ClientToScreen = windll.user32.ClientToScreen
+
 WM_MOUSEMOVE = 0x0200
 WM_LBUTTONDOWN = 0x0201
 WM_LBUTTONUP = 0x202
 WM_MOUSEWHEEL = 0x020A
 WHEEL_DELTA = 120
+
+MapVirtualKeyW = windll.user32.MapVirtualKeyW
+VkKeyScanA = windll.user32.VkKeyScanA
+
 WM_KEYDOWN = 0x100
 WM_KEYUP = 0x101
 
@@ -82,6 +85,8 @@ VkCode = {
 }
 
 
+
+
 def get_virtual_keycode(key: str):
     """根据按键名获取虚拟按键码
 
@@ -96,6 +101,7 @@ def get_virtual_keycode(key: str):
         return VkKeyScanA(ord(key)) & 0xff
     else:
         return VkCode[key]
+
 
 
 def key_down(handle: HWND, key: str):
@@ -126,7 +132,6 @@ def key_up(handle: HWND, key: str):
     wparam = vk_code
     lparam = (scan_code << 16) | 0XC0000001
     PostMessageW(handle, WM_KEYUP, wparam, lparam)
-
 
 def move_to(handle: HWND, x: int, y: int):
     """移动鼠标到坐标（x, y)
@@ -210,14 +215,6 @@ def scroll_down(handle: HWND, x: int, y: int):
     scroll(handle, -WHEEL_DELTA, x, y)
 
 
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     # 需要和目标窗口同一权限，游戏窗口通常是管理员权限
     import sys
@@ -226,12 +223,9 @@ if __name__ == "__main__":
         windll.shell32.ShellExecuteW(
             None, "runas", sys.executable, __file__, None, 1)
 
- 
-    #handle = windll.user32.FindWindowW(None, "MapleStory")
+    #import cv2
     handle = windll.user32.FindWindowW(None, "notepad++")
-  
-   
- 
+    # 点击线路
 running = False
 
 def on_key_press(event):
@@ -243,33 +237,32 @@ def on_key_press(event):
         else:
             print("循环已暂停")
 print("加载完毕，请按数字 0 启动/暂停")
-keyboard.on_press(on_key_press)
+keyboard.on_press(on_key_press)    
+    
+    
+    
+def test_left_down():
+    while True:
+     if running:
+        #x = 100  # 设置横坐标0
+        #y = 100  # 设置纵坐标
+        num_clicks = 555  # 设置按下次数
+        q, d = pyautogui.position()
+        print(f"鼠标位置：X={q}, Y={d}")
+        for _ in range(num_clicks):
+            if running:
+                x, y = pyautogui.position()
+                left_down(handle, x, y)
+                left_down(handle, x, y)
+                left_down(handle, x, y)
+                left_up(handle, x, y)
+                time.sleep(0.3)  # 添加延迟，等待1秒钟
+                key_down(handle, 'return')
+                key_up(handle, 'return')
+                key_down(handle, 'return')
+                key_up(handle, 'return')
+                d, s = pyautogui.position()
+                print(f"鼠标位置：X={d}, Y={s}")
 
-while True:
-    if running:
-        #print(f"当前时间：{datetime.now()} press key :x")
-        current_time = time.time()
-        if current_time  % 11 <1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :a")
-          key_down(handle, 'a')
-          key_up(handle, 'a')
-        if current_time % 15 < 1:  
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :e")
-          key_down(handle, 'e')
-          key_up(handle, 'e')
-        if current_time % 30 < 1:    
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :t")
-          key_down(handle, 't')
-          key_up(handle, 't')                   
-        if current_time % 60 < 1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :y")
-          key_down(handle, 'y')
-          key_up(handle, 'y')
-    time.sleep(0.3)    
-         
-     
-  
+# 调用测试函数
+test_left_down()

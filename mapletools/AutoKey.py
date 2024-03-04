@@ -1,21 +1,32 @@
 from ctypes import windll, byref
 from ctypes.wintypes import HWND, POINT
-import string
 import time
 import keyboard
-from datetime import datetime
+import string
+
+
+
+
 
 PostMessageW = windll.user32.PostMessageW
-MapVirtualKeyW = windll.user32.MapVirtualKeyW
-VkKeyScanA = windll.user32.VkKeyScanA
 ClientToScreen = windll.user32.ClientToScreen
+
 WM_MOUSEMOVE = 0x0200
 WM_LBUTTONDOWN = 0x0201
 WM_LBUTTONUP = 0x202
 WM_MOUSEWHEEL = 0x020A
 WHEEL_DELTA = 120
+
+
+ 
+MapVirtualKeyW = windll.user32.MapVirtualKeyW
+VkKeyScanA = windll.user32.VkKeyScanA
+
 WM_KEYDOWN = 0x100
 WM_KEYUP = 0x101
+
+
+
 
 
 
@@ -82,50 +93,7 @@ VkCode = {
 }
 
 
-def get_virtual_keycode(key: str):
-    """根据按键名获取虚拟按键码
 
-    Args:
-        key (str): 按键名
-
-    Returns:
-        int: 虚拟按键码
-    """
-    if len(key) == 1 and key in string.printable:
-        # https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-vkkeyscana
-        return VkKeyScanA(ord(key)) & 0xff
-    else:
-        return VkCode[key]
-
-
-def key_down(handle: HWND, key: str):
-    """按下指定按键
-
-    Args:
-        handle (HWND): 窗口句柄
-        key (str): 按键名
-    """
-    vk_code = get_virtual_keycode(key)
-    scan_code = MapVirtualKeyW(vk_code, 0)
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-keydown
-    wparam = vk_code
-    lparam = (scan_code << 16) | 1
-    PostMessageW(handle, WM_KEYDOWN, wparam, lparam)
-
-
-def key_up(handle: HWND, key: str):
-    """放开指定按键
-
-    Args:
-        handle (HWND): 窗口句柄
-        key (str): 按键名
-    """
-    vk_code = get_virtual_keycode(key)
-    scan_code = MapVirtualKeyW(vk_code, 0)
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-keyup
-    wparam = vk_code
-    lparam = (scan_code << 16) | 0XC0000001
-    PostMessageW(handle, WM_KEYUP, wparam, lparam)
 
 
 def move_to(handle: HWND, x: int, y: int):
@@ -211,6 +179,52 @@ def scroll_down(handle: HWND, x: int, y: int):
 
 
 
+def get_virtual_keycode(key: str):
+    """根据按键名获取虚拟按键码
+
+    Args:
+        key (str): 按键名
+
+    Returns:
+        int: 虚拟按键码
+    """
+    if len(key) == 1 and key in string.printable:
+        # https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-vkkeyscana
+        return VkKeyScanA(ord(key)) & 0xff
+    else:
+        return VkCode[key]
+
+
+
+
+def key_down(handle: HWND, key: str):
+    """按下指定按键
+
+    Args:
+        handle (HWND): 窗口句柄
+        key (str): 按键名
+    """
+    vk_code = get_virtual_keycode(key)
+    scan_code = MapVirtualKeyW(vk_code, 0)
+    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-keydown
+    wparam = vk_code
+    lparam = (scan_code << 16) | 1
+    PostMessageW(handle, WM_KEYDOWN, wparam, lparam)
+
+
+def key_up(handle: HWND, key: str):
+    """放开指定按键
+
+    Args:
+        handle (HWND): 窗口句柄
+        key (str): 按键名
+    """
+    vk_code = get_virtual_keycode(key)
+    scan_code = MapVirtualKeyW(vk_code, 0)
+    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-keyup
+    wparam = vk_code
+    lparam = (scan_code << 16) | 0XC0000001
+    PostMessageW(handle, WM_KEYUP, wparam, lparam)
 
 
 
@@ -218,7 +232,8 @@ def scroll_down(handle: HWND, x: int, y: int):
 
 
 
-if __name__ == "__main__":
+
+''' if __name__ == "__main__":
     # 需要和目标窗口同一权限，游戏窗口通常是管理员权限
     import sys
     if not windll.shell32.IsUserAnAdmin():
@@ -226,12 +241,9 @@ if __name__ == "__main__":
         windll.shell32.ShellExecuteW(
             None, "runas", sys.executable, __file__, None, 1)
 
- 
-    #handle = windll.user32.FindWindowW(None, "MapleStory")
+    #import cv2
     handle = windll.user32.FindWindowW(None, "notepad++")
-  
-   
- 
+    # 点击线路
 running = False
 
 def on_key_press(event):
@@ -243,33 +255,26 @@ def on_key_press(event):
         else:
             print("循环已暂停")
 print("加载完毕，请按数字 0 启动/暂停")
-keyboard.on_press(on_key_press)
-
+keyboard.on_press(on_key_press)    
+    
+    
+    
 while True:
-    if running:
-        #print(f"当前时间：{datetime.now()} press key :x")
-        current_time = time.time()
-        if current_time  % 11 <1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :a")
-          key_down(handle, 'a')
-          key_up(handle, 'a')
-        if current_time % 15 < 1:  
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :e")
-          key_down(handle, 'e')
-          key_up(handle, 'e')
-        if current_time % 30 < 1:    
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :t")
-          key_down(handle, 't')
-          key_up(handle, 't')                   
-        if current_time % 60 < 1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :y")
-          key_down(handle, 'y')
-          key_up(handle, 'y')
-    time.sleep(0.3)    
-         
-     
-  
+ if running:    
+    left_down(handle, 1234, 20)
+    time.sleep(0.1)
+    left_up(handle, 1234, 20)
+   
+    left_down(handle, 1234, 20)
+    time.sleep(0.1)
+    left_up(handle, 1234, 20)
+    
+    left_down(handle, 1234, 20)
+    time.sleep(0.1)
+    left_up(handle, 1234, 20)
+    
+    left_down(handle, 1234, 20)
+    time.sleep(0.1)
+    left_up(handle, 1234, 20)
+    # 滚动线路列表
+    time.sleep(1)  '''

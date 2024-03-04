@@ -1,0 +1,26 @@
+Recording started at Wed Nov  8 20:55:13 2023
+latency 2200.91 ms
+right down
+latency 41.41 ms
+space down
+latency 90.70 ms
+right up
+latency 36.22 ms
+space up
+latency 123.91 ms
+space down
+latency 66.73 ms
+space up
+latency 116.30 ms
+space down
+latency 105.15 ms
+space up
+latency 171.00 ms
+space down
+latency 7.83 ms
+right down
+latency 139.74 ms
+right up
+latency 3.14 ms
+space up
+Recording stopped

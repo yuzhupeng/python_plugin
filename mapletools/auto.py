@@ -1,23 +1,15 @@
-from ctypes import windll, byref
-from ctypes.wintypes import HWND, POINT
+from ctypes import windll
+from ctypes.wintypes import HWND
 import string
 import time
 import keyboard
-from datetime import datetime
 
 PostMessageW = windll.user32.PostMessageW
 MapVirtualKeyW = windll.user32.MapVirtualKeyW
 VkKeyScanA = windll.user32.VkKeyScanA
-ClientToScreen = windll.user32.ClientToScreen
-WM_MOUSEMOVE = 0x0200
-WM_LBUTTONDOWN = 0x0201
-WM_LBUTTONUP = 0x202
-WM_MOUSEWHEEL = 0x020A
-WHEEL_DELTA = 120
+
 WM_KEYDOWN = 0x100
 WM_KEYUP = 0x101
-
-
 
 # https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 VkCode = {
@@ -128,96 +120,6 @@ def key_up(handle: HWND, key: str):
     PostMessageW(handle, WM_KEYUP, wparam, lparam)
 
 
-def move_to(handle: HWND, x: int, y: int):
-    """移动鼠标到坐标（x, y)
-
-    Args:
-        handle (HWND): 窗口句柄
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-mousemove
-    wparam = 0
-    lparam = y << 16 | x
-    PostMessageW(handle, WM_MOUSEMOVE, wparam, lparam)
-
-
-def left_down(handle: HWND, x: int, y: int):
-    """在坐标(x, y)按下鼠标左键
-
-    Args:
-        handle (HWND): 窗口句柄
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-lbuttondown
-    wparam = 0
-    lparam = y << 16 | x
-    PostMessageW(handle, WM_LBUTTONDOWN, wparam, lparam)
-
-
-def left_up(handle: HWND, x: int, y: int):
-    """在坐标(x, y)放开鼠标左键
-
-    Args:
-        handle (HWND): 窗口句柄
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-lbuttonup
-    wparam = 0
-    lparam = y << 16 | x
-    PostMessageW(handle, WM_LBUTTONUP, wparam, lparam)
-
-
-def scroll(handle: HWND, delta: int, x: int, y: int):
-    """在坐标(x, y)滚动鼠标滚轮
-
-    Args:
-        handle (HWND): 窗口句柄
-        delta (int): 为正向上滚动，为负向下滚动
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    move_to(handle, x, y)
-    # https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-mousewheel
-    wparam = delta << 16
-    p = POINT(x, y)
-    ClientToScreen(handle, byref(p))
-    lparam = p.y << 16 | p.x
-    PostMessageW(handle, WM_MOUSEWHEEL, wparam, lparam)
-
-
-def scroll_up(handle: HWND, x: int, y: int):
-    """在坐标(x, y)向上滚动鼠标滚轮
-
-    Args:
-        handle (HWND): 窗口句柄
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    scroll(handle, WHEEL_DELTA, x, y)
-
-
-def scroll_down(handle: HWND, x: int, y: int):
-    """在坐标(x, y)向下滚动鼠标滚轮
-
-    Args:
-        handle (HWND): 窗口句柄
-        x (int): 横坐标
-        y (int): 纵坐标
-    """
-    scroll(handle, -WHEEL_DELTA, x, y)
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     # 需要和目标窗口同一权限，游戏窗口通常是管理员权限
     import sys
@@ -226,12 +128,13 @@ if __name__ == "__main__":
         windll.shell32.ShellExecuteW(
             None, "runas", sys.executable, __file__, None, 1)
 
- 
-    #handle = windll.user32.FindWindowW(None, "MapleStory")
-    handle = windll.user32.FindWindowW(None, "notepad++")
-  
-   
- 
+     
+    handle = windll.user32.FindWindowW(None, "MapleStory")
+    # 控制角色向前移动两秒
+"""     for _ in range(1111111111):
+     key_down(handle, 'control')
+     key_down(handle, 'x')
+     time.sleep(0.1) """
 running = False
 
 def on_key_press(event):
@@ -245,31 +148,57 @@ def on_key_press(event):
 print("加载完毕，请按数字 0 启动/暂停")
 keyboard.on_press(on_key_press)
 
+key_down(handle, 's')
+key_up(handle, 's')
+
 while True:
     if running:
         #print(f"当前时间：{datetime.now()} press key :x")
+        key_down(handle, 'x')
+        #key_up(handle,'x')
+       
+  
         current_time = time.time()
-        if current_time  % 11 <1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :a")
-          key_down(handle, 'a')
-          key_up(handle, 'a')
-        if current_time % 15 < 1:  
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :e")
-          key_down(handle, 'e')
-          key_up(handle, 'e')
-        if current_time % 30 < 1:    
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :t")
-          key_down(handle, 't')
-          key_up(handle, 't')                   
-        if current_time % 60 < 1:
-          time.sleep(1)
-          print(f"当前时间：{datetime.now()} press key :y")
-          key_down(handle, 'y')
-          key_up(handle, 'y')
-    time.sleep(0.3)    
-         
+        
+        if current_time % 5 < 1:
+            time.sleep(0.8)
+            key_down(handle,'h')
+            key_up(handle,'h')        
+        if current_time % 11 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: a")
+            key_down(handle,'a')
+            key_up(handle,'a')
+        if current_time % 14 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: e")
+            key_down(handle,'e')
+            key_up(handle,'e')
+        if current_time % 18 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: t")
+            key_down(handle,'t')
+            key_up(handle,'t')
+        if current_time % 25 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: y")
+            key_down(handle,'y')
+            key_up(handle,'y')
+        if current_time % 33 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: u")
+            key_down(handle,'u')
+            key_up(handle,'u')
+        if current_time % 40 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: i")
+            key_down(handle,'i')
+            key_up(handle,'i')
+        if current_time % 45 < 1:
+            time.sleep(0.8)
+            print(f"当前时间：{time.strftime('%Y-%m-%d %H:%M:%S')} 按下按键: o")
+            key_down(handle,'o')
+            key_up(handle,'o')
+        time.sleep(0.3)
      
   
